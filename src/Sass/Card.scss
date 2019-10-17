@@ -1,0 +1,104 @@
+@import './variables.scss';
+
+@keyframes showCard {
+  0% {
+    transform: scale(0);
+  }
+  70%{
+    transform: scale(1.05);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
+.card {
+  cursor: pointer;
+  position: relative;
+  width: 45%;
+  padding-top: 45%;
+  margin-bottom: 20px;
+  background: rgba($mainBGColor, .9);
+  box-shadow: inset 5px -5px 7.5px rgba($mainBGColorLighten, .9), 3px -3px 10px rgba(0, 0, 0, .4);
+  border-radius: 20px;
+  transition: background .1s, transform .1s, box-shadow .1s,;
+  overflow: hidden;
+
+  &__card-container{
+    transition: transform .2s, background .2s;
+  }
+  &:hover {
+    transform: translate(2px, -2px);
+    background: rgba($mainBGColor, .95);
+    box-shadow: inset 10px -10px 8px rgba(lighten($mainBGColorLighten, 8%), .5), 0px 0px 0px rgba(0, 0, 0, .5);
+    
+    &.active-settings{
+      box-shadow: inset 8px -8px 15px rgba(0, 0, 0,.3), 0px 0px 0px rgba(0, 0, 0, .5);
+      .card__card-container{
+        background: rgba(0, 0, 0, .1);
+        transform: translate(2px, -2px);
+      }
+    }
+  }
+
+  @media (min-width: 576px) {
+    width: 30%;
+    padding-top: 30%;
+  }
+  @media (min-width: 768px) {
+    width: 22.5%;
+    padding-top:22.5%;
+  }
+
+  &__card-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+    &__settings-icon-click{
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      color: rgba(211, 211, 211, .5);
+      font-size:  25px;
+      transition: transform .2s ease, color .2s;
+      z-index: 5;
+    &:hover{
+      transform: scale(1.25);
+      color: rgba(211, 211, 211, 1);
+    }
+  }
+}
+.active-settings{
+  width: 95%;
+  padding-top: 50%;
+  box-shadow: inset 10px -10px 10px rgba(0, 0, 0,.3), 0px 0px 0px rgba(0, 0, 0, .5);
+  transform: translate(2px, -2px);
+  .card__card-container{
+    background: rgba(0, 0, 0, .1);
+    transform: translate(2px, -2px);
+  }
+  @media (min-width: 576px) {
+    width: 95%;
+    padding-top: 50%;
+  }
+  @media (min-width: 768px) {
+    width: 50%;
+    padding-top: 50%;
+  }
+}
+
+.settings-icon-watermark{
+  font-size: 15vh;
+  color: rgba(0, 0, 0, .1);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translatex(-50%);
+  transition: opacity .25s;
+}

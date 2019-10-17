@@ -1,0 +1,14 @@
+.navbar{
+  position: fixed;
+  z-index: 10;
+  max-width: 1200px;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+  right: 0;
+  width: 100%;
+  height: 60px;
+  background: rgba(139, 69, 19, .95);
+  border-radius: 0 0 20px 20px;
+    box-shadow: inset 0px -7.5px 5px 1px peru,0 5px 5px rgba(0, 0, 0, .6);
+}

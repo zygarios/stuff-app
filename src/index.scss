@@ -1,11 +1,16 @@
-@import './Sass/variables';
-
 html {
   font-family: 'Montserrat',
     sans-serif;
   font-size: 10px;
 }
-
+body{
+  background: url('https://images.pexels.com/photos/64778/pexels-photo-64778.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260') 0/cover;
+  background-attachment: fixed;
+}
 * {
-  outline: none;
+outline: none;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none; 
+user-select: none; 
 }

@@ -1,16 +1,14 @@
-import React from 'react';
-import './App.scss';
+import React, { useState } from "react";
+import "./Sass/App.scss";
 
-import LoginPanel from './Routes/LoginPanel';
-import HomePanel from './Routes/HomePanel';
-import UserSettingsPanel from './Routes/UserSettingsPanel';
+import LoginPanel from "./Components/LoginPanel";
+import HomePanel from "./Components/HomePanel";
 
 function App() {
+  const [isLoggedIn, setLoginStatus] = useState(true);
   return (
     <div className="stuff-app">
-      <LoginPanel></LoginPanel>
-      <HomePanel></HomePanel>
-      <UserSettingsPanel></UserSettingsPanel>
+      {isLoggedIn ? <HomePanel /> : <LoginPanel />}
     </div>
   );
 }
