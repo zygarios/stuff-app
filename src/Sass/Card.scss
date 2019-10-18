@@ -19,7 +19,7 @@
   padding-top: 45%;
   margin-bottom: 20px;
   background: rgba($mainBGColor, .9);
-  box-shadow: inset 5px -5px 7.5px rgba($mainBGColorLighten, .9), 3px -3px 10px rgba(0, 0, 0, .4);
+  box-shadow: inset 5px -5px 7.5px rgba($mainBGColorLighten, .9), 3px -3px 5px rgba(0, 0, 0, .4);
   border-radius: 20px;
   transition: background .1s, transform .1s, box-shadow .1s,;
   overflow: hidden;
@@ -74,7 +74,7 @@
 }
 .active-settings{
   width: 95%;
-  padding-top: 50%;
+  padding-top: 47.5%;
   box-shadow: inset 10px -10px 10px rgba(0, 0, 0,.3), 0px 0px 0px rgba(0, 0, 0, .5);
   transform: translate(2px, -2px);
   .card__card-container{
@@ -83,16 +83,16 @@
   }
   @media (min-width: 576px) {
     width: 95%;
-    padding-top: 50%;
+    padding-top: 47.5%;
   }
   @media (min-width: 768px) {
-    width: 50%;
-    padding-top: 50%;
+    width: 47.5%;
+    padding-top: 47.5%;
   }
 }
 
 .settings-icon-watermark{
-  font-size: 15vh;
+  font-size: 20vmin;
   color: rgba(0, 0, 0, .1);
   position: absolute;
   top: 0;

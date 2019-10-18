@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../Sass/HomePanel.scss";
 import Navbar from "./Navbar";
 import Card from "./Card";
@@ -41,32 +41,50 @@ const panelsApi = [
 
 const panels = [
   { category_id: 123, category: "Jedzonko", created_at: "" },
-  { name: 2 },
-  { name: 3 },
-  { name: 4 },
-  { name: 5 },
-  { name: 6 },
-  { name: 7 },
-  { name: 8 },
-  { name: 9 },
-  { name: 10 },
-  { name: 11 },
-  { name: 12 },
-  { name: 13 },
-  { name: 14 },
-  { name: 15 },
-  { name: 16 },
-  { name: 17 },
-  { name: 18 },
-  { name: 19 },
-  { name: 20 }
+  { category_id: 123, category: "Jedzonko", created_at: "" },
+  { category_id: 123, category: "Jedzonko", created_at: "" },
+  { category_id: 123, category: "Jedzonko", created_at: "" },
+  { category_id: 123, category: "Jedzonko", created_at: "" },
+  { category_id: 123, category: "Jedzonko", created_at: "" },
+  { category_id: 123, category: "Jedzonko", created_at: "" },
+  { category_id: 123, category: "Jedzonko", created_at: "" },
+  { category_id: 123, category: "Jedzonko", created_at: "" },
+  { category_id: 123, category: "Jedzonko", created_at: "" }
 ];
 
 function HomePanel() {
-  const cards = panels.map((card, index) => {
-    return <Card name={card.name} key={index} />;
+  const [cardsData, setCardsData] = useState([]);
+  const [cardsStatus, setCardsStatus] = useState([]);
+
+  useEffect(() => {
+    setCardsData(panels);
+    let cardsStatusList = panels.map(card => false);
+    setCardsStatus(cardsStatusList);
+  }, []);
+
+  const statusChanger = id => {
+    const newCardsStatus = cardsStatus.map((card, index) => {
+      if (index === id) {
+        return !card;
+      } else {
+        return false;
+      }
+    });
+    setCardsStatus(newCardsStatus);
+  };
+
+  const cards = cardsData.map((card, cardIndex) => {
+    return (
+      <Card
+        key={cardIndex}
+        id={cardIndex}
+        statusChanger={statusChanger}
+        activeSettings={cardsStatus[cardIndex]}
+      />
+    );
   });
-  cards.unshift(<Card empty={true} key="11j2jk32j" />);
+
+  useEffect(() => {}, []);
 
   return (
     <main className="home-panel">
