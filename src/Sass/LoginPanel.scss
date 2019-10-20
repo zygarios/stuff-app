@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 .login-panel {
   display: flex;
   justify-content: center;
@@ -15,7 +17,8 @@
     font-weight: 900;
     text-align: center;
     font-size: 2.5rem;
-    color: green;
+    color: $mainBGColor;
+    text-shadow: 1px 1px 1px $mainBGColorLighten;
     @media (min-width: 576px) {
       font-size: 3.5rem;
     }
@@ -29,7 +32,7 @@
     display: block;
     font-size: 1.75rem;
     margin: 50px 0 0;
-    color: green;
+    color: $mainBGColor;
   }
   &__email-input,
   &__username-input,
@@ -40,12 +43,13 @@
     margin: 20px auto;
     padding: 10px 15px;
     font-size: 1.5rem;
-    border: 1.5px solid green;
+    border: 1.5px solid $mainBGColor;
     border-radius: 10px;
     background: transparent;
     transition: box-shadow .2s;
+    color: $mainBGColor;
     &:focus {
-      box-shadow: inset 1px 1px 3px green;
+      box-shadow: inset 3px 3px 3px $mainBGColorLighten;
     }
   }
 
@@ -57,32 +61,31 @@
     padding: 15px 15px;
     margin: 50px 0 20px;
     border-radius: 15px;
-    border: 3px solid green;
+    border: 3px solid $mainBGColor;
     cursor: pointer;
-    color: green;
-    transition: background .1s, color .1s, box-shadow .1s;
-
-
+    color: $mainBGColor;
+    transition: background .2s, color .2s, box-shadow .1s;
     &:hover {
-      background: green;
+      background: $mainBGColor;
       color: white;
     }
     &:active {
       color: white;
-      background: green;
-      box-shadow: inset 4px 4px 4px rgb(0, 73, 0);
+      background: $mainBGColor;
+      box-shadow: inset 5px 5px 4px darken($mainBGColor, 25%);
     }
   }
 
   &__sign-up-title {
     font-size: 1.5rem;
     margin: 30px 0 0;
-    color: green;
+    color: $mainBGColorLighten;
   }
 
   &__sign-up-link {
     text-decoration: none;
-    color: blue;
+    color: $mainBGColor;
+    font-weight: 700;
     cursor: pointer;
     &:hover {
       text-decoration: underline;

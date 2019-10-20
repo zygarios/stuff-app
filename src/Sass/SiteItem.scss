@@ -1,0 +1,31 @@
+@import './variables.scss';
+
+.site{
+// border: 1px solid red;
+border-radius: 20px;
+margin: 15px 15px 15px 15px;
+padding: 15px;
+height: 150px;
+background: $mainBGColor;
+box-shadow: inset 0 0 0 2px $mainBGColorLighten;
+cursor: pointer;
+transition: background .2s, box-shadow .2s;
+color: lighten($mainBGColorLighten, 25%);
+&:hover{
+  background: lighten($mainBGColor, 5%);
+  box-shadow: inset 0 0 0 4px $mainBGColorLighten, inset 0px 0px 3px 3px $mainBGColorLighten;
+
+}
+  &__name{
+
+  }
+  &__update-time{
+
+  }
+  &__go-on-website{
+
+  }
+  &__link{
+
+  }
+}

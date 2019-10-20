@@ -1,0 +1,22 @@
+@import './variables.scss';
+
+.group-item{
+  position: relative;
+  z-index: -1;
+  white-space: nowrap;
+  color: lighten($mainBGColorLighten, 20%);
+  font-size: 2rem;
+  line-height: 3.5rem;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
+  animation: bookmarkAnimTitle 1s 1 both;
+  list-style-type: none;
+  border-radius: 20px;
+  display: block;
+  padding-left: 10px;
+  cursor: pointer;
+  transition: background .1s;
+  &:hover{
+    background: $mainBGColorLighten;
+  }
+}

@@ -1,2 +1,11 @@
-$mainBGColor: rgb(140, 70, 20);
-$mainBGColorLighten: rgb(180, 110, 60);
+$mainBGColor: #5e35b1;
+$mainBGColorLighten: #9575cd;
+
+@keyframes bookmarkAnimTitle {
+  0%{
+   opacity: 0;
+  }
+  100%{
+    opacity: 1;
+   }
+}

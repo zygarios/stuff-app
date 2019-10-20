@@ -1,29 +1,59 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSlidersH, faUserCog } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEllipsisV,
+  faBookmark,
+  faAngleDoubleUp,
+  faGenderless
+} from "@fortawesome/free-solid-svg-icons";
 import "../Sass/Card.scss";
-import UserSettingsPanel from "./UserSettingsPanel";
+import SettingsPanel from "./SettingsPanel";
+import BookmarkPanel from "./BookmarkPanel";
 
-function Card({ id, statusChanger, activeSettings }) {
+function Card({ id, statusChanger, activeSettings, activeBookmark }) {
   return (
-    <li className={`card ${activeSettings && "active-settings"}`}>
+    <li
+      className={`card ${activeSettings &&
+        "active-settings"} ${activeBookmark && "active-bookmark"}`}>
       <div className="card__card-container">
-        <div className="card__card-settings">
-          <FontAwesomeIcon
-            icon={faUserCog}
-            className="settings-icon-watermark"
-            style={activeSettings ? { opacity: ".5" } : { opacity: "0" }}
-          />
-          <span
-            className="card__settings-icon-click"
-            onClick={() => {
-              statusChanger(id);
-            }}
-          >
-            <FontAwesomeIcon icon={faSlidersH} />
-          </span>
-          {activeSettings && <UserSettingsPanel />}
-        </div>
+        <FontAwesomeIcon
+          className="card__bookmark-icon-click"
+          style={
+            activeSettings !== false || activeBookmark !== false
+              ? { display: "none" }
+              : null
+          }
+          onClick={() => {
+            statusChanger(id, "bookmark");
+          }}
+          icon={faGenderless}
+        />
+        <FontAwesomeIcon
+          className="card__settings-icon-click"
+          style={
+            activeSettings !== false || activeBookmark !== false
+              ? { display: "none" }
+              : null
+          }
+          onClick={() => {
+            statusChanger(id, "settings");
+          }}
+          icon={faEllipsisV}
+        />
+        <span
+          className="card__home-icon-click"
+          style={
+            activeSettings === false && activeBookmark === false
+              ? { display: "none" }
+              : null
+          }
+          onClick={() => {
+            statusChanger(id, "home");
+          }}>
+          <FontAwesomeIcon icon={faAngleDoubleUp} />
+        </span>
+        {activeSettings && <SettingsPanel />}
+        {activeBookmark && <BookmarkPanel />}
       </div>
     </li>
   );

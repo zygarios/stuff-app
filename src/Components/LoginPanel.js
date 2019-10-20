@@ -21,28 +21,28 @@ function LoginPanel() {
         <h1 className="login-panel__title">Welcome to WebStuff</h1>
         {!isLoginPanelShow && (
           <>
-            <label htmlFor="email" className="login-panel__email-title">
-              Email
+            <label htmlFor="username" className="login-panel__username-title">
+              Username
             </label>
             <input
-              type="email"
-              id="email"
-              className="login-panel__email-input"
-              value={emailValue}
-              onChange={e => setEmailValue(e.target.value)}
+              type="username"
+              id="username"
+              className="login-panel__username-input"
+              value={usernameValue}
+              onChange={e => setUsernameValue(e.target.value)}
             />
           </>
         )}
 
-        <label htmlFor="username" className="login-panel__username-title">
-          Username
+        <label htmlFor="email" className="login-panel__email-title">
+          Email
         </label>
         <input
-          type="username"
-          id="username"
-          className="login-panel__username-input"
-          value={usernameValue}
-          onChange={e => setUsernameValue(e.target.value)}
+          type="email"
+          id="email"
+          className="login-panel__email-input"
+          value={emailValue}
+          onChange={e => setEmailValue(e.target.value)}
         />
         <label htmlFor="password" className="login-panel__password-title">
           Password
