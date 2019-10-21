@@ -3,11 +3,7 @@ import "../Sass/HomePanel.scss";
 import Navbar from "./Navbar";
 import Card from "./Card";
 
-
-
 const panelsApi = [
-
-  
   {
     category_id: 3,
     created_at: "2019-08-03 14:25:20",
@@ -74,7 +70,7 @@ function HomePanel() {
     setCardsBookmarkStatus(cardsList);
   }, []);
 
-  const statusChanger = (id, type, e) => {
+  const statusChanger = (id, type) => {
     if (type === "settings") {
       const settings = cardsSettingStatus.map((card, index) => {
         if (index === id) {
@@ -83,9 +79,7 @@ function HomePanel() {
           return false;
         }
       });
-      const bookmarkDisable = cardsBookmarkStatus.map(
-        (card, index) => (card = false)
-      );
+      const bookmarkDisable = cardsBookmarkStatus.map(card => (card = false));
       setCardsBookmarkStatus(bookmarkDisable);
       setCardsSettingStatus(settings);
     } else if (type === "bookmark") {
@@ -96,9 +90,7 @@ function HomePanel() {
           return false;
         }
       });
-      const settingsDisable = cardsSettingStatus.map(
-        (card, index) => (card = false)
-      );
+      const settingsDisable = cardsSettingStatus.map(card => (card = false));
       setCardsBookmarkStatus(bookmark);
       setCardsSettingStatus(settingsDisable);
     } else if (type === "home") {

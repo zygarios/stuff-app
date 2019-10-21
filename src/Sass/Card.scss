@@ -19,15 +19,17 @@
   padding-top: 45%;
   margin-bottom: 20px;
   background: rgba($mainBGColor, 1);
-  box-shadow: inset 5px -5px 7.5px rgba($mainBGColorLighten, .9), 3px -3px 5px rgba(0, 0, 0, .4);
-  border-radius: 20px;
+  box-shadow: inset 3px -3px 3px rgba($mainBGColorLighten, .9), 3px -3px 4px rgba(0, 0, 0, .4);
+  border-radius: $borderRadius;
   transition: background .1s, transform .1s, box-shadow .1s;
   overflow: hidden;
-
   &:hover {
     transform: translate(2px, -2px);
     background: rgba($mainBGColor, .95);
-    box-shadow: inset 10px -10px 8px rgba(lighten($mainBGColorLighten, 8%), .5), 0px 0px 0px rgba(0, 0, 0, .5);
+    box-shadow: inset 5px -5px 4px rgba(lighten($mainBGColorLighten, 8%), .5), 0px 0px 0px rgba(0, 0, 0, .5);
+  }
+  &:active{
+    box-shadow: inset 4px -4px 4px rgba(darken($mainBGColor, 10%), .7), 0px 0px 0px rgba(0, 0, 0, .5);
   }
 
   @media (min-width: 576px) {
@@ -50,12 +52,15 @@
 
     &__settings-icon-click{
       position: absolute;
-      top: 15px;
-      right: 15px;
+      top: 5px;
+      right: 5px;
       color: rgba(211, 211, 211, .5);
       font-size:  25px;
+      display: block;
+      padding: 10px;
+      border-radius: $borderRadius;
       transition: transform .2s ease, color .2s;
-      z-index: 5;
+      z-index: 6;
       cursor: pointer;
     &:hover{
       transform: scale(1.25);
@@ -105,7 +110,7 @@
   }
   .card__card-container{
     background: rgba(0, 0, 0, .1);
-    border-radius: 20px;
+    border-radius: $borderRadius;
   }
   @media (min-width: 576px) {
     width: 30%;
@@ -123,13 +128,13 @@
   padding-top: calc(100vh - 100px);
   transform: translate(2px, -2px);
   transition: box-shadow .2s,box-shadow .2s, transform .2s;
-  box-shadow: inset 10px -10px 10px rgba(0, 0, 0,.15), 0px 0px 0px rgba(0, 0, 0, .5), 0 0 0 5px $mainBGColorLighten;
+  box-shadow: inset 10px -10px 10px rgba(0, 0, 0,.15), 0px 0px 0px rgba(0, 0, 0, .5), 0 0 0 5px $subBGColorLighten;
   transition: background .2s;
   &:hover {
-    box-shadow: inset 10px -10px 10px rgba(0, 0, 0,.15), 0px 0px 0px rgba(0, 0, 0, .5), 0 0 0 5px $mainBGColorLighten;
+    box-shadow: inset 10px -10px 10px rgba(0, 0, 0,.15), 0px 0px 0px rgba(0, 0, 0, .5), 0 0 0 5px $subBGColorLighten;
   }
   .card__card-container{
-    border-radius: 20px;
+    border-radius: $borderRadius;
   }
 
 }

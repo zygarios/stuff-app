@@ -44,7 +44,7 @@
     padding: 10px 15px;
     font-size: 1.5rem;
     border: 1.5px solid $mainBGColor;
-    border-radius: 10px;
+    border-radius: $borderRadius/2;
     background: transparent;
     transition: box-shadow .2s;
     color: $mainBGColor;
@@ -60,7 +60,7 @@
     font-size: 2.0rem;
     padding: 15px 15px;
     margin: 50px 0 20px;
-    border-radius: 15px;
+    border-radius: $borderRadius;
     border: 3px solid $mainBGColor;
     cursor: pointer;
     color: $mainBGColor;

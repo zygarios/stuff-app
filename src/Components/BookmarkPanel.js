@@ -27,16 +27,18 @@ function BookmarkPanel(width) {
     });
   };
 
-  useEffect(() => {
+  const moveScreenToActiveCard = () => {
     const bookmarkPosTop = document
       .querySelector(".active-bookmark")
       .getBoundingClientRect().top;
     const scrollValue = bookmarkPosTop - 75;
     window.scrollBy(0, scrollValue);
-  }, []);
+  };
+
+  useEffect(() => moveScreenToActiveCard(), []);
 
   return (
-    <div className="bookmark-panel">
+    <div className="bookmark-panel" onClick={() => moveScreenToActiveCard()}>
       <h2 className="bookmark-panel__category-title">
         {"Podróże kulinarne i jedzonko oraz tozne fajnes"}
       </h2>
@@ -74,11 +76,41 @@ function BookmarkPanel(width) {
       </div>
       <div className="bookmark-panel__sites">
         <ul className="bookmark-panel__sites-ul">
-          <SiteItem />
-          <SiteItem />
-          <SiteItem />
-          <SiteItem />
-          <SiteItem />
+          <SiteItem
+            siteData={{
+              siteURL: "https://wwwp.wp.pl",
+              name: "WirtualnaPolska",
+              updateTime: "15:12 18.11.2019"
+            }}
+          />
+          <SiteItem
+            siteData={{
+              siteURL: "https://wwwp.wp.pl",
+              name: "WirtualnaPolska",
+              updateTime: "15:12 18.11.2019"
+            }}
+          />
+          <SiteItem
+            siteData={{
+              siteURL: "https://wwwp.wp.pl",
+              name: "WirtualnaPolska",
+              updateTime: "15:12 18.11.2019"
+            }}
+          />
+          <SiteItem
+            siteData={{
+              siteURL: "https://wwwp.wp.pl",
+              name: "WirtualnaPolska",
+              updateTime: "15:12 18.11.2019"
+            }}
+          />
+          <SiteItem
+            siteData={{
+              siteURL: "https://wwwp.wp.pl",
+              name: "WirtualnaPolska",
+              updateTime: "15:12 18.11.2019"
+            }}
+          />
         </ul>
       </div>
     </div>
