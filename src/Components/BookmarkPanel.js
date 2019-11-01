@@ -27,6 +27,17 @@ function BookmarkPanel(width) {
     });
   };
 
+  // const handleGroupListTouchStart = () => {
+  //   setIsHoverOnGroupItem(true);
+  // };
+  // const handleGroupListTouchEnd = () => {
+  //   setIsHoverOnGroupItem(true);
+  // };
+
+  // const handleGroupListTouchMove = e => {
+  //   setGroupWidth(e.touches[0].clientX);
+  // };
+
   const moveScreenToActiveCard = () => {
     const bookmarkPosTop = document
       .querySelector(".active-bookmark")
@@ -46,10 +57,15 @@ function BookmarkPanel(width) {
         className="bookmark-panel__groups-list"
         style={{ width: isHoverOnGroupItem && `${groupWidth + 30}px` }}
         onMouseEnter={handleGroupListEnter}
-        onMouseLeave={handleGroupListLeave}>
+        onMouseLeave={handleGroupListLeave}
+        // onTouchStart={handleGroupListTouchStart}
+        // onTouchMove={handleGroupListTouchMove}
+        // onTouchEnd={handleGroupListTouchEnd}
+      >
         <ul
           className="bookmark-panel__groups-list-ul"
-          style={{ width: isHoverOnGroupItem && `${groupWidth + 30}px` }}>
+          style={{ width: isHoverOnGroupItem && `${groupWidth + 30}px` }}
+        >
           <GroupItem groupName="asdasfasnd asndans odnasna n" />
           <GroupItem groupName="asdasa sdasds fasnd asndans odnasna n" />
           <GroupItem groupName="gh ffggh g sd f sdf" />

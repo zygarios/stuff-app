@@ -1,6 +1,27 @@
 import React, { useState } from "react";
 import "../Sass/LoginPanel.scss";
 
+import axios from "axios";
+
+const serverPageURL = "https://jimmyspage.pl/api/user";
+const CORSblock = "https://cors-anywhere.herokuapp.com/";
+
+const handleFetchLogin = () => {
+  var data = new FormData();
+  data.append("username", "von.talia@example.com");
+  data.append("password", "password");
+  axios
+    .post(serverPageURL, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json"
+      }
+    })
+    .then(res => {
+      console.log("nic");
+    });
+};
+
 function LoginPanel() {
   const [isLoginPanelShow, setIsLoginPanelShow] = useState(true);
   const [emailValue, setEmailValue] = useState("");
@@ -13,12 +34,13 @@ function LoginPanel() {
 
   const handleSubmitForm = e => {
     e.preventDefault();
+    handleFetchLogin();
   };
 
   return (
     <div className="login-panel">
       <form action="" className="login-panel__form">
-        <h1 className="login-panel__title">Welcome to WebStuff</h1>
+        <h1 className="login-panel__title">Zakładka</h1>
         {!isLoginPanelShow && (
           <>
             <label htmlFor="username" className="login-panel__username-title">

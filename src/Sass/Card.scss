@@ -18,18 +18,17 @@
   width: 45%;
   padding-top: 45%;
   margin-bottom: 20px;
-  background: rgba($mainBGColor, 1);
-  box-shadow: inset 3px -3px 3px rgba($mainBGColorLighten, .9), 3px -3px 4px rgba(0, 0, 0, .4);
+  background: $BGColorPanels;
+  box-shadow: inset 3px -3px 4px rgba($secBGColor, .9), 3px -3px 4px rgba(0, 0, 0, .25);
   border-radius: $borderRadius;
-  transition: background .1s, transform .1s, box-shadow .1s;
+  transition: transform .1s, box-shadow .1s;
   overflow: hidden;
   &:hover {
-    transform: translate(2px, -2px);
-    background: rgba($mainBGColor, .95);
-    box-shadow: inset 5px -5px 4px rgba(lighten($mainBGColorLighten, 8%), .5), 0px 0px 0px rgba(0, 0, 0, .5);
+    box-shadow: inset 5px -5px 4px rgba(lighten($secBGColor, 8%), .5), 3px -3px 4px rgba(0, 0, 0, .25);
   }
   &:active{
-    box-shadow: inset 4px -4px 4px rgba(darken($mainBGColor, 10%), .7), 0px 0px 0px rgba(0, 0, 0, .5);
+    transform: translate(2px, -2px);
+    box-shadow: inset 4px -4px 4px rgba(black, .15), 0px 0px 0px rgba(0, 0, 0, .25);
   }
 
   @media (min-width: 576px) {
@@ -54,7 +53,7 @@
       position: absolute;
       top: 5px;
       right: 5px;
-      color: rgba(211, 211, 211, .5);
+      color: rgba($mainTextColor, .5);
       font-size:  25px;
       display: block;
       padding: 10px;
@@ -64,36 +63,35 @@
       cursor: pointer;
     &:hover{
       transform: scale(1.25);
-      color: rgba(211, 211, 211, 1);
+      color: $mainTextColor;
     }
   }
   &__home-icon-click{
     position: absolute;
     top: 15px;
     right: 15px;
-    color: rgba(211, 211, 211, .5);
+    color: rgba($mainTextColor, .5);
     font-size:  25px;
     transition: transform .2s ease, color .2s;
     z-index: 5;
     cursor: pointer;
   &:hover{
     transform: scale(1.25);
-    color: rgba(211, 211, 211, 1);
+    color: $mainTextColor
   }
   }
     &__bookmark-icon-click{
       position: absolute;
       top: 50%;
       left: 50%;
-      color: rgba(211, 211, 211, .05);
-      font-size:  125px;
+      color: rgba($mainTextColor, .05);
+      font-size:  175px;
       transform: translate(-50%, -50%) scale(1);
       transition: transform .2s ease, color .2s;
       z-index: 5;
       cursor: pointer;
     &:hover{
-      transform: translate(-50%, -50%) scale(1.1);
-      color: rgba(211, 211, 211, .3);
+      color: rgba($mainTextColor, .15);
     }
   }
 }
@@ -103,10 +101,12 @@
   width: 90%;
   padding-top: 45%;
   transform: translate(2px, -2px);
-  transition: box-shadow .2s,box-shadow .2s, transform .2s;
-  box-shadow: inset 10px -10px 10px rgba(0, 0, 0,.3), 0px 0px 0px rgba(0, 0, 0, .5), 0 0 0 5px $mainBGColorLighten;
+  transition: box-shadow .1s,box-shadow .1s, transform .1s;
+  box-shadow: inset 7.5px -7.5px 7.5px rgba(0, 0, 0,.2), 0px 0px 0px rgba(0, 0, 0, .5);
+  
   &:hover {
-    box-shadow: inset 10px -10px 10px rgba(0, 0, 0,.3), 0px 0px 0px rgba(0, 0, 0, .5), 0 0 0 5px $mainBGColorLighten;
+    box-shadow: inset 10px -10px 10px rgba(0, 0, 0,.2), 0px 0px 0px rgba(0, 0, 0, .5);
+    
   }
   .card__card-container{
     background: rgba(0, 0, 0, .1);
@@ -124,19 +124,19 @@
 }
 
 .active-bookmark{
-  width: calc(100% - 5px);
+  width: 100vw;
   padding-top: calc(100vh - 100px);
-  transform: translate(2px, -2px);
-  transition: box-shadow .2s,box-shadow .2s, transform .2s;
-  box-shadow: inset 10px -10px 10px rgba(0, 0, 0,.15), 0px 0px 0px rgba(0, 0, 0, .5), 0 0 0 5px $subBGColorLighten;
-  transition: background .2s;
+  transition: box-shadow .1s, transform .1s;
+  box-shadow: inset 5px -5px 5px rgba(0, 0, 0,.15), 0px 0px 0px rgba(0, 0, 0, .5);
   &:hover {
-    box-shadow: inset 10px -10px 10px rgba(0, 0, 0,.15), 0px 0px 0px rgba(0, 0, 0, .5), 0 0 0 5px $subBGColorLighten;
+    box-shadow: inset 7.5px -7.5px 7.5px rgba(0, 0, 0,.15), 0px 0px 0px rgba(0, 0, 0, .5);
+  }
+  &:active{
+    transform: translate(0, 0);
   }
   .card__card-container{
     border-radius: $borderRadius;
   }
-
 }
 
 

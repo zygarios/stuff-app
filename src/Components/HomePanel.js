@@ -66,10 +66,26 @@ function HomePanel() {
   useEffect(() => {
     setCardsData(panels);
     let cardsList = panels.map(card => false);
+    // let cardsList = panels.map((card, index) => {
+    //   if (index === 0) {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // });
     setCardsSettingStatus(cardsList);
     setCardsBookmarkStatus(cardsList);
   }, []);
 
+  const resetStatus = () => {
+    const resetCardsBookmarkStatus = cardsBookmarkStatus.map(item => false);
+    const resetCardsSettingStatus = cardsSettingStatus.map(item => false);
+    setCardsBookmarkStatus(resetCardsBookmarkStatus);
+    setCardsSettingStatus(resetCardsSettingStatus);
+  };
+  const handleBodyClick = e => {
+    e.target.classList.contains("home-panel__cards-container") && resetStatus();
+  };
   const statusChanger = (id, type) => {
     if (type === "settings") {
       const settings = cardsSettingStatus.map((card, index) => {
@@ -94,10 +110,7 @@ function HomePanel() {
       setCardsBookmarkStatus(bookmark);
       setCardsSettingStatus(settingsDisable);
     } else if (type === "home") {
-      const resetCardsBookmarkStatus = cardsBookmarkStatus.map(item => false);
-      const resetCardsSettingStatus = cardsSettingStatus.map(item => false);
-      setCardsBookmarkStatus(resetCardsBookmarkStatus);
-      setCardsSettingStatus(resetCardsSettingStatus);
+      resetStatus();
     }
   };
 
@@ -114,7 +127,7 @@ function HomePanel() {
   });
 
   return (
-    <main className="home-panel">
+    <main className="home-panel" onClick={handleBodyClick}>
       <Navbar />
       <ul className="home-panel__cards-container">{cards}</ul>
     </main>

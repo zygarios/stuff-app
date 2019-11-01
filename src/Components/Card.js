@@ -15,12 +15,11 @@ function Card({ id, statusChanger, activeSettings, activeBookmark }) {
       onClick={e => {
         if (e.target.parentNode.nodeName === "LI") {
           statusChanger(id, "bookmark");
-        } else {
-          console.log(e.target.parentNode.nodeName);
         }
       }}
       className={`card ${activeSettings &&
-        "active-settings"} ${activeBookmark && "active-bookmark"}`}>
+        "active-settings"} ${activeBookmark && "active-bookmark"}`}
+    >
       <div className="card__card-container">
         <span
           className="card__bookmark-icon-click"
@@ -31,7 +30,8 @@ function Card({ id, statusChanger, activeSettings, activeBookmark }) {
           }
           onClick={() => {
             statusChanger(id, "bookmark");
-          }}>
+          }}
+        >
           <FontAwesomeIcon icon={faGenderless} />
         </span>
         <span
@@ -43,7 +43,8 @@ function Card({ id, statusChanger, activeSettings, activeBookmark }) {
           }
           onClick={() => {
             statusChanger(id, "settings");
-          }}>
+          }}
+        >
           <FontAwesomeIcon icon={faEllipsisV} />
         </span>
         <span
@@ -55,7 +56,8 @@ function Card({ id, statusChanger, activeSettings, activeBookmark }) {
           }
           onClick={() => {
             statusChanger(id, "home");
-          }}>
+          }}
+        >
           <FontAwesomeIcon icon={faShare} />
         </span>
         {activeSettings && <SettingsPanel />}

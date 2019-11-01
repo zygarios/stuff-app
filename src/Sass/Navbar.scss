@@ -5,15 +5,23 @@
   z-index: 10;
   top: 0;
   left: 0;
-  right: 100%;
-  width: 100%;
+  right: 0;
   height: 50px;
-  background: $mainBGColor;
+  background: $BGColorPanels;
   border-radius: 0 0 $borderRadius $borderRadius;
-  box-shadow: inset 0px -7.5px 3px 0px darken($mainBGColorLighten, 10%),0 5px 5px rgba(0, 0, 0, .3);
+  box-shadow: inset 0px -3px 2px $secBGColor,0 3px 3px rgba(0, 0, 0, .25);
+
   &__container{
   max-width: 1200px;
   margin: 0 auto;
   height: 100%;
+  }
+  &__hamburger{
+    position: absolute;
+    left: 10px;
+    top: 45%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    color: rgba($mainTextColor, .5);
   }
 }

@@ -6,23 +6,18 @@ border-radius: $borderRadius;
 margin: 15px 15px 15px 15px;
 padding: 20px;
 height: 150px;
-background: $mainBGColor;
-box-shadow: inset 0 0 0 2px $mainBGColorLighten;
+background: $BGColorPanels;
 cursor: pointer;
-transition: background .1s, box-shadow .1s;
-color: lighten($mainBGColorLighten, 25%);
+transition: filter .1s;
+color: $mainTextColor;
 display: flex;
 flex-wrap: wrap;
 animation: bookmarkAnimTitle .5s 1 both;
   &:hover{
-    background: lighten($mainBGColor, 5%);
-    box-shadow: inset 0 0 0 4px $mainBGColorLighten, inset 0px 0px 3px 3px $mainBGColorLighten;
-    .site__link{
-      background: lighten($mainBGColor, 5%);
-    }
+    filter: brightness(105%);
   }
-  &:active{
-    box-shadow: inset 0 0 0 2px $mainBGColorLighten, inset 0px 0px 3px 3px darken($mainBGColor, 10%);
+  &:active {
+    box-shadow: inset 0 0 5px 5px rgba(black, .1);
   }
   &__favicon{
     width: 20px;
@@ -50,22 +45,21 @@ animation: bookmarkAnimTitle .5s 1 both;
     text-transform: uppercase;
     text-decoration: none;
     background: $mainBGColor;
-    color: lighten($mainBGColorLighten, 20%);
-    border: 2px solid $mainBGColorLighten;
+    color: $mainTextColor;
     border-radius: 0 $borderRadius $borderRadius 0;
     transition: box-shadow .1s, border .1s, background .1s, color .1s;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: filter .1s;
     &>svg{
       margin: 0;
       padding: 0;
       transform: translateY(-50%);
     }
     &:hover{
-      background: $subBGColorLighten;
-
+      filter: brightness(105%);
     }
     &:active{
       box-shadow: inset 0 0 2px 2px darken($mainBGColor, 5%);

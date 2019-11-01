@@ -1,10 +1,14 @@
-$mainBGColor: #5e35b1;
-$mainBGColorLighten: #9575cd;
+// $mainBGColor: #5e35b1;
+// $mainBGColorLighten: #9575cd;
+$mainBGColor: rgb(88, 133, 189);
+$secBGColor: #3495A3;
+// $secBGColor: #5954EC;
 $subBGColorLighten: 
 #d1c4e9;
 $borderRadius: 10px;
-
-
+$BGColorBody: rgb(211, 211, 211);
+$mainTextColor: lightgrey;
+$BGColorPanels:  linear-gradient(45deg, rgba(94,69,107,1) -20%, rgb(46, 150, 167) 50%, rgba(143,125,87,1) 120%);
 
 @keyframes bookmarkAnimTitle {
   0%{

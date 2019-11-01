@@ -8,7 +8,9 @@ html {
 }
 body{
   // background: url('https://images.pexels.com/photos/64778/pexels-photo-64778.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260') 0/cover;
-  background: lightgrey;
+  background: $BGColorBody;
+  overflow-x: hidden;
+  // overflow: hidden;
   // background-attachment: fixed;
 }
 
@@ -27,7 +29,7 @@ margin: 0;
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
+  display: none;
 }
 ::-webkit-scrollbar-thumb {
   position: relative;

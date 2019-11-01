@@ -5,7 +5,7 @@ import LoginPanel from "./Components/LoginPanel";
 import HomePanel from "./Components/HomePanel";
 
 function App() {
-  const [isLoggedIn, setLoginStatus] = useState(true);
+  const [isLoggedIn, setLoginStatus] = useState(false);
   return (
     <div className="stuff-app">
       {isLoggedIn ? <HomePanel /> : <LoginPanel />}

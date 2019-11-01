@@ -63,8 +63,8 @@
     z-index: 3;
     margin-right: 2.5px;
     &:hover{
-      color: $mainBGColorLighten;
-      transform: scale(1.1);
+      color: $secBGColor;
+      transform: scale(1.05);
     }
   }
   &__text-input{
@@ -79,7 +79,7 @@
     font-size: 1.35rem;
     border: none;
     transition: box-shadow .2s, width .2s, padding 1s;
-    box-shadow: inset 2px -2px 2px $mainBGColorLighten;
+    box-shadow: inset 2px -2px 2px $secBGColor;
     color: $mainBGColor;
     &:focus {
       box-shadow: inset 3px -3px 3px $mainBGColor;
