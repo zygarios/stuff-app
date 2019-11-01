@@ -1,25 +1,13 @@
 import React, { useState } from "react";
 import "../Sass/LoginPanel.scss";
-
 import axios from "axios";
-
-const serverPageURL = "https://jimmyspage.pl/api/user";
+const serverPageURL = "jimmyspage.pl/api/login";
 const CORSblock = "https://cors-anywhere.herokuapp.com/";
 
 const handleFetchLogin = () => {
   var data = new FormData();
   data.append("username", "von.talia@example.com");
   data.append("password", "password");
-  axios
-    .post(serverPageURL, {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json"
-      }
-    })
-    .then(res => {
-      console.log("nic");
-    });
 };
 
 function LoginPanel() {

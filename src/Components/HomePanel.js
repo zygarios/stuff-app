@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../Sass/HomePanel.scss";
 import Navbar from "./Navbar";
 import Card from "./Card";
+import { Redirect } from "react-router";
 
 const panelsApi = [
   {
@@ -51,12 +52,6 @@ const panels = [
   { category_id: 123, category: "Jedzonko", created_at: "" },
   { category_id: 123, category: "Jedzonko", created_at: "" }
 ];
-
-// const useMoveActiveCardTop = element => {
-//   const activeElement = document.querySelector(element);
-//   console.log(activeElement.getBoundingClientRect().top);
-//   // useEffect(() => {});
-// };
 
 function HomePanel() {
   const [cardsData, setCardsData] = useState([]);
@@ -128,6 +123,8 @@ function HomePanel() {
 
   return (
     <main className="home-panel" onClick={handleBodyClick}>
+      {!cardsSettingStatus.includes(true) &&
+        !cardsBookmarkStatus.includes(true) && <Redirect to={`/home`} />}
       <Navbar />
       <ul className="home-panel__cards-container">{cards}</ul>
     </main>

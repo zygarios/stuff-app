@@ -8,6 +8,7 @@ import {
 import "../Sass/Card.scss";
 import SettingsPanel from "./SettingsPanel";
 import BookmarkPanel from "./BookmarkPanel";
+import { Redirect, Route, Switch } from "react-router";
 
 function Card({ id, statusChanger, activeSettings, activeBookmark }) {
   return (
@@ -18,8 +19,7 @@ function Card({ id, statusChanger, activeSettings, activeBookmark }) {
         }
       }}
       className={`card ${activeSettings &&
-        "active-settings"} ${activeBookmark && "active-bookmark"}`}
-    >
+        "active-settings"} ${activeBookmark && "active-bookmark"}`}>
       <div className="card__card-container">
         <span
           className="card__bookmark-icon-click"
@@ -30,8 +30,7 @@ function Card({ id, statusChanger, activeSettings, activeBookmark }) {
           }
           onClick={() => {
             statusChanger(id, "bookmark");
-          }}
-        >
+          }}>
           <FontAwesomeIcon icon={faGenderless} />
         </span>
         <span
@@ -43,8 +42,7 @@ function Card({ id, statusChanger, activeSettings, activeBookmark }) {
           }
           onClick={() => {
             statusChanger(id, "settings");
-          }}
-        >
+          }}>
           <FontAwesomeIcon icon={faEllipsisV} />
         </span>
         <span
@@ -56,12 +54,15 @@ function Card({ id, statusChanger, activeSettings, activeBookmark }) {
           }
           onClick={() => {
             statusChanger(id, "home");
-          }}
-        >
+          }}>
           <FontAwesomeIcon icon={faShare} />
         </span>
-        {activeSettings && <SettingsPanel />}
-        {activeBookmark && <BookmarkPanel />}
+        {activeSettings && <Redirect to={`/home/settings-${id}`} />}
+        {activeBookmark && <Redirect to={`/home/bookmark-${id}`} />}
+        <Switch>
+          <Route path={`/home/settings-${id}`} component={SettingsPanel} />
+          <Route path={`/home/bookmark-${id}`} component={BookmarkPanel} />
+        </Switch>
       </div>
     </li>
   );
