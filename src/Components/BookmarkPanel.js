@@ -2,12 +2,23 @@ import React, { useState, useEffect } from "react";
 import "../Sass/BookmarkPanel.scss";
 import GroupItem from "./GroupItem";
 import SiteItem from "./SiteItem";
+import AllGroupItem from "./AllGroupItem";
 
-function BookmarkPanel(width) {
+function BookmarkPanel({
+  id,
+  getSitesData,
+  groupsData,
+  setGroupsData,
+  sitesData,
+  setSitesData
+}) {
   const [isHoverOnGroupItem, setIsHoverOnGroupItem] = useState(false);
   const [groupWidth, setGroupWidth] = useState(0);
 
+  useEffect(() => moveScreenToActiveCard(), []);
+
   const handleGroupListEnter = () => {
+    if (window.innerWidth < "576px") console.log("c");
     setIsHoverOnGroupItem(true);
     const groupItems = document.querySelectorAll(".group-item");
     let groupItemsWidth = [];
@@ -46,7 +57,16 @@ function BookmarkPanel(width) {
     window.scrollBy(0, scrollValue);
   };
 
-  useEffect(() => moveScreenToActiveCard(), []);
+  const groups = groupsData.map(groupData => (
+    <GroupItem
+      key={groupData.id}
+      getSitesData={getSitesData}
+      groupData={groupData}
+    />
+  ));
+  const sites = sitesData.map(siteData => (
+    <SiteItem key={siteData.id} siteData={siteData} />
+  ));
 
   return (
     <div className="bookmark-panel" onClick={() => moveScreenToActiveCard()}>
@@ -64,70 +84,13 @@ function BookmarkPanel(width) {
       >
         <ul
           className="bookmark-panel__groups-list-ul"
-          style={{ width: isHoverOnGroupItem && `${groupWidth + 30}px` }}
-        >
-          <GroupItem groupName="asdasfasnd asndans odnasna n" />
-          <GroupItem groupName="asdasa sdasds fasnd asndans odnasna n" />
-          <GroupItem groupName="gh ffggh g sd f sdf" />
-          <GroupItem groupName="sadfsdfsd " />
-          <GroupItem groupName="adf asdfasdfs" />
-          <GroupItem groupName="asdasfasnd asndans odnasna n" />
-          <GroupItem groupName="asdasa sdasds fasnd asndans odnasna n" />
-          <GroupItem groupName="gh ffggh g sd f sdf" />
-          <GroupItem groupName="sadfsdfsd " />
-          <GroupItem groupName="adf asdfasdfs" />
-          <GroupItem groupName="asdasfasnd asndans odnasna n" />
-          <GroupItem groupName="asdasa sdasds fasnd asndans odnasna n" />
-          <GroupItem groupName="gh ffggh g sd f sdf" />
-          <GroupItem groupName="sadfsdfsd " />
-          <GroupItem groupName="adf asdfasdfs" />
-          <GroupItem groupName="adf asdfasdfs" />
-          <GroupItem groupName="adf asdfasdfs" />
-          <GroupItem groupName="adf asdfasdfs" />
-          <GroupItem groupName="adf asdfasdfs" />
-          <GroupItem groupName="adf asdfasdfs" />
-          <GroupItem groupName="adf asdfasdfs" />
-          <GroupItem groupName="adf asdfasdfs" />
+          style={{ width: isHoverOnGroupItem && `${groupWidth + 30}px` }}>
+          <AllGroupItem />
+          {groups}
         </ul>
       </div>
       <div className="bookmark-panel__sites">
-        <ul className="bookmark-panel__sites-ul">
-          <SiteItem
-            siteData={{
-              siteURL: "https://wwwp.wp.pl",
-              name: "WirtualnaPolska",
-              updateTime: "15:12 18.11.2019"
-            }}
-          />
-          <SiteItem
-            siteData={{
-              siteURL: "https://wwwp.wp.pl",
-              name: "WirtualnaPolska",
-              updateTime: "15:12 18.11.2019"
-            }}
-          />
-          <SiteItem
-            siteData={{
-              siteURL: "https://wwwp.wp.pl",
-              name: "WirtualnaPolska",
-              updateTime: "15:12 18.11.2019"
-            }}
-          />
-          <SiteItem
-            siteData={{
-              siteURL: "https://wwwp.wp.pl",
-              name: "WirtualnaPolska",
-              updateTime: "15:12 18.11.2019"
-            }}
-          />
-          <SiteItem
-            siteData={{
-              siteURL: "https://wwwp.wp.pl",
-              name: "WirtualnaPolska",
-              updateTime: "15:12 18.11.2019"
-            }}
-          />
-        </ul>
+        <ul className="bookmark-panel__sites-ul">{sites}</ul>
       </div>
     </div>
   );

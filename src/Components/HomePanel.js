@@ -1,132 +1,109 @@
 import React, { useState, useEffect } from "react";
 import "../Sass/HomePanel.scss";
 import Navbar from "./Navbar";
-import Card from "./Card";
-import { Redirect } from "react-router";
+import CardItem from "./CardItem";
+import axios from "axios";
+import EmptyCard from "./EmptyCard";
 
-const panelsApi = [
-  {
-    category_id: 3,
-    created_at: "2019-08-03 14:25:20",
-    updated_at: "2019-08-03 14:25:20",
-    name: "Jewell",
-    bookmarks: [
-      {
-        bookmark_id: "1a",
-        notes: "Vege",
-        created_at: "2019-08-03 14:25:20",
-        updated_at: "2019-08-03 14:25:20",
-        thumbnail: ""
-      },
-      {
-        bookmark_id: "2b",
-        notes: "Curry",
-        created_at: "2019-08-03 14:25:20",
-        updated_at: "2019-08-03 14:25:20",
-        thumbnail: ""
-      },
-      {
-        bookmark_id: "3c",
-        notes: "Przepisy",
-        created_at: "2019-08-03 14:25:20",
-        updated_at: "2019-08-03 14:25:20",
-        thumbnail: ""
-      }
-    ],
-    status_id: 3,
-    thumbnail: "storage/app/public/photosd2496b9bca79370d35886974d389917f.jpg",
-    url: "https://www.gutmann.com/illo-ipsa-suscipit-numquam-inventore-quia",
-    user_id: 2
-  }
-];
+const serverCategoriesURL = "https://jimmyspage.pl/api/categories";
 
-const panels = [
-  { category_id: 123, category: "Jedzonko", created_at: "" },
-  { category_id: 123, category: "Jedzonko", created_at: "" },
-  { category_id: 123, category: "Jedzonko", created_at: "" },
-  { category_id: 123, category: "Jedzonko", created_at: "" },
-  { category_id: 123, category: "Jedzonko", created_at: "" },
-  { category_id: 123, category: "Jedzonko", created_at: "" },
-  { category_id: 123, category: "Jedzonko", created_at: "" },
-  { category_id: 123, category: "Jedzonko", created_at: "" },
-  { category_id: 123, category: "Jedzonko", created_at: "" },
-  { category_id: 123, category: "Jedzonko", created_at: "" }
-];
-
-function HomePanel() {
+function HomePanel(props) {
   const [cardsData, setCardsData] = useState([]);
-  const [cardsSettingStatus, setCardsSettingStatus] = useState([]);
-  const [cardsBookmarkStatus, setCardsBookmarkStatus] = useState([]);
-
+  const [activeStatus, setActiveStatus] = useState([]);
+  // localStorage.removeItem("access_token");
   useEffect(() => {
-    setCardsData(panels);
-    let cardsList = panels.map(card => false);
-    // let cardsList = panels.map((card, index) => {
-    //   if (index === 0) {
-    //     return true;
-    //   } else {
-    //     return false;
-    //   }
-    // });
-    setCardsSettingStatus(cardsList);
-    setCardsBookmarkStatus(cardsList);
+    const token = localStorage.getItem("access_token");
+
+    if (token === null) {
+      props.history.push("/login");
+    }
+    axios
+      .get(serverCategoriesURL, {
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + token
+        }
+      })
+      .then(res => {
+        const sites = res.data;
+        const cardsList = sites.map(card => ({
+          activeId: card.id,
+          activeBookmark: false,
+          activeSettings: false
+        }));
+        setCardsData(sites);
+        cardsList.unshift({
+          activeId: 0,
+          activeSettings: false,
+          activeBookmark: false
+        });
+        setActiveStatus(cardsList);
+      })
+      .catch(err => console.log(err));
   }, []);
 
-  const resetStatus = () => {
-    const resetCardsBookmarkStatus = cardsBookmarkStatus.map(item => false);
-    const resetCardsSettingStatus = cardsSettingStatus.map(item => false);
-    setCardsBookmarkStatus(resetCardsBookmarkStatus);
-    setCardsSettingStatus(resetCardsSettingStatus);
-  };
   const handleBodyClick = e => {
-    e.target.classList.contains("home-panel__cards-container") && resetStatus();
-  };
-  const statusChanger = (id, type) => {
-    if (type === "settings") {
-      const settings = cardsSettingStatus.map((card, index) => {
-        if (index === id) {
-          return !card;
-        } else {
-          return false;
-        }
-      });
-      const bookmarkDisable = cardsBookmarkStatus.map(card => (card = false));
-      setCardsBookmarkStatus(bookmarkDisable);
-      setCardsSettingStatus(settings);
-    } else if (type === "bookmark") {
-      const bookmark = cardsBookmarkStatus.map((card, index) => {
-        if (index === id) {
-          return !card;
-        } else {
-          return false;
-        }
-      });
-      const settingsDisable = cardsSettingStatus.map(card => (card = false));
-      setCardsBookmarkStatus(bookmark);
-      setCardsSettingStatus(settingsDisable);
-    } else if (type === "home") {
-      resetStatus();
-    }
+    e.target.classList.contains("home-panel__cards-container") &&
+      statusChanger(null, "home");
   };
 
-  const cards = cardsData.map((card, cardIndex) => {
+  const activeObjectFiller = (activeId, bookmark, settings) => {
+    return {
+      activeId: activeId,
+      activeBookmark: bookmark,
+      activeSettings: settings
+    };
+  };
+
+  const statusChanger = (id, type) => {
+    const activeUpdate = activeStatus.map(card => {
+      switch (type) {
+        case "bookmark":
+          if (id === card.activeId) {
+            return activeObjectFiller(card.activeId, true, false);
+          } else {
+            return activeObjectFiller(card.activeId, false, false);
+          }
+        case "settings":
+          if (id === card.activeId) {
+            return activeObjectFiller(card.activeId, false, true);
+          } else {
+            return activeObjectFiller(card.activeId, false, false);
+          }
+        case "home":
+          return activeObjectFiller(card.activeId, false, false);
+        default:
+          return card;
+      }
+    });
+    setActiveStatus(activeUpdate);
+  };
+  const cards = cardsData.map(card => {
+    const { id, name, image, created_at, updated_at } = card;
+    const index = activeStatus.findIndex(item => item.activeId === id);
     return (
-      <Card
-        key={cardIndex}
-        id={cardIndex}
+      <CardItem
+        key={id}
+        id={id}
+        name={name}
         statusChanger={statusChanger}
-        activeSettings={cardsSettingStatus[cardIndex]}
-        activeBookmark={cardsBookmarkStatus[cardIndex]}
+        activeStatus={activeStatus[index]}
+        image={image}
+        created_at={created_at}
+        updated_at={updated_at}
       />
     );
   });
-
   return (
     <main className="home-panel" onClick={handleBodyClick}>
-      {!cardsSettingStatus.includes(true) &&
-        !cardsBookmarkStatus.includes(true) && <Redirect to={`/home`} />}
       <Navbar />
-      <ul className="home-panel__cards-container">{cards}</ul>
+      <ul className="home-panel__cards-container">
+        <EmptyCard
+          statusChanger={statusChanger}
+          activeStatus={activeStatus[0]}
+        />
+        {cards}
+      </ul>
     </main>
   );
 }

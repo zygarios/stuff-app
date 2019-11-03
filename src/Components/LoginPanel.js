@@ -1,49 +1,37 @@
 import React, { useState } from "react";
 import "../Sass/LoginPanel.scss";
 import axios from "axios";
-const serverPageURL = "jimmyspage.pl/api/login";
-const CORSblock = "https://cors-anywhere.herokuapp.com/";
+import { Link } from "react-router-dom";
 
-const handleFetchLogin = () => {
-  var data = new FormData();
-  data.append("username", "von.talia@example.com");
-  data.append("password", "password");
-};
+const serverLoginURL = "https://jimmyspage.pl/api/login";
 
-function LoginPanel() {
-  const [isLoginPanelShow, setIsLoginPanelShow] = useState(true);
-  const [emailValue, setEmailValue] = useState("");
-  const [usernameValue, setUsernameValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState("");
+function LoginPanel(props) {
+  const [emailValue, setEmailValue] = useState("von.talia@example.com");
+  const [passwordValue, setPasswordValue] = useState("password");
 
-  const handleSignUp = e => {
-    setIsLoginPanelShow(state => !state);
+  const handleLoginRequest = () => {
+    axios
+      .post(serverLoginURL, {
+        username: emailValue,
+        password: passwordValue
+      })
+      .then(res => {
+        const token = res.data.access_token;
+        localStorage.setItem("access_token", token);
+        props.history.push("/home");
+      })
+      .catch(err => console.log(err));
   };
 
-  const handleSubmitForm = e => {
+  const handleSubmitLoginForm = e => {
     e.preventDefault();
-    handleFetchLogin();
+    handleLoginRequest();
   };
 
   return (
     <div className="login-panel">
-      <form action="" className="login-panel__form">
+      <form className="login-panel__form" onSubmit={handleSubmitLoginForm}>
         <h1 className="login-panel__title">Zakładka</h1>
-        {!isLoginPanelShow && (
-          <>
-            <label htmlFor="username" className="login-panel__username-title">
-              Username
-            </label>
-            <input
-              type="username"
-              id="username"
-              className="login-panel__username-input"
-              value={usernameValue}
-              onChange={e => setUsernameValue(e.target.value)}
-            />
-          </>
-        )}
-
         <label htmlFor="email" className="login-panel__email-title">
           Email
         </label>
@@ -64,16 +52,13 @@ function LoginPanel() {
           value={passwordValue}
           onChange={e => setPasswordValue(e.target.value)}
         />
-        <button
-          className="login-panel__login-button"
-          onClick={handleSubmitForm}>
-          {isLoginPanelShow ? "Sign in" : "Sign up"}
-        </button>
+        <button className="login-panel__login-button">Zaloguj</button>
         <p className="login-panel__sign-up-title">
-          If you {isLoginPanelShow && "don`t"} have an account,
-          <span className="login-panel__sign-up-link" onClick={handleSignUp}>
-            {isLoginPanelShow ? " sign up!" : " sign in!"}
-          </span>
+          Jeśli nie masz konta,
+          <Link to="/register" className="login-panel__sign-up-link">
+            {" "}
+            zarejestruj się!
+          </Link>
         </p>
       </form>
     </div>

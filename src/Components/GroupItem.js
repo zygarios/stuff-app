@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "../Sass/GroupItem.scss";
 
-function GroupItem({
-  groupName = "costam costam costamasdasd as afd sf sdf ad f s"
-}) {
-  return <li className="group-item">{groupName}</li>;
+function GroupItem({ groupData, getSitesData }) {
+  const { id, name, active } = groupData;
+  return (
+    <li
+      onClick={() => getSitesData(id)}
+      className={`group-item ${true && "active-select"}`}>
+      {name}
+    </li>
+  );
 }
 
 export default GroupItem;
