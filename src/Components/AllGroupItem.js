@@ -1,13 +1,14 @@
 import React from "react";
 
-function EmptyCard({ getSitesData }) {
+function AllGroupItem({ getSitesData }) {
   return (
     <li
       onClick={() => getSitesData(id)}
-      className={`group-item ${true && "active-select"}`}>
+      className={`group-item ${true && "active-select"}`}
+    >
       Wszystkie strony
     </li>
   );
 }
 
-export default EmptyCard;
+export default AllGroupItem;

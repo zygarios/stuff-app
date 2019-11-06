@@ -21,6 +21,8 @@ function Card({ id: category_id, name, image, statusChanger, activeStatus }) {
   }
   const [groupsData, setGroupsData] = useState([]);
   const [sitesData, setSitesData] = useState([]);
+  const [allSitesData, setAllSitesData] = useState([]);
+
   const getGroupsData = () => {
     const token = localStorage.getItem("access_token");
     const serverGroupsURL = `${serverCategoriesURL}/${category_id}/groups`;
@@ -47,9 +49,32 @@ function Card({ id: category_id, name, image, statusChanger, activeStatus }) {
       .catch(err => console.log(err));
   };
 
-  const getSitesData = group_id => {
+  // const getSitesData = group_id => {
+  //   const token = localStorage.getItem("access_token");
+  //   const serverGroupsURL = `${serverCategoriesURL}/${category_id}/groups/${group_id}/sites`;
+  //   axios
+  //     .get(serverGroupsURL, {
+  //       headers: {
+  //         Accept: "application/json",
+  //         Authorization: "Bearer " + token
+  //       }
+  //     })
+  //     .then(res => {
+  //       const sites = res.data;
+  //       const sitesList = sites.map(({ id, name, created_at, updated_at }) => ({
+  //         id,
+  //         name,
+  //         created_at,
+  //         updated_at,
+  //         active: false
+  //       }));
+  //       setSitesData(sitesList);
+  //     })
+  //     .catch(err => console.log(err));
+  // };
+  const getAllSitesData = category_id => {
     const token = localStorage.getItem("access_token");
-    const serverGroupsURL = `${serverCategoriesURL}/${category_id}/groups/${group_id}/sites`;
+    const serverGroupsURL = `${serverCategoriesURL}/${category_id}/sites`;
     axios
       .get(serverGroupsURL, {
         headers: {
@@ -58,6 +83,7 @@ function Card({ id: category_id, name, image, statusChanger, activeStatus }) {
         }
       })
       .then(res => {
+        console.log();
         const sites = res.data;
         const sitesList = sites.map(({ id, name, created_at, updated_at }) => ({
           id,
@@ -74,13 +100,15 @@ function Card({ id: category_id, name, image, statusChanger, activeStatus }) {
   return (
     <li
       className={`card ${activeSettings &&
-        "active-settings"} ${activeBookmark && "active-bookmark"}`}>
+        "active-settings"} ${activeBookmark && "active-bookmark"}`}
+    >
       <div className="card__card-container">
         <h2
           style={
             activeBookmark || activeSettings ? { opacity: 0 } : { opacity: 1 }
           }
-          className="card__category-title">
+          className="card__category-title"
+        >
           {name}
         </h2>
         <div
@@ -92,9 +120,9 @@ function Card({ id: category_id, name, image, statusChanger, activeStatus }) {
           }
           onClick={() => {
             statusChanger(category_id, "bookmark");
-            getGroupsData();
-            // getSitesData();
-          }}>
+            // getGroupsData();
+          }}
+        >
           <FontAwesomeIcon icon={faGenderless} />
         </div>
         <div
@@ -106,7 +134,8 @@ function Card({ id: category_id, name, image, statusChanger, activeStatus }) {
           }
           onClick={() => {
             statusChanger(category_id, "settings");
-          }}>
+          }}
+        >
           <FontAwesomeIcon icon={faEllipsisV} />
         </div>
         <div
@@ -118,17 +147,19 @@ function Card({ id: category_id, name, image, statusChanger, activeStatus }) {
           }
           onClick={() => {
             statusChanger(category_id, "home");
-          }}>
+          }}
+        >
           <FontAwesomeIcon icon={faShare} />
         </div>
         {activeBookmark && (
           <BookmarkPanel
             id={category_id}
-            getSitesData={getSitesData}
+            // getSitesData={getSitesData}
+            getGroupsData={getGroupsData}
+            getAllSitesData={getAllSitesData}
+            // sitesData={sitesData}
             groupsData={groupsData}
-            setGroupsData={setGroupsData}
-            sitesData={sitesData}
-            setSitesData={setSitesData}
+            allSitesData={allSitesData}
           />
         )}
         {activeSettings && <SettingsPanel />}

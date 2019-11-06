@@ -6,16 +6,21 @@ import AllGroupItem from "./AllGroupItem";
 
 function BookmarkPanel({
   id,
-  getSitesData,
-  groupsData,
+  getGroupsData,
   setGroupsData,
+  groupsData,
+  getSitesData,
+  setSitesData,
   sitesData,
-  setSitesData
+  getAllSitesData,
+  setAllSitesData,
+  allSitesData
 }) {
   const [isHoverOnGroupItem, setIsHoverOnGroupItem] = useState(false);
   const [groupWidth, setGroupWidth] = useState(0);
 
   useEffect(() => moveScreenToActiveCard(), []);
+  useEffect(() => getGroupsData());
 
   const handleGroupListEnter = () => {
     if (window.innerWidth < "576px") console.log("c");
@@ -64,9 +69,9 @@ function BookmarkPanel({
       groupData={groupData}
     />
   ));
-  const sites = sitesData.map(siteData => (
-    <SiteItem key={siteData.id} siteData={siteData} />
-  ));
+  // const sites = sitesData.map(siteData => (
+  //   <SiteItem key={siteData.id} siteData={siteData} />
+  // ));
 
   return (
     <div className="bookmark-panel" onClick={() => moveScreenToActiveCard()}>
@@ -84,13 +89,14 @@ function BookmarkPanel({
       >
         <ul
           className="bookmark-panel__groups-list-ul"
-          style={{ width: isHoverOnGroupItem && `${groupWidth + 30}px` }}>
+          style={{ width: isHoverOnGroupItem && `${groupWidth + 30}px` }}
+        >
           <AllGroupItem />
           {groups}
         </ul>
       </div>
       <div className="bookmark-panel__sites">
-        <ul className="bookmark-panel__sites-ul">{sites}</ul>
+        {/* <ul className="bookmark-panel__sites-ul">{sites}</ul> */}
       </div>
     </div>
   );

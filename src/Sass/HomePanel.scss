@@ -3,11 +3,13 @@
   padding-top: 75px;
 
   &__cards-container{
+    max-width: 1200px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    align-items: unsafe;
     list-style-type: none;
-    padding: 0;
-    margin: 0;
+    padding: 0 20px;
+    margin: 0 auto;
   }
 }
