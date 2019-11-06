@@ -2,10 +2,7 @@ import React from "react";
 import "../Sass/SiteItem.scss";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleDoubleRight,
-  faBookmark
-} from "@fortawesome/free-solid-svg-icons";
+import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 
 function SiteItem({ siteData }) {
   const { siteURL, name, updateTime } = siteData;

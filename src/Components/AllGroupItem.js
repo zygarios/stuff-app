@@ -1,12 +1,13 @@
 import React from "react";
 
-function AllGroupItem({ getSitesData }) {
+function AllGroupItem({ groupData, handleChangeActiveGroup }) {
+  const { id, active, name } = groupData;
   return (
     <li
-      onClick={() => getSitesData(id)}
-      className={`group-item ${true && "active-select"}`}
+      onClick={() => handleChangeActiveGroup(id)}
+      className={`group-item ${active && "active-select"}`}
     >
-      Wszystkie strony
+      {name}
     </li>
   );
 }

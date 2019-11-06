@@ -5,9 +5,8 @@ import CardItem from "./CardItem";
 import axios from "axios";
 import EmptyCard from "./EmptyCard";
 
-const serverCategoriesURL = "https://jimmyspage.pl/api/categories";
-
 function HomePanel(props) {
+  const serverCategoriesURL = "https://jimmyspage.pl/api/categories";
   const [cardsData, setCardsData] = useState([]);
   const [activeStatus, setActiveStatus] = useState([]);
   // localStorage.removeItem("access_token");

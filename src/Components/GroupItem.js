@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "../Sass/GroupItem.scss";
 
-function GroupItem({ groupData, getSitesData }) {
+function GroupsItem({ groupData, handleChangeActiveGroup }) {
   const { id, name, active } = groupData;
+
   return (
     <li
-      onClick={() => getSitesData(id)}
-      className={`group-item ${true && "active-select"}`}>
+      onClick={() => handleChangeActiveGroup(id)}
+      className={`group-item ${active && "active-select"}`}
+    >
       {name}
     </li>
   );
 }
 
-export default GroupItem;
+export default GroupsItem;

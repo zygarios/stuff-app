@@ -1,58 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "../Sass/BookmarkPanel.scss";
-import GroupItem from "./GroupItem";
-import SiteItem from "./SiteItem";
-import AllGroupItem from "./AllGroupItem";
+import GroupsPanel from "./GroupsPanel";
+import SitesPanel from "./SitesPanel";
+import axios from "axios";
 
-function BookmarkPanel({
-  id,
-  getGroupsData,
-  setGroupsData,
-  groupsData,
-  getSitesData,
-  setSitesData,
-  sitesData,
-  getAllSitesData,
-  setAllSitesData,
-  allSitesData
-}) {
-  const [isHoverOnGroupItem, setIsHoverOnGroupItem] = useState(false);
-  const [groupWidth, setGroupWidth] = useState(0);
+function BookmarkPanel({ category_id }) {
+  const serverCategoriesURL = "https://jimmyspage.pl/api/categories";
+  const [groupsData, setGroupsData] = useState([]);
+  const [sitesData, setSitesData] = useState([]);
+  const [allSitesData, setAllSitesData] = useState([]);
 
   useEffect(() => moveScreenToActiveCard(), []);
-  useEffect(() => getGroupsData());
-
-  const handleGroupListEnter = () => {
-    if (window.innerWidth < "576px") console.log("c");
-    setIsHoverOnGroupItem(true);
-    const groupItems = document.querySelectorAll(".group-item");
-    let groupItemsWidth = [];
-    groupItems.forEach(item => {
-      item.style.position = "static";
-      groupItemsWidth.push(item.getBoundingClientRect().width);
-    });
-    const groupItemWidthMax = Math.max.apply(null, groupItemsWidth);
-
-    setGroupWidth(groupItemWidthMax);
-  };
-  const handleGroupListLeave = e => {
-    setIsHoverOnGroupItem(false);
-    const groupItems = document.querySelectorAll(".group-item");
-    groupItems.forEach(item => {
-      item.style.position = "relative";
-    });
-  };
-
-  // const handleGroupListTouchStart = () => {
-  //   setIsHoverOnGroupItem(true);
-  // };
-  // const handleGroupListTouchEnd = () => {
-  //   setIsHoverOnGroupItem(true);
-  // };
-
-  // const handleGroupListTouchMove = e => {
-  //   setGroupWidth(e.touches[0].clientX);
-  // };
+  useEffect(() => getGroupsData(), []);
 
   const moveScreenToActiveCard = () => {
     const bookmarkPosTop = document
@@ -62,42 +21,110 @@ function BookmarkPanel({
     window.scrollBy(0, scrollValue);
   };
 
-  const groups = groupsData.map(groupData => (
-    <GroupItem
-      key={groupData.id}
-      getSitesData={getSitesData}
-      groupData={groupData}
-    />
-  ));
-  // const sites = sitesData.map(siteData => (
-  //   <SiteItem key={siteData.id} siteData={siteData} />
-  // ));
+  const getGroupsData = () => {
+    const token = localStorage.getItem("access_token");
+    const serverGroupsURL = `${serverCategoriesURL}/${category_id}/groups`;
+    axios
+      .get(serverGroupsURL, {
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + token
+        }
+      })
+      .then(res => {
+        const groups = res.data;
+        const groupsList = groups.map(
+          ({ id, name, created_at, updated_at }) => ({
+            id,
+            name,
+            created_at,
+            updated_at,
+            active: false
+          })
+        );
+        groupsList.unshift({ id: 0, name: "Wszystkie strony", active: true });
+        groupsList.unshift({ id: -1, active: false });
+        setGroupsData(groupsList);
+      })
+      .catch(err => console.log(err));
+  };
+
+  const getAllSitesData = () => {
+    const token = localStorage.getItem("access_token");
+    const serverGroupsURL = `${serverCategoriesURL}/${category_id}/sites`;
+
+    axios
+      .get(serverGroupsURL, {
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + token
+        }
+      })
+      .then(res => {
+        const sites = res.data;
+        const sitesList = sites.map(
+          ({ id, name, notes, url, created_at, updated_at }) => ({
+            id,
+            name,
+            notes,
+            url,
+            created_at,
+            updated_at,
+            active: false
+          })
+        );
+
+        sitesList.unshift({ id: -1, active: false });
+        setAllSitesData(sitesList);
+      })
+      .catch(err => console.log(err));
+  };
+
+  const getSitesData = group_id => {
+    const token = localStorage.getItem("access_token");
+    const serverGroupsURL = `${serverCategoriesURL}/${category_id}/groups/${group_id}/sites`;
+    axios
+      .get(serverGroupsURL, {
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + token
+        }
+      })
+      .then(res => {
+        const sites = res.data;
+        const sitesList = sites.map(({ id, name, created_at, updated_at }) => ({
+          id,
+          name,
+          created_at,
+          updated_at,
+          active: false
+        }));
+        setSitesData(sitesList);
+      })
+      .catch(err => console.log(err));
+  };
+
+  const handleChangeActiveGroup = id => {
+    const activeGroupUpdate = groupsData.map(group => {
+      if (group.id === id) {
+        return (group.active = true);
+      } else {
+        return (group.active = false);
+      }
+    });
+    setGroupsData(activeGroupUpdate);
+  };
 
   return (
     <div className="bookmark-panel" onClick={() => moveScreenToActiveCard()}>
       <h2 className="bookmark-panel__category-title">
         {"Podróże kulinarne i jedzonko oraz tozne fajnes"}
       </h2>
-      <div
-        className="bookmark-panel__groups-list"
-        style={{ width: isHoverOnGroupItem && `${groupWidth + 30}px` }}
-        onMouseEnter={handleGroupListEnter}
-        onMouseLeave={handleGroupListLeave}
-        // onTouchStart={handleGroupListTouchStart}
-        // onTouchMove={handleGroupListTouchMove}
-        // onTouchEnd={handleGroupListTouchEnd}
-      >
-        <ul
-          className="bookmark-panel__groups-list-ul"
-          style={{ width: isHoverOnGroupItem && `${groupWidth + 30}px` }}
-        >
-          <AllGroupItem />
-          {groups}
-        </ul>
-      </div>
-      <div className="bookmark-panel__sites">
-        {/* <ul className="bookmark-panel__sites-ul">{sites}</ul> */}
-      </div>
+      <GroupsPanel
+        groupsData={groupsData}
+        handleChangeActiveGroup={handleChangeActiveGroup}
+      />
+      <SitesPanel />
     </div>
   );
 }
