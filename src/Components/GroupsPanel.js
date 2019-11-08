@@ -1,36 +1,24 @@
 import React, { useState } from "react";
 import GroupItem from "./GroupItem";
 import "../Sass/GroupsPanel.scss";
-import AllGroupItem from "./AllGroupItem";
+import EmptyGroupItem from "./EmptyGroupItem";
 
 function GroupsPanel({ groupsData, handleChangeActiveGroup }) {
-  // const [isHoverOnGroupItem, setIsHoverOnGroupItem] = useState(false);
-  // const [groupWidth, setGroupWidth] = useState(0);
+  const [isHoverOnGroupItem, setIsHoverOnGroupItem] = useState(false);
 
-  // const handleGroupListEnter = () => {
-  //   if (window.innerWidth < "576px") console.log("c");
-  //   setIsHoverOnGroupItem(true);
-  //   const groupItems = document.querySelectorAll(".group-item");
-  //   let groupItemsWidth = [];
-  //   groupItems.forEach(item => {
-  //     item.style.position = "static";
-  //     groupItemsWidth.push(item.getBoundingClientRect().width);
-  //   });
-  //   const groupItemWidthMax = Math.max.apply(null, groupItemsWidth);
+  const handleGroupListEnter = () => {
+    if (window.innerWidth < 768) return;
+    setIsHoverOnGroupItem(true);
+  };
+  const handleGroupListLeave = () => {
+    if (window.innerWidth < 768) return;
+    setIsHoverOnGroupItem(false);
+  };
 
-  //   setGroupWidth(groupItemWidthMax);
-  // };
-  // const handleGroupListLeave = e => {
-  //   setIsHoverOnGroupItem(false);
-  //   const groupItems = document.querySelectorAll(".group-item");
-  //   groupItems.forEach(item => {
-  //     item.style.position = "relative";
-  //   });
-  // };
   const groupsItems = groupsData.map(groupData => {
-    if (groupData.id === 0) {
+    if (groupData.id === -1) {
       return (
-        <AllGroupItem
+        <EmptyGroupItem
           key={groupData.id}
           groupData={groupData}
           handleChangeActiveGroup={handleChangeActiveGroup}
@@ -49,13 +37,9 @@ function GroupsPanel({ groupsData, handleChangeActiveGroup }) {
   return (
     <div
       className="groups-panel"
-      // style={{ width: isHoverOnGroupItem && `${groupWidth + 30}px` }}
-      // onMouseEnter={handleGroupListEnter}
-      // onMouseLeave={handleGroupListLeave}
-      // onTouchStart={handleGroupListTouchStart}
-      // onTouchMove={handleGroupListTouchMove}
-      // onTouchEnd={handleGroupListTouchEnd}
-    >
+      onMouseEnter={handleGroupListEnter}
+      onMouseLeave={handleGroupListLeave}
+      style={{ width: isHoverOnGroupItem && "350px" }}>
       <ul
         className="groups-panel__list"
         // style={{ width: isHoverOnGroupItem && `${groupWidth + 30}px` }}

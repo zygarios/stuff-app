@@ -1,15 +1,18 @@
 .home-panel{
   position: relative;
-  padding-top: 75px;
-
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
   &__cards-container{
+    padding-top: 20px;
+    width: 100%;
     max-width: 1200px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: unsafe;
+    align-items: flex-start;
+    justify-content: flex-start;
+    align-content: flex-start;
     list-style-type: none;
-    padding: 0 20px;
-    margin: 0 auto;
   }
 }
