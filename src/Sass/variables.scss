@@ -11,10 +11,16 @@ $mainTextColor: rgb(211, 211, 211);
 $firstColor: rgb(100, 100, 150);
 $secondColor:rgb(50, 150, 170);
 $thirdColor:rgb(150, 140, 90);
-// $firstColor: rgb(120, 80, 140);
-// $secondColor:rgb(50, 150, 170);
-// $thirdColor:rgb(175, 140, 70);
-$BGColorPanels:  linear-gradient(45deg, $firstColor 0%, $secondColor 50%, $thirdColor 100%);
+
+$opacityNormal: 1;
+$opacityLow: .7;
+$opacityVeryLow: .3;
+
+$BGColorPanels:  linear-gradient(45deg, rgba($firstColor, $opacityNormal) 0%, rgba($secondColor, $opacityNormal) 50%, rgba($thirdColor, $opacityNormal) 100%);
+
+$BGColorPanelsOpacityLow:  linear-gradient(45deg, rgba($firstColor, $opacityLow) 0%, rgba($secondColor, $opacityLow) 50%, rgba($thirdColor, $opacityLow) 100%);
+
+$BGColorPanelsOpacityVeryLow:  linear-gradient(45deg, rgba($firstColor, $opacityVeryLow) 0%, rgba($secondColor, $opacityVeryLow) 50%, rgba($thirdColor, $opacityVeryLow) 100%);
 
 @keyframes bookmarkAnimTitle {
   0%{

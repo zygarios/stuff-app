@@ -5,13 +5,19 @@ import SitesPanel from "./SitesPanel";
 import axios from "axios";
 
 function BookmarkPanel({ category_id }) {
+  const [groupsData, setGroupsData] = useState(null);
+  const [sitesData, setSitesData] = useState(null);
   const serverCategoriesURL = "https://jimmyspage.pl/api/categories";
-  const [groupsData, setGroupsData] = useState([]);
-  const [sitesData, setSitesData] = useState([]);
-  const [allSitesData, setAllSitesData] = useState([]);
 
-  useEffect(() => moveScreenToActiveCard(), []);
-  useEffect(() => getGroupsData(), []);
+  useEffect(() => moveScreenToActiveCard());
+
+  useEffect(() => {
+    getGroupsData(category_id);
+  }, []);
+
+  useEffect(() => {
+    getSitesData();
+  }, []);
 
   const moveScreenToActiveCard = () => {
     const bookmarkPosTop = document
@@ -21,9 +27,10 @@ function BookmarkPanel({ category_id }) {
     window.scrollBy(0, scrollValue);
   };
 
-  const getGroupsData = () => {
+  const getGroupsData = category_id => {
     const token = localStorage.getItem("access_token");
     const serverGroupsURL = `${serverCategoriesURL}/${category_id}/groups`;
+
     axios
       .get(serverGroupsURL, {
         headers: {
@@ -33,6 +40,7 @@ function BookmarkPanel({ category_id }) {
       })
       .then(res => {
         const groups = res.data;
+
         const groupsList = groups.map(
           ({ id, name, created_at, updated_at }) => ({
             id,
@@ -49,12 +57,16 @@ function BookmarkPanel({ category_id }) {
       .catch(err => console.log(err));
   };
 
-  const getAllSitesData = () => {
+  const getSitesData = (group_id = 0) => {
     const token = localStorage.getItem("access_token");
-    const serverGroupsURL = `${serverCategoriesURL}/${category_id}/sites`;
-
+    let serverSitesURL = "";
+    if (group_id === 0) {
+      serverSitesURL = `${serverCategoriesURL}/${category_id}/sites`;
+    } else if (group_id > 0) {
+      serverSitesURL = `${serverCategoriesURL}/${category_id}/groups/${group_id}/sites`;
+    }
     axios
-      .get(serverGroupsURL, {
+      .get(serverSitesURL, {
         headers: {
           Accept: "application/json",
           Authorization: "Bearer " + token
@@ -62,8 +74,9 @@ function BookmarkPanel({ category_id }) {
       })
       .then(res => {
         const sites = res.data;
+
         const sitesList = sites.map(
-          ({ id, name, notes, url, created_at, updated_at }) => ({
+          ({ id, name, created_at, updated_at, notes, url }) => ({
             id,
             name,
             notes,
@@ -73,46 +86,31 @@ function BookmarkPanel({ category_id }) {
             active: false
           })
         );
-
-        sitesList.unshift({ id: -1, active: false });
-        setAllSitesData(sitesList);
-      })
-      .catch(err => console.log(err));
-  };
-
-  const getSitesData = group_id => {
-    const token = localStorage.getItem("access_token");
-    const serverGroupsURL = `${serverCategoriesURL}/${category_id}/groups/${group_id}/sites`;
-    axios
-      .get(serverGroupsURL, {
-        headers: {
-          Accept: "application/json",
-          Authorization: "Bearer " + token
-        }
-      })
-      .then(res => {
-        const sites = res.data;
-        const sitesList = sites.map(({ id, name, created_at, updated_at }) => ({
-          id,
-          name,
-          created_at,
-          updated_at,
-          active: false
-        }));
         setSitesData(sitesList);
       })
       .catch(err => console.log(err));
   };
 
   const handleChangeActiveGroup = id => {
+    let idActiveEl = null;
     const activeGroupUpdate = groupsData.map(group => {
       if (group.id === id) {
-        return (group.active = true);
+        idActiveEl = group.id;
+        group.active = true;
       } else {
-        return (group.active = false);
+        group.active = false;
       }
+      return group;
     });
+
     setGroupsData(activeGroupUpdate);
+    if (idActiveEl === undefined || idActiveEl === -1) {
+      return;
+    } else if (idActiveEl === 0) {
+      getSitesData();
+    } else {
+      getSitesData(idActiveEl);
+    }
   };
 
   return (
@@ -120,11 +118,14 @@ function BookmarkPanel({ category_id }) {
       <h2 className="bookmark-panel__category-title">
         {"Podróże kulinarne i jedzonko oraz tozne fajnes"}
       </h2>
-      <GroupsPanel
-        groupsData={groupsData}
-        handleChangeActiveGroup={handleChangeActiveGroup}
-      />
-      <SitesPanel />
+
+      {groupsData && (
+        <GroupsPanel
+          groupsData={groupsData}
+          handleChangeActiveGroup={handleChangeActiveGroup}
+        />
+      )}
+      {sitesData && <SitesPanel sitesData={sitesData} />}
     </div>
   );
 }

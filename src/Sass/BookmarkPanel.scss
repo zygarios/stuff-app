@@ -11,14 +11,12 @@
   border-radius: $borderRadius;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: column;
-  @media (min-width: 576px) {
-    flex-direction: row;
-  }
+  justify-content: center;
+  align-items: space-evenly;
+  flex-direction: row;
   @media (min-width: 768px) {
-    padding: 35px;
+    justify-content: space-between;
+    padding: 25px;
   }
 
  &__category-title {
@@ -30,7 +28,7 @@
   text-align: center;
   font-weight: 900;
   animation: bookmarkAnimTitle .5s 1 both;
-  padding-right: 35px;
+  padding: 10px 35px 10px 0;
   display: block;
   @media (min-width: 576px) {
     font-size: 2rem;
