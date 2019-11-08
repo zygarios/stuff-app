@@ -18,8 +18,8 @@
   width: 45%;
   padding-top: 45%;
   margin-bottom: 20px;
-  margin-left: 2%;
-  margin-right: 2%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
   background: $BGColorPanels;
   box-shadow: inset 3px -3px 4px rgba($secBGColor, .9), 3px -3px 4px rgba(0, 0, 0, .25);
   border-radius: $borderRadius;
@@ -40,12 +40,14 @@
   @media (min-width: 576px) {
     width: 30%;
     padding-top: 30%;
-    margin-left: 1%;
-    margin-right: 1%;
+    margin-left: 1.6%;
+    margin-right: 1.6%;
   }
   @media (min-width: 768px) {
     width: 22.5%;
     padding-top:22.5%;
+    margin-left: 1.2%;
+    margin-right: 1.2%;
   }
   &__category-title{
     color: rgba(255,255,255, .75);

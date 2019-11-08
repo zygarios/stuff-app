@@ -12,28 +12,34 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: space-evenly;
+  align-items: center;
+  align-content: space-between;
   flex-direction: row;
   @media (min-width: 768px) {
-    justify-content: space-between;
-    padding: 25px;
+    padding: 20px;
   }
-
  &__category-title {
   width: 100%;
-  font-size: 1.5rem;
+  height: 4rem;
   text-transform: uppercase;
   color: $mainTextColor;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
-  text-align: center;
-  font-weight: 900;
   animation: bookmarkAnimTitle .5s 1 both;
-  padding: 10px 35px 10px 0;
-  display: block;
+  margin-right: 40px;
+  position: relative;
+  font-size: 1.5rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 10px;
   @media (min-width: 576px) {
-    font-size: 2rem;
+    height: 6rem;
+    font-size: 1.75rem;
   }
   @media (min-width: 768px) {
+    height: 8rem;
     font-size: 2.5rem;
   }
  }

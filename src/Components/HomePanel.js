@@ -9,7 +9,7 @@ function HomePanel(props) {
   const serverCategoriesURL = "https://jimmyspage.pl/api/categories";
   const [cardsData, setCardsData] = useState([]);
   const [activeStatus, setActiveStatus] = useState([]);
-  // localStorage.removeItem("access_token");
+
   useEffect(() => {
     const token = localStorage.getItem("access_token");
 

@@ -5,20 +5,17 @@
   z-index: 0;
   white-space: nowrap;
   color: rgb(235, 235, 235);
-  margin: 5px 15px;
+  margin: 5px 10px;
   font-weight: 500;
   text-transform: uppercase;
   animation: bookmarkAnimTitle .5s 1 both;
   list-style-type: none;
   border-radius: $borderRadius* 1.25;
   display: block;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
+  padding: 5px 10px;
   cursor: pointer;
   transition: box-shadow .1s, margin-left .2s;
   font-size: 1.5rem;
-  line-height: 2rem;
   background: $BGColorPanelsOpacityLow;
   overflow: hidden;
   @media (min-width: 768px) {
@@ -35,11 +32,9 @@
     background: $BGColorPanels;
     margin-left: 30px;
     transition: margin-left .2s;
+    font-weight: 700;
   }
   &--empty{
     background: $BGColorPanelsOpacityVeryLow;
   }
-  // &__title{
-
-  // }
 }

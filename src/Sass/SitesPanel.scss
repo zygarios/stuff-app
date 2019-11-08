@@ -4,17 +4,21 @@
   background: lightgray;
   border-radius: $borderRadius;
   box-shadow: inset -2px 2px 2px rgba(0, 0, 0, .25), -2px 2px 2px rgba(255, 255, 255, 0.35);
-  height: 65%;
+  height: calc(75% - 2rem);
   overflow-x: hidden;
   overflow-y: scroll;
-  @media (min-width: 768px) {
-    margin-left: 20px;
-    height: 90%;
+  @media (min-width: 576px) {
+    margin-left: 10px;
+    height: calc(100% - 6rem);
     flex: 1;
   }
+  @media (min-width: 768px) {
+    height: calc(100% - 8rem);
+    margin-left: 20px;
+  }
  &__list{
-   height: 94%;
-   width: 99%;
+   height: 100%;
+   width: 100%;
    overflow-x: hidden;
    overflow-y: scroll;
    border-radius: $borderRadius;

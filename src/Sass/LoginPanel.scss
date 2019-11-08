@@ -49,7 +49,7 @@
     transition: box-shadow .2s;
     color: $mainBGColor;
     &:focus {
-      box-shadow: inset 2px 2px 2px $secBGColor;
+      box-shadow: inset 2px -2px 2px rgba($secBGColor, .3);
     }
   }
 
@@ -72,7 +72,7 @@
     &:active {
       color: white;
       background: $mainBGColor;
-      box-shadow: inset 2px 2px 2px black;
+      box-shadow: inset 2px -2px 2px rgba(black, .3);
     }
   }
 

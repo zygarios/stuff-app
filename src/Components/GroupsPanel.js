@@ -7,11 +7,11 @@ function GroupsPanel({ groupsData, handleChangeActiveGroup }) {
   const [isHoverOnGroupItem, setIsHoverOnGroupItem] = useState(false);
 
   const handleGroupListEnter = () => {
-    if (window.innerWidth < 768) return;
+    if (window.innerWidth < 576) return;
     setIsHoverOnGroupItem(true);
   };
   const handleGroupListLeave = () => {
-    if (window.innerWidth < 768) return;
+    if (window.innerWidth < 576) return;
     setIsHoverOnGroupItem(false);
   };
 
@@ -39,13 +39,9 @@ function GroupsPanel({ groupsData, handleChangeActiveGroup }) {
       className="groups-panel"
       onMouseEnter={handleGroupListEnter}
       onMouseLeave={handleGroupListLeave}
-      style={{ width: isHoverOnGroupItem && "350px" }}>
-      <ul
-        className="groups-panel__list"
-        // style={{ width: isHoverOnGroupItem && `${groupWidth + 30}px` }}
-      >
-        {groupsItems}
-      </ul>
+      style={{ width: isHoverOnGroupItem && "350px" }}
+    >
+      <ul className="groups-panel__list">{groupsItems}</ul>
     </div>
   );
 }

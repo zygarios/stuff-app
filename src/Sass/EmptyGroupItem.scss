@@ -1,3 +1,28 @@
-.group-item__empty {
-  
+@import './variables.scss';
+
+
+.empty-card {
+  background: $BGColorPanelsOpacityVeryLow;
+  text-align: center;
+  &__plus-icon{
+    transform: scale(1.15);
+    @media (min-width: 768px) {
+      transform: scale(1.35);
+    }
+
+  }
+  &.active-select{
+    height: 95%;
+    margin-left: 10px;
+    cursor: default;
+    @media (min-width: 576px) {
+      height: 30%;
+      margin-left: 10px;
+    }
+    @media (min-width: 768px) {
+      height: 30%;
+      margin-left: 15px;
+    }
+
+  }
 }

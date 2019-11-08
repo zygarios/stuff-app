@@ -118,7 +118,6 @@ function BookmarkPanel({ category_id }) {
       <h2 className="bookmark-panel__category-title">
         {"Podróże kulinarne i jedzonko oraz tozne fajnes"}
       </h2>
-
       {groupsData && (
         <GroupsPanel
           groupsData={groupsData}

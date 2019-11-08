@@ -14,13 +14,15 @@ function EmptyCard({ statusChanger, activeStatus }) {
       <div
         style={activeSettings ? { display: "none" } : { display: "flex" }}
         onClick={() => statusChanger(activeStatus.activeId, "settings")}
-        className="card__empty card__empty-icon">
+        className="card__empty card__empty-icon"
+      >
         <FontAwesomeIcon icon={faPlus} />
       </div>
       <div
         onClick={() => statusChanger(activeStatus.activeId, "home")}
         className="card__home-icon-click"
-        style={activeSettings === false ? { display: "none" } : null}>
+        style={activeSettings === false ? { display: "none" } : null}
+      >
         <FontAwesomeIcon icon={faShare} />
       </div>
 

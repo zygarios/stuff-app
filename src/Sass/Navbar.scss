@@ -10,7 +10,6 @@
   background: $BGColorPanels;
   border-radius: 0 0 $borderRadius $borderRadius;
   box-shadow: inset 0px -3px 2px $secBGColor,0 2px 2px rgba(0, 0, 0, .25);
-
   &__container{
   height: 100%;
   max-width: 1200px;
@@ -20,8 +19,8 @@
   align-items: center;
   justify-content: space-between;
   }
-  &__hamburger{
-    font-size: 40px;
+  &__hamburger-btn, &__logout-btn{
+    font-size: 30px;
     color: rgba(white, .5);
     &:hover{
       color: rgba(white, 1);
