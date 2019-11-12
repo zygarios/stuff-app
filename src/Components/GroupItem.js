@@ -1,7 +1,7 @@
 import React from "react";
 import "../Sass/GroupItem.scss";
 
-function GroupsItem({ groupData, handleChangeActiveGroup }) {
+function GroupItem({ groupData, handleChangeActiveGroup }) {
   const { id, active, name } = groupData;
   return (
     <li
@@ -12,4 +12,4 @@ function GroupsItem({ groupData, handleChangeActiveGroup }) {
   );
 }
 
-export default GroupsItem;
+export default GroupItem;

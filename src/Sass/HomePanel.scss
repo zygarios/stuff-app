@@ -1,16 +1,18 @@
 .home-panel{
   position: relative;
-  padding-top: 50px;
+flex-direction: column;
   display: flex;
   justify-content: center;
-  min-height: 100vh;
   &__cards-container{
+    margin: 0 auto;
     padding-top: 20px;
+    padding-left: 0;
+    padding-right: 0;
     width: 100%;
     max-width: 1200px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: flex-start;
     align-content: flex-start;
     list-style-type: none;

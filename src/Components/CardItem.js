@@ -21,14 +21,13 @@ function Card({ id: category_id, name, image, statusChanger, activeStatus }) {
     <li
       className={`card ${activeSettings &&
         "active-settings"} ${activeBookmark && "active-bookmark"}`}
-    >
+      style={{ backgroundImage: image }}>
       <div className="card__card-container">
         <h2
           style={
             activeBookmark || activeSettings ? { opacity: 0 } : { opacity: 1 }
           }
-          className="card__category-title"
-        >
+          className="card__category-title">
           {name}
         </h2>
         <div
@@ -40,8 +39,7 @@ function Card({ id: category_id, name, image, statusChanger, activeStatus }) {
           }
           onClick={() => {
             statusChanger(category_id, "bookmark");
-          }}
-        >
+          }}>
           <FontAwesomeIcon icon={faGenderless} />
         </div>
         <div
@@ -53,8 +51,7 @@ function Card({ id: category_id, name, image, statusChanger, activeStatus }) {
           }
           onClick={() => {
             statusChanger(category_id, "settings");
-          }}
-        >
+          }}>
           <FontAwesomeIcon icon={faEllipsisV} />
         </div>
         <div
@@ -66,8 +63,7 @@ function Card({ id: category_id, name, image, statusChanger, activeStatus }) {
           }
           onClick={() => {
             statusChanger(category_id, "home");
-          }}
-        >
+          }}>
           <FontAwesomeIcon icon={faShare} />
         </div>
         {activeBookmark && <BookmarkPanel category_id={category_id} />}

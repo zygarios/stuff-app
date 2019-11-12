@@ -34,31 +34,28 @@ function LoginPanel(props) {
         <h1 className="login-panel__title">Zakładka</h1>
         <label htmlFor="email" className="login-panel__email-title">
           Email
+          <input
+            type="email"
+            id="email"
+            className="login-panel__email-input"
+            value={emailValue}
+            onChange={e => setEmailValue(e.target.value)}
+          />
         </label>
-        <input
-          type="email"
-          id="email"
-          className="login-panel__email-input"
-          value={emailValue}
-          onChange={e => setEmailValue(e.target.value)}
-        />
         <label htmlFor="password" className="login-panel__password-title">
           Password
+          <input
+            type="password"
+            id="password"
+            className="login-panel__password-input"
+            value={passwordValue}
+            onChange={e => setPasswordValue(e.target.value)}
+          />
         </label>
-        <input
-          type="password"
-          id="password"
-          className="login-panel__password-input"
-          value={passwordValue}
-          onChange={e => setPasswordValue(e.target.value)}
-        />
         <button className="login-panel__login-button">Zaloguj</button>
         <p className="login-panel__sign-up-title">
           Jeśli nie masz konta,
-          <Link to="/register" className="login-panel__sign-up-link">
-            {" "}
-            zarejestruj się!
-          </Link>
+          <span className="login-panel__sign-up-link"> zarejestruj się!</span>
         </p>
       </form>
     </div>

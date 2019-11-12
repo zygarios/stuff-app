@@ -1,15 +1,16 @@
 @import './variables.scss';
 
 .navbar{
-  position: fixed;
+  position: relative;
+  width: 100%;
   z-index: 10;
   top: 0;
   left: 0;
   right: 0;
-  height: 50px;
-  background: $BGColorPanels;
+  height: 35px;
+  background: $BGColorOpLow;
   border-radius: 0 0 $borderRadius $borderRadius;
-  box-shadow: inset 0px -3px 2px $secBGColor,0 2px 2px rgba(0, 0, 0, .25);
+  box-shadow: inset 0px -3px 2px $BGColorOpLow,0 2px 2px rgba(0, 0, 0, .25);
   &__container{
   height: 100%;
   max-width: 1200px;
@@ -20,7 +21,7 @@
   justify-content: space-between;
   }
   &__hamburger-btn, &__logout-btn{
-    font-size: 30px;
+    font-size: 2rem;
     color: rgba(white, .5);
     &:hover{
       color: rgba(white, 1);

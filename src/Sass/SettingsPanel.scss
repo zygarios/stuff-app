@@ -57,13 +57,13 @@
     top: 0;
     padding-top: 5px;
     font-size: 25px;
-    color: $mainBGColor;
+    color: $BGColorOpLow;
     transition: .2s;
     cursor: pointer;
     z-index: 3;
     margin-right: 2.5px;
     &:hover{
-      color: $secBGColor;
+      color: $BGColor;
       transform: scale(1.05);
     }
   }
@@ -79,10 +79,10 @@
     font-size: 1.35rem;
     border: none;
     transition: box-shadow .2s, width .2s, padding 1s;
-    box-shadow: inset 2px -2px 2px $secBGColor;
-    color: $mainBGColor;
+    box-shadow: inset 2px -2px 2px $BGColorOpLow;
+    color: $BGColor;
     &:focus {
-      box-shadow: inset 3px -3px 3px $mainBGColor;
+      box-shadow: inset 3px -3px 3px $BGColor;
     }
     &::placeholder {
       color: rgba(0,0,0,.3)

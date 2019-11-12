@@ -7,11 +7,15 @@ html {
   scroll-behavior: smooth;
 }
 body{
-  // background: url('https://images.pexels.com/photos/64778/pexels-photo-64778.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260') 0/cover;
-  background: $BGColorBody;
-  overflow-x: hidden;
-  // overflow: hidden;
-  // background-attachment: fixed;
+  background-image: 
+  linear-gradient(rgba($mainUserColor, .075),rgba($mainUserColor, .075)),
+  linear-gradient(rgba(white, .2),rgba(white, .2)),
+   url('https://images.pexels.com/photos/3125852/pexels-photo-3125852.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  
 }
 
 * {
@@ -34,7 +38,7 @@ margin: 0;
 ::-webkit-scrollbar-thumb {
   position: relative;
   z-index: -50;
-  background: $mainBGColor; 
+  background: $BGColor; 
   transition: background .2s;
   border-radius: 10px;
 }

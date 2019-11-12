@@ -23,7 +23,7 @@ function BookmarkPanel({ category_id }) {
     const bookmarkPosTop = document
       .querySelector(".active-bookmark")
       .getBoundingClientRect().top;
-    const scrollValue = bookmarkPosTop - 75;
+    const scrollValue = bookmarkPosTop - 15;
     window.scrollBy(0, scrollValue);
   };
 

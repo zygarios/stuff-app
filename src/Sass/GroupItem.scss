@@ -2,9 +2,8 @@
 
 .group-item{
   position: relative;
-  z-index: 0;
   white-space: nowrap;
-  color: rgb(235, 235, 235);
+  color: grey;
   margin: 5px 10px;
   font-weight: 500;
   text-transform: uppercase;
@@ -14,27 +13,29 @@
   display: block;
   padding: 5px 10px;
   cursor: pointer;
-  transition: box-shadow .1s, margin-left .2s;
+  transition: box-shadow .15s;
   font-size: 1.5rem;
-  background: $BGColorPanelsOpacityLow;
+  background: rgba(white, .7);
   overflow: hidden;
+  box-shadow: $shadowInsetNormal;
   @media (min-width: 768px) {
     line-height: 3.5rem;
-    margin: 5px 15px;
   }
   &:hover{
-    background: $BGColorPanels;
+    box-shadow: $shadowInsetActiveHover;
   }
   &:active{
-    box-shadow: inset 0 0 2px 2px rgba(0, 0, 0, .1);
+    box-shadow: $shadowInsetActivePush;
+    
   }
   &.active-select {
-    background: $BGColorPanels;
-    margin-left: 30px;
-    transition: margin-left .2s;
+    background: light;
+    transition: box-shadow .05s;
     font-weight: 700;
+    box-shadow: $shadowInsetActiveSelect;
   }
-  &--empty{
-    background: $BGColorPanelsOpacityVeryLow;
-  }
+
+}
+.group-item__title{
+  transition: transform .15s;
 }

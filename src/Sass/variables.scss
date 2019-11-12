@@ -1,26 +1,37 @@
-$mainBGColor: rgb(88, 133, 189);
-$secBGColor: #3495A3;
-$subBGColorLighten: 
-#d1c4e9;
-$borderRadius: 10px;
-$BGColorBody: rgb(211, 211, 211);
-$mainTextColor: rgb(211, 211, 211);
-//
-//gradient and base gradient colors
-//
-$firstColor: rgb(100, 100, 150);
-$secondColor:rgb(50, 150, 170);
-$thirdColor:rgb(150, 140, 90);
+$mainUserColor: #0fbe7b;
 
-$opacityNormal: 1;
+$BGColor: rgba($mainUserColor, .9);
+$BGColorOpLow: rgba($mainUserColor, .8);
+$BGColorOpVeryLow: rgba($mainUserColor, .6);
+
+//main border
+$borderRadius: 10px;
+
+//text color types
+$mainTextColor: white;
+$darkTextColor: grey;
+// box-shadow white blink
+$shadowInsetNormal: inset 2px -2px 2px rgba(white, 1);
+$shadowInsetActiveHover: inset 1px -1px 1px rgba(black, .15); 
+$shadowInsetActivePush: inset 1.5px -1.5px 1.5px rgba(black, .25); 
+$shadowInsetActiveSelect: inset 1.5px -1.5px 1.5px rgba(black, .35);
+//color types
+
+$firstColor: lightgrey;
+$secondColor:darkgrey;
+$thirdColor:lightgrey;
+
+// Opacity types
+$opacityNormal: .9;
 $opacityLow: .7;
 $opacityVeryLow: .3;
 
-$BGColorPanels:  linear-gradient(45deg, rgba($firstColor, $opacityNormal) 0%, rgba($secondColor, $opacityNormal) 50%, rgba($thirdColor, $opacityNormal) 100%);
+// background color types
+$BGColorPanels:  linear-gradient(45deg, rgba($firstColor, $opacityNormal) -10%, rgba($secondColor, $opacityNormal) 50%, rgba($thirdColor, $opacityNormal) 110%);
 
-$BGColorPanelsOpacityLow:  linear-gradient(45deg, rgba($firstColor, $opacityLow) 0%, rgba($secondColor, $opacityLow) 50%, rgba($thirdColor, $opacityLow) 100%);
+$BGColorPanelsOpacityLow:  linear-gradient(45deg, rgba($firstColor, $opacityLow) -10%, rgba($secondColor, $opacityLow) 50%, rgba($thirdColor, $opacityLow) 110%);
 
-$BGColorPanelsOpacityVeryLow:  linear-gradient(45deg, rgba($firstColor, $opacityVeryLow) 0%, rgba($secondColor, $opacityVeryLow) 50%, rgba($thirdColor, $opacityVeryLow) 100%);
+$BGColorPanelsOpacityVeryLow:  linear-gradient(45deg, rgba($firstColor, $opacityVeryLow) -10%, rgba($secondColor, $opacityVeryLow) 50%, rgba($thirdColor, $opacityVeryLow) 110%);
 
 @keyframes bookmarkAnimTitle {
   0%{

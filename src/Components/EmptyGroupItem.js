@@ -11,8 +11,7 @@ function EmptyGroupItem({ groupData, handleChangeActiveGroup }) {
     <li
       onClick={() => handleChangeActiveGroup(id)}
       className={`group-item ${active && "active-select"} ${id === -1 &&
-        "empty-card"}`}
-    >
+        "empty-group"}`}>
       {active ? (
         <NewGroupPanel />
       ) : (

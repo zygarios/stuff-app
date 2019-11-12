@@ -1,19 +1,11 @@
 .card{
   &__empty{
     opacity: .75;
-    transition: opacity .1s, transform .1s, box-shadow .1s;
+    transition: opacity .2s, transform .1s, box-shadow .1s;
     &:hover{
       opacity: .85;
       svg{
         opacity: .7;
-      }
-    }
-    &.active-settings {
-      opacity: 1;
-      &:hover{
-        svg{
-          opacity: 1;
-        }
       }
     }
   }
