@@ -4,10 +4,10 @@ import "../Sass/SiteItem.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 
-function SiteItem({ siteData }) {
+function SiteItem({ siteData, setIsPopUpPanelActive }) {
   const { url, notes, name, updateTime } = siteData;
   return (
-    <div className="site">
+    <div className="site" onClick={() => setIsPopUpPanelActive(true)}>
       <img
         className="site__favicon"
         src={"https://www.google.com/s2/favicons?domain=" + url}
@@ -19,7 +19,8 @@ function SiteItem({ siteData }) {
         className="site__link"
         href={url}
         target="_blank"
-        rel="nofollow noreferrer noopener">
+        rel="nofollow noreferrer noopener"
+      >
         <FontAwesomeIcon icon={faAngleDoubleRight} />
       </a>
     </div>

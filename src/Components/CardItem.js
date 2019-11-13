@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEllipsisV,
@@ -21,17 +21,19 @@ function Card({ id: category_id, name, image, statusChanger, activeStatus }) {
     <li
       className={`card ${activeSettings &&
         "active-settings"} ${activeBookmark && "active-bookmark"}`}
-      style={{ backgroundImage: image }}>
+      style={{ backgroundImage: image }}
+    >
       <div className="card__card-container">
         <h2
           style={
             activeBookmark || activeSettings ? { opacity: 0 } : { opacity: 1 }
           }
-          className="card__category-title">
+          className="card__category-title"
+        >
           {name}
         </h2>
         <div
-          className="card__bookmark-icon-click"
+          className="bookmark-icon-click"
           style={
             activeSettings !== false || activeBookmark !== false
               ? { display: "none" }
@@ -39,11 +41,12 @@ function Card({ id: category_id, name, image, statusChanger, activeStatus }) {
           }
           onClick={() => {
             statusChanger(category_id, "bookmark");
-          }}>
+          }}
+        >
           <FontAwesomeIcon icon={faGenderless} />
         </div>
         <div
-          className="card__settings-icon-click"
+          className="settings-icon-click"
           style={
             activeSettings !== false || activeBookmark !== false
               ? { display: "none" }
@@ -51,22 +54,17 @@ function Card({ id: category_id, name, image, statusChanger, activeStatus }) {
           }
           onClick={() => {
             statusChanger(category_id, "settings");
-          }}>
+          }}
+        >
           <FontAwesomeIcon icon={faEllipsisV} />
         </div>
-        <div
-          className="card__home-icon-click"
-          style={
-            activeSettings === false && activeBookmark === false
-              ? { display: "none" }
-              : null
-          }
-          onClick={() => {
-            statusChanger(category_id, "home");
-          }}>
-          <FontAwesomeIcon icon={faShare} />
-        </div>
-        {activeBookmark && <BookmarkPanel category_id={category_id} />}
+        {activeBookmark && (
+          <BookmarkPanel
+            category_id={category_id}
+            activeBookmark={activeBookmark}
+            statusChanger={statusChanger}
+          />
+        )}
         {activeSettings && <SettingsPanel />}
       </div>
     </li>

@@ -2,9 +2,15 @@ import React from "react";
 import SiteItem from "./SiteItem";
 import "../Sass/SitesPanel.scss";
 
-function SitesPanel({ sitesData }) {
+function SitesPanel({ sitesData, setIsPopUpPanelActive }) {
   const sites = sitesData.map(siteData => {
-    return <SiteItem key={siteData.id} siteData={siteData} />;
+    return (
+      <SiteItem
+        key={siteData.id}
+        siteData={siteData}
+        setIsPopUpPanelActive={setIsPopUpPanelActive}
+      />
+    );
   });
   return (
     <div className="sites-panel">

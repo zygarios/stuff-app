@@ -13,7 +13,7 @@
   display: block;
   padding: 5px 10px;
   cursor: pointer;
-  transition: box-shadow .15s;
+  transition: box-shadow .15s, background .15s;
   font-size: 1.5rem;
   background: rgba(white, .7);
   overflow: hidden;
@@ -33,6 +33,7 @@
     transition: box-shadow .05s;
     font-weight: 700;
     box-shadow: $shadowInsetActiveSelect;
+    background: rgba(white, .5);
   }
 
 }

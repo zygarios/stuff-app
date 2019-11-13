@@ -79,10 +79,10 @@
     font-size: 1.35rem;
     border: none;
     transition: box-shadow .2s, width .2s, padding 1s;
-    box-shadow: inset 2px -2px 2px $BGColorOpLow;
+    box-shadow: $shadowInsetActivePush;
     color: $BGColor;
     &:focus {
-      box-shadow: inset 3px -3px 3px $BGColor;
+      box-shadow: $shadowInsetActiveSelect;
     }
     &::placeholder {
       color: rgba(0,0,0,.3)

@@ -2,11 +2,16 @@ import React, { useState, useEffect } from "react";
 import "../Sass/BookmarkPanel.scss";
 import GroupsPanel from "./GroupsPanel";
 import SitesPanel from "./SitesPanel";
+import PopUpPanel from "./PopUpPanel";
 import axios from "axios";
 
-function BookmarkPanel({ category_id }) {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShare } from "@fortawesome/free-solid-svg-icons";
+
+function BookmarkPanel({ category_id, statusChanger, activeBookmark }) {
   const [groupsData, setGroupsData] = useState(null);
   const [sitesData, setSitesData] = useState(null);
+  const [isPopUpPanelActive, setIsPopUpPanelActive] = useState(false);
   const serverCategoriesURL = "https://jimmyspage.pl/api/categories";
 
   useEffect(() => moveScreenToActiveCard());
@@ -40,7 +45,6 @@ function BookmarkPanel({ category_id }) {
       })
       .then(res => {
         const groups = res.data;
-
         const groupsList = groups.map(
           ({ id, name, created_at, updated_at }) => ({
             id,
@@ -74,7 +78,6 @@ function BookmarkPanel({ category_id }) {
       })
       .then(res => {
         const sites = res.data;
-
         const sitesList = sites.map(
           ({ id, name, created_at, updated_at, notes, url }) => ({
             id,
@@ -115,6 +118,18 @@ function BookmarkPanel({ category_id }) {
 
   return (
     <div className="bookmark-panel" onClick={() => moveScreenToActiveCard()}>
+      {isPopUpPanelActive && <PopUpPanel />}
+      <div
+        className="home-icon-click"
+        style={activeBookmark === false ? { display: "none" } : null}
+        onClick={() => {
+          isPopUpPanelActive
+            ? setIsPopUpPanelActive(false)
+            : statusChanger(category_id, "home");
+        }}
+      >
+        <FontAwesomeIcon icon={faShare} />
+      </div>
       <h2 className="bookmark-panel__category-title">
         {"Podróże kulinarne i jedzonko oraz tozne fajnes"}
       </h2>
@@ -124,7 +139,12 @@ function BookmarkPanel({ category_id }) {
           handleChangeActiveGroup={handleChangeActiveGroup}
         />
       )}
-      {sitesData && <SitesPanel sitesData={sitesData} />}
+      {sitesData && (
+        <SitesPanel
+          setIsPopUpPanelActive={setIsPopUpPanelActive}
+          sitesData={sitesData}
+        />
+      )}
     </div>
   );
 }

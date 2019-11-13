@@ -8,9 +8,9 @@
   left: 0;
   right: 0;
   height: 35px;
-  background: $BGColorOpLow;
+  background: $mainUserColor;
   border-radius: 0 0 $borderRadius $borderRadius;
-  box-shadow: inset 0px -3px 2px $BGColorOpLow,0 2px 2px rgba(0, 0, 0, .25);
+  box-shadow: inset 0px -2px 2px rgba(white, .5),0 2px 2px rgba(0, 0, 0, .25);
   &__container{
   height: 100%;
   max-width: 1200px;

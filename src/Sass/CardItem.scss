@@ -18,9 +18,11 @@
   position: relative;
   width: 45%;
   padding-top: 45%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
   margin-bottom: 20px;
   background: $BGColorOpLow;
-  box-shadow: inset 3px -3px 4px rgba(white, .5),2px -2px 2px rgba(0, 0, 0, .15);
+  box-shadow: $shadowInsetNormal,2px -2px 2px rgba(0, 0, 0, .15);
   border-radius: $borderRadius;
   transition: transform .1s, box-shadow .1s, filter .1s, opacity .2s;
   overflow: hidden;
@@ -29,7 +31,7 @@
   opacity: .85;
   &:hover {
     opacity: .95;
-    box-shadow: inset 4px -4px 4px rgba(white, .55), 2px -2px 2px rgba(0, 0, 0, .15);
+    box-shadow:  $shadowInsetActiveHover, 2px -2px 2px rgba(0, 0, 0, .15);
     filter: brightness(102%);
   }
   &.active-bookmark {
@@ -78,56 +80,6 @@
     bottom: 0;
 
   }
-
-    &__settings-icon-click{
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      font-size:  25px;
-      display: block;
-      padding: 10px;
-      border-radius: $borderRadius;
-      transition: transform .1s ease, color .1s;
-      z-index: 6;
-      cursor: pointer;
-    &:hover{
-      transform: scale(1.25);
-      color: $mainTextColor;
-    }
-  }
-  &__home-icon-click{
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    color: rgba($mainTextColor, .5);
-    font-size:  25px;
-    transition: transform .1s ease, color .1s;
-    z-index: 5;
-    cursor: pointer;
-  &:hover{
-    transform: scale(1.25);
-    color: $mainTextColor;
-  }
-  }
-    &__bookmark-icon-click{
-      position: absolute;
-      display: block;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      color: rgba(white, .1);
-      transition: transform .1s ease, color .1s, filter .1s;
-      z-index: 5;
-      cursor: pointer;
-      > svg{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(1);
-        font-size: 175px;
-      }
-  }
 }
 
 
@@ -174,4 +126,58 @@
 
 .active-bookmark, .active-settings {
   cursor: default;
+}
+
+
+.settings-icon-click{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size:  25px;
+  display: block;
+  padding: 10px;
+  border-radius: $borderRadius;
+  transition: transform .1s ease, color .1s;
+  z-index: 5;
+  cursor: pointer;
+  &:hover{
+    transform: scale(1.25);
+    color: $mainTextColor;
+  }
+}
+
+.bookmark-icon-click{
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  color: rgba(white, .1);
+  transition: transform .1s ease, color .1s, filter .1s;
+  z-index: 5;
+  cursor: pointer;
+  > svg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    font-size: 175px;
+  }
+}
+
+.home-icon-click{
+  display:default; 
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: rgba($mainTextColor, .5);
+  font-size:  25px;
+  transition: transform .1s ease, color .1s;
+  z-index: 5;
+  cursor: pointer;
+  &:hover{
+    transform: scale(1.25);
+    color: $mainTextColor;
+  }
 }

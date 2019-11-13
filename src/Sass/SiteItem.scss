@@ -62,7 +62,7 @@ background: rgba(white, .7);
       box-shadow: $shadowInsetActiveHover;
     }
     &:active{
-      box-shadow: inset 0 0 2px 2px darken($BGColor, 5%);
+      box-shadow: $shadowInsetActivePush;
     }
   }
 }
