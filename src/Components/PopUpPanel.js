@@ -1,10 +1,10 @@
 import React from "react";
 import "../Sass/PopUpPanel.scss";
 
-function PopUpPanel() {
+function PopUpPanel({ siteNote }) {
   return (
     <div className="pop-up-panel">
-      <div className="pop-up-panel__container" />
+      <div className="pop-up-panel__container">{siteNote}</div>
     </div>
   );
 }

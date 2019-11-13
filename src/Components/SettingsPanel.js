@@ -36,8 +36,7 @@ function SettingsPanel() {
 
         <label
           className={`settings-panel__edit-group ${categoryTitleStatus &&
-            "settings-panel__edit-group--active"}`}
-        >
+            "settings-panel__edit-group--active"}`}>
           <FontAwesomeIcon
             className="settings-panel__edit-send"
             icon={faCheck}

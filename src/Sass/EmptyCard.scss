@@ -5,7 +5,7 @@
     &:hover{
       opacity: .85;
       svg{
-        opacity: .7;
+        opacity: 1;
       }
     }
   }
@@ -21,7 +21,7 @@
     &>svg{
       color: white;
       font-size: 8rem;
-      opacity: .5;
+      opacity: .85;
       transition: opacity .1s;
     }
   }

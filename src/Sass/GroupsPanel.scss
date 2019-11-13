@@ -12,6 +12,8 @@
  align-items: flex-start;
  overflow-x: hidden;
  overflow-y: scroll;
+ background: rgba(black, .3);
+ backdrop-filter: blur(1px);
  @media (min-width: 576px) {
   height: calc(100% - 6rem);
    width: 250px;

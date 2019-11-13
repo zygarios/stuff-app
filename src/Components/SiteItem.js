@@ -7,7 +7,11 @@ import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 function SiteItem({ siteData, setIsPopUpPanelActive }) {
   const { url, notes, name, updateTime } = siteData;
   return (
-    <div className="site" onClick={() => setIsPopUpPanelActive(true)}>
+    <div
+      className="site"
+      onClick={() => {
+        setIsPopUpPanelActive(notes);
+      }}>
       <img
         className="site__favicon"
         src={"https://www.google.com/s2/favicons?domain=" + url}
@@ -16,11 +20,11 @@ function SiteItem({ siteData, setIsPopUpPanelActive }) {
       <h3 className="site__name">{name}</h3>
       <p className="site__update-time">{updateTime}</p>
       <a
+        onClick={e => e.stopPropagation()}
         className="site__link"
         href={url}
         target="_blank"
-        rel="nofollow noreferrer noopener"
-      >
+        rel="nofollow noreferrer noopener">
         <FontAwesomeIcon icon={faAngleDoubleRight} />
       </a>
     </div>

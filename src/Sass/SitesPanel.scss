@@ -6,6 +6,8 @@
   height: calc(75% - 2rem);
   overflow-x: hidden;
   overflow-y: scroll;
+  background: rgba(black, .3);
+  backdrop-filter: blur(1px);
   @media (min-width: 576px) {
     margin-left: 10px;
     height: calc(100% - 6rem);

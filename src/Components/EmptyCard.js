@@ -11,18 +11,17 @@ function EmptyCard({ statusChanger, activeStatus }) {
   }
   return (
     <li className={`card card__empty ${activeSettings && "active-settings"}`}>
+      <div className="card__card-container"> </div>
       <div
         style={activeSettings ? { display: "none" } : { display: "flex" }}
         onClick={() => statusChanger(activeStatus.activeId, "settings")}
-        className="card__empty card__empty-icon"
-      >
+        className="card__empty card__empty-icon">
         <FontAwesomeIcon icon={faPlus} />
       </div>
       <div
         onClick={() => statusChanger(activeStatus.activeId, "home")}
-        className="card__home-icon-click"
-        style={activeSettings === false ? { display: "none" } : null}
-      >
+        className="home-icon-click"
+        style={activeSettings === false ? { display: "none" } : null}>
         <FontAwesomeIcon icon={faShare} />
       </div>
 

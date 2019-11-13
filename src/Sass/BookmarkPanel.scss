@@ -15,6 +15,7 @@
   align-items: center;
   align-content: space-between;
   flex-direction: row;
+  background: $BGColor;
   @media (min-width: 768px) {
     padding: 20px;
   }
@@ -25,7 +26,8 @@
   color: white;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
   animation: bookmarkAnimTitle .5s 1 both;
-  margin-right: 40px;
+  margin-right: 35px;
+  margin-left: 35px;
   position: relative;
   font-size: 1.5rem;
   font-weight: 900;

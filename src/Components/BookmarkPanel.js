@@ -8,10 +8,10 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShare } from "@fortawesome/free-solid-svg-icons";
 
-function BookmarkPanel({ category_id, statusChanger, activeBookmark }) {
+function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
   const [groupsData, setGroupsData] = useState(null);
   const [sitesData, setSitesData] = useState(null);
-  const [isPopUpPanelActive, setIsPopUpPanelActive] = useState(false);
+  const [siteNote, setSiteNote] = useState(false);
   const serverCategoriesURL = "https://jimmyspage.pl/api/categories";
 
   useEffect(() => moveScreenToActiveCard());
@@ -118,21 +118,16 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark }) {
 
   return (
     <div className="bookmark-panel" onClick={() => moveScreenToActiveCard()}>
-      {isPopUpPanelActive && <PopUpPanel />}
+      {siteNote && <PopUpPanel siteNote={siteNote} />}
       <div
         className="home-icon-click"
         style={activeBookmark === false ? { display: "none" } : null}
         onClick={() => {
-          isPopUpPanelActive
-            ? setIsPopUpPanelActive(false)
-            : statusChanger(category_id, "home");
-        }}
-      >
+          siteNote ? setSiteNote(false) : statusChanger(category_id, "home");
+        }}>
         <FontAwesomeIcon icon={faShare} />
       </div>
-      <h2 className="bookmark-panel__category-title">
-        {"Podróże kulinarne i jedzonko oraz tozne fajnes"}
-      </h2>
+      <h2 className="bookmark-panel__category-title">{name}</h2>
       {groupsData && (
         <GroupsPanel
           groupsData={groupsData}
@@ -140,10 +135,7 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark }) {
         />
       )}
       {sitesData && (
-        <SitesPanel
-          setIsPopUpPanelActive={setIsPopUpPanelActive}
-          sitesData={sitesData}
-        />
+        <SitesPanel setIsPopUpPanelActive={setSiteNote} sitesData={sitesData} />
       )}
     </div>
   );

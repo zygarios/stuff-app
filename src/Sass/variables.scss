@@ -1,4 +1,5 @@
-$mainUserColor: #0fbe7b;
+$mainUserColor: #00acc1
+;
 
 $BGColor: rgba($mainUserColor, .9);
 $BGColorOpLow: rgba($mainUserColor, .8);
@@ -12,7 +13,7 @@ $mainTextColor: white;
 $darkTextColor: grey;
 // box-shadow white blink
 $shadowInsetNormal: inset 2px -2px 2px rgba(white, .9);
-$shadowInsetActiveHover: inset 1.5px -1.5px 1.5px rgba(white, .2); 
+$shadowInsetActiveHover: inset 2px -2px 2px rgba(white, .3); 
 $shadowInsetActivePush: inset 1.5px -1.5px 1.5px rgba(black, .25); 
 $shadowInsetActiveSelect: inset 1.5px -1.5px 1.5px rgba(black, .35);
 //color types
