@@ -11,31 +11,21 @@ import NotePopUp from "./NotePopUp";
 
 function PopUpPanel({ setPopUpActiveType, popUpActiveType }) {
   let popUpPanelComponent = null;
-  switch (popUpActiveType) {
+  switch (popUpActiveType.type) {
     case "empty-group":
-      popUpPanelComponent = (
-        <EmptyGroupPopUp setPopUpActiveType={setPopUpActiveType} />
-      );
+      popUpPanelComponent = <EmptyGroupPopUp data={popUpActiveType.data} />;
       break;
     case "edit-group":
-      popUpPanelComponent = (
-        <EditGroupPopUp setPopUpActiveType={setPopUpActiveType} />
-      );
+      popUpPanelComponent = <EditGroupPopUp data={popUpActiveType.data} />;
       break;
     case "empty-site":
-      popUpPanelComponent = (
-        <EmptySitePopUp setPopUpActiveType={setPopUpActiveType} />
-      );
+      popUpPanelComponent = <EmptySitePopUp data={popUpActiveType.data} />;
       break;
     case "edit-site":
-      popUpPanelComponent = (
-        <EditSitePopUp setPopUpActiveType={setPopUpActiveType} />
-      );
+      popUpPanelComponent = <EditSitePopUp data={popUpActiveType.data} />;
       break;
     case "note-site":
-      popUpPanelComponent = (
-        <NotePopUp setPopUpActiveType={setPopUpActiveType} />
-      );
+      popUpPanelComponent = <NotePopUp data={popUpActiveType.data} />;
       break;
     default:
       break;

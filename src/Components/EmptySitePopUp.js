@@ -3,7 +3,7 @@ import "../Sass/EmptySitePopUp.scss";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faShare } from "@fortawesome/free-solid-svg-icons";
 
-function EmptySitePopUp({ setPopUpActiveType }) {
+function EmptySitePopUp({ popUpActiveType }) {
   return <div className="empty-site-pop-up" />;
 }
 

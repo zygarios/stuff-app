@@ -27,7 +27,7 @@ to{
     text-align: left;
     font-size: 1.5rem;
     line-height: 2rem;
-    padding: 15px;
+    padding: 51px;
     padding-right: 40px;
     backdrop-filter: blur(8px);
     background: rgba(black, .15);
@@ -42,8 +42,8 @@ to{
   &__back-icon{
     display:default; 
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 20px;
+    right: 20px;
     color: rgba($mainTextColor, .5);
     font-size:  25px;
     transition: transform .1s ease, color .1s;

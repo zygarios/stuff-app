@@ -3,7 +3,7 @@ import "../Sass/EditGroupPopUp.scss";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faShare } from "@fortawesome/free-solid-svg-icons";
 
-function EditGroupPopUp({ setPopUpActiveType }) {
+function EditGroupPopUp({ popUpActiveType }) {
   return <div className="edit-group-pop-up" />;
 }
 
