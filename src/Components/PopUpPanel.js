@@ -13,7 +13,7 @@ function PopUpPanel({ setPopUpActiveType, popUpActiveType }) {
   let popUpPanelComponent = null;
   switch (popUpActiveType.type) {
     case "empty-group":
-      popUpPanelComponent = <EmptyGroupPopUp data={popUpActiveType.data} />;
+      popUpPanelComponent = <EmptyGroupPopUp />;
       break;
     case "edit-group":
       popUpPanelComponent = <EditGroupPopUp data={popUpActiveType.data} />;

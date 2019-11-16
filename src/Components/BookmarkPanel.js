@@ -118,7 +118,6 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
   };
 
   const handleOpenPopPanel = popUpActiveType => {
-
     return (
       <PopUpPanel
         setPopUpActiveType={setPopUpActiveType}
