@@ -1,4 +1,4 @@
-$mainUserColor: #00acc1
+$mainUserColor: #6f79a8;
 ;
 
 $BGColor: rgba($mainUserColor, .9);
@@ -21,18 +21,6 @@ $shadowInsetActiveSelect: inset 1.5px -1.5px 1.5px rgba(black, .35);
 $firstColor: lightgrey;
 $secondColor:darkgrey;
 $thirdColor:lightgrey;
-
-// Opacity types
-$opacityNormal: .9;
-$opacityLow: .7;
-$opacityVeryLow: .3;
-
-// background color types
-$BGColorPanels:  linear-gradient(45deg, rgba($firstColor, $opacityNormal) -10%, rgba($secondColor, $opacityNormal) 50%, rgba($thirdColor, $opacityNormal) 110%);
-
-$BGColorPanelsOpacityLow:  linear-gradient(45deg, rgba($firstColor, $opacityLow) -10%, rgba($secondColor, $opacityLow) 50%, rgba($thirdColor, $opacityLow) 110%);
-
-$BGColorPanelsOpacityVeryLow:  linear-gradient(45deg, rgba($firstColor, $opacityVeryLow) -10%, rgba($secondColor, $opacityVeryLow) 50%, rgba($thirdColor, $opacityVeryLow) 110%);
 
 @keyframes bookmarkAnimTitle {
   0%{

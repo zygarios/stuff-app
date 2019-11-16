@@ -11,17 +11,14 @@ import { faShare } from "@fortawesome/free-solid-svg-icons";
 function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
   const [groupsData, setGroupsData] = useState(null);
   const [sitesData, setSitesData] = useState(null);
-  const [siteNote, setSiteNote] = useState(false);
+  // const [siteNote, setSiteNote] = useState(false);
+  const [popUpActiveType, setPopUpActiveType] = useState(false);
   const serverCategoriesURL = "https://jimmyspage.pl/api/categories";
-
-  useEffect(() => moveScreenToActiveCard());
 
   useEffect(() => {
     getGroupsData(category_id);
-  }, []);
-
-  useEffect(() => {
     getSitesData();
+    moveScreenToActiveCard();
   }, []);
 
   const moveScreenToActiveCard = () => {
@@ -54,7 +51,11 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
             active: false
           })
         );
-        groupsList.unshift({ id: 0, name: "Wszystkie strony", active: true });
+        groupsList.unshift({
+          id: 0,
+          name: "Wszystkie strony",
+          active: true
+        });
         groupsList.unshift({ id: -1, active: false });
         setGroupsData(groupsList);
       })
@@ -116,14 +117,24 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
     }
   };
 
+  const handleOpenPopPanel = popUpActiveType => {
+    console.log(popUpActiveType);
+    return (
+      <PopUpPanel
+        setPopUpActiveType={setPopUpActiveType}
+        popUpActiveType={popUpActiveType}
+      />
+    );
+  };
+
   return (
     <div className="bookmark-panel" onClick={() => moveScreenToActiveCard()}>
-      {siteNote && <PopUpPanel siteNote={siteNote} />}
+      {popUpActiveType && handleOpenPopPanel(popUpActiveType)}
       <div
         className="home-icon-click"
-        style={activeBookmark === false ? { display: "none" } : null}
+        style={!activeBookmark || popUpActiveType ? { display: "none" } : null}
         onClick={() => {
-          siteNote ? setSiteNote(false) : statusChanger(category_id, "home");
+          statusChanger(category_id, "home");
         }}>
         <FontAwesomeIcon icon={faShare} />
       </div>
@@ -132,10 +143,14 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
         <GroupsPanel
           groupsData={groupsData}
           handleChangeActiveGroup={handleChangeActiveGroup}
+          setPopUpActiveType={setPopUpActiveType}
         />
       )}
       {sitesData && (
-        <SitesPanel setIsPopUpPanelActive={setSiteNote} sitesData={sitesData} />
+        <SitesPanel
+          sitesData={sitesData}
+          setPopUpActiveType={setPopUpActiveType}
+        />
       )}
     </div>
   );

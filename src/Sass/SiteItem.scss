@@ -7,15 +7,17 @@ margin: 10px;
 padding: 20px;
 height: 150px;
 cursor: pointer;
-transition: box-shadow .15s;
+transition: box-shadow .1s, background .1s;
 color: $darkTextColor;
 display: flex;
 flex-wrap: wrap;
 animation: bookmarkAnimTitle .5s 1 both;
-box-shadow: inset 1.5px -1.5px 1.5px rgba(white, .5);
+box-shadow: inset 2px -2px 2px rgba(white, 1);
 background: rgba(white, .7);
+overflow: hidden;
   &:hover{
     box-shadow: $shadowInsetActiveHover;
+    background: rgba(white, .75);
   }
   &:active {
     box-shadow: $shadowInsetActivePush;
@@ -32,37 +34,42 @@ background: rgba(white, .7);
   &__update-time{
     width: 100%;
   }
-  &__link{
+  &__link, &__edit{
     right: 0;
-    top: 0;
-    bottom: 0;
     position: absolute;
-    width: 30px;
+    width: 50px;
     font-weight: 700;
     font-size: 1.5rem;
     padding: 1rem 20px 0 20px;
     text-transform: uppercase;
     text-decoration: none;
-    background: $mainUserColor;
-    color: $mainTextColor;
-    border-radius: 0 $borderRadius $borderRadius 0;
-    transition: box-shadow .1s, filter .1s;
-    text-align: center;
+    transition: box-shadow .1s, color .1s;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: $shadowInsetNormal;
+    background: $mainUserColor;
+    color: lightgrey;
+    border: 0;
+    cursor: pointer;
     &>svg{
-      margin: 0;
-      padding: 0;
       transform: translateY(-50%);
     }
     &:hover{
-      filter: brightness(105%);
       box-shadow: $shadowInsetActiveHover;
+      color: white;
     }
     &:active{
       box-shadow: $shadowInsetActivePush;
     }
+  }
+  &__edit{
+    top: 0;
+    bottom: 50%;
+    margin-bottom: 1px;
+  }
+  &__link{
+    top: 50%;
+    bottom: 0;   
+    margin-top: 1px;
   }
 }

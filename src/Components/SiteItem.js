@@ -1,16 +1,15 @@
 import React from "react";
 import "../Sass/SiteItem.scss";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 
-function SiteItem({ siteData, setIsPopUpPanelActive }) {
+function SiteItem({ siteData, setPopUpActiveType }) {
   const { url, notes, name, updateTime } = siteData;
   return (
     <div
       className="site"
       onClick={() => {
-        setIsPopUpPanelActive(notes);
+        setPopUpActiveType({ type: "note-site", data: notes });
       }}>
       <img
         className="site__favicon"
@@ -27,6 +26,14 @@ function SiteItem({ siteData, setIsPopUpPanelActive }) {
         rel="nofollow noreferrer noopener">
         <FontAwesomeIcon icon={faAngleDoubleRight} />
       </a>
+      <button
+        className="site__edit"
+        onClick={e => {
+          e.stopPropagation();
+          setPopUpActiveType({ type: "edit-site", data: siteData });
+        }}>
+        <FontAwesomeIcon icon={faEdit} />
+      </button>
     </div>
   );
 }

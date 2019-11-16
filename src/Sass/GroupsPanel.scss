@@ -1,6 +1,6 @@
 @import './variables.scss';
 .groups-panel{
- position: relative;
+  text-align: left;
  width: 100%;
  max-width: 100%;
  height: calc(25% - 4rem);
@@ -12,8 +12,8 @@
  align-items: flex-start;
  overflow-x: hidden;
  overflow-y: scroll;
+ backdrop-filter: blur(5px);
  background: rgba(black, .3);
- backdrop-filter: blur(1px);
  @media (min-width: 576px) {
   height: calc(100% - 6rem);
    width: 250px;

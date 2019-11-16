@@ -1,22 +1,16 @@
 import React from "react";
 import "../Sass/EmptyGroupItem.scss";
-import NewGroupPanel from "./NewGroupPanel";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-function EmptyGroupItem({ groupData, handleChangeActiveGroup }) {
-  const { id, active } = groupData;
+function EmptyGroupItem({ setPopUpActiveType }) {
   return (
     <li
-      onClick={() => handleChangeActiveGroup(id)}
-      className={`group-item ${active && "active-select"} ${id === -1 &&
-        "empty-group"}`}>
-      {active ? (
-        <NewGroupPanel />
-      ) : (
-        <FontAwesomeIcon className="empty-card__plus-icon " icon={faPlus} />
-      )}
+      className={`group-item empty-group`}
+      onClick={() => {
+        setPopUpActiveType({ type: "empty-group", data: null });
+      }}>
+      <FontAwesomeIcon className="empty-group__plus-icon" icon={faPlus} />
     </li>
   );
 }

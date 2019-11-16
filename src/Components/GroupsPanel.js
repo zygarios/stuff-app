@@ -3,7 +3,11 @@ import GroupItem from "./GroupItem";
 import "../Sass/GroupsPanel.scss";
 import EmptyGroupItem from "./EmptyGroupItem";
 
-function GroupsPanel({ groupsData, handleChangeActiveGroup }) {
+function GroupsPanel({
+  groupsData,
+  handleChangeActiveGroup,
+  setPopUpActiveType
+}) {
   const [isHoverOnGroupItem, setIsHoverOnGroupItem] = useState(false);
 
   const handleGroupListEnter = () => {
@@ -20,8 +24,8 @@ function GroupsPanel({ groupsData, handleChangeActiveGroup }) {
       return (
         <EmptyGroupItem
           key={groupData.id}
-          groupData={groupData}
           handleChangeActiveGroup={handleChangeActiveGroup}
+          setPopUpActiveType={setPopUpActiveType}
         />
       );
     } else {
@@ -30,6 +34,7 @@ function GroupsPanel({ groupsData, handleChangeActiveGroup }) {
           key={groupData.id}
           groupData={groupData}
           handleChangeActiveGroup={handleChangeActiveGroup}
+          setPopUpActiveType={setPopUpActiveType}
         />
       );
     }
