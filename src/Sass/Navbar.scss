@@ -7,7 +7,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 35px;
+  height: 50px;
   background: $mainUserColor;
   border-radius: 0 0 $borderRadius $borderRadius;
   box-shadow: inset 0px -2px 2px rgba(white, .5),0 2px 2px rgba(0, 0, 0, .25);
@@ -19,13 +19,65 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  
   }
-  &__hamburger-btn, &__logout-btn{
-    font-size: 2rem;
+  &__title-logo{
+    font-size: 2.75rem;
+    position: relative;
+    transition: color .2s;
+    color: rgba(white, 0);
+    cursor: pointer;
+    padding-bottom: 3px;
+    &:hover{
+      color: rgba(white, .95);
+      .navbar__title-icon{
+        color: rgba(white, .95);
+      }
+
+    }
+    &::first-letter{
+      font-size: 2.75rem;
+      color: $mainUserColor;
+      letter-spacing: 5px;
+    }
+  }
+  &__title-icon{
+    left: 0;
+    top: 50%;
+    transition: color .2s;
+    transform: translate(-15%, -45%);
+    position: absolute;
+    font-size: 3.5rem;
+    z-index: -1;
+    color: rgba(white, .75);
+
+  }
+  &__menu{
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  &__hamburger-btn, &__logout-btn, &__user-settings-btn{
+    display: block;
+    font-size: 2.75rem;
+    transition: color .15s, transform .15s;
     color: rgba(white, .5);
     &:hover{
       color: rgba(white, 1);
       cursor: pointer;
     }
+
+    &.active-select {
+      color: rgba(black, .2);
+      transform: scale(.95);
+    }
+  }
+  &__hamburger-btn{
+    padding-left: 15px;
+    border-left: 2px solid rgba(white, .2);
+  }
+  &__logout-btn, &__user-settings-btn{
+    padding-right: 15px;
   }
 }
