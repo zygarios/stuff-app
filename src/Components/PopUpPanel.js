@@ -3,26 +3,24 @@ import "../Sass/PopUpPanel.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShare } from "@fortawesome/free-solid-svg-icons";
 
-import EmptyGroupPopUp from "./EmptyGroupPopUp";
-import EditGroupPopUp from "./EditGroupPopUp";
-import EmptySitePopUp from "./EmptySitePopUp";
-import EditSitePopUp from "./EditSitePopUp";
+import GroupPopUp from "./GroupPopUp";
+import SitePopUp from "./SitePopUp";
 import NotePopUp from "./NotePopUp";
 
 function PopUpPanel({ setPopUpActiveType, popUpActiveType }) {
   let popUpPanelComponent = null;
   switch (popUpActiveType.type) {
     case "empty-group":
-      popUpPanelComponent = <EmptyGroupPopUp />;
+      popUpPanelComponent = <GroupPopUp />;
       break;
     case "edit-group":
-      popUpPanelComponent = <EditGroupPopUp data={popUpActiveType.data} />;
+      popUpPanelComponent = <GroupPopUp data={popUpActiveType.data} />;
       break;
     case "empty-site":
-      popUpPanelComponent = <EmptySitePopUp data={popUpActiveType.data} />;
+      popUpPanelComponent = <SitePopUp />;
       break;
     case "edit-site":
-      popUpPanelComponent = <EditSitePopUp data={popUpActiveType.data} />;
+      popUpPanelComponent = <SitePopUp data={popUpActiveType.data} />;
       break;
     case "note-site":
       popUpPanelComponent = <NotePopUp data={popUpActiveType.data} />;

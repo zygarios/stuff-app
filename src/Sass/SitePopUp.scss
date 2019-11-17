@@ -1,0 +1,60 @@
+@import './variables.scss';
+
+.site-pop-up {
+  text-align: center;
+  height: 100%;
+  &__form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  &__name, &__url{
+    font-size: 2rem;
+    margin-bottom: 50px;
+    @media (min-width: 576px) {
+      font-size: 2.75rem;
+    }
+  }
+  &__name-input, &__url-input{
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 20px;
+    display: block;
+    border-radius: $borderRadius;
+    padding: 10px 20px;
+    border: 0;
+    transition: background .1s, box-shadow .1s;
+    background: rgba(white, .85);
+    width: 100%;
+    max-width: 500px;
+    color: grey;
+    box-shadow: inset 1.5px -1.5px 1.5px rgba(black, .4);
+    @media (min-width: 576px) {
+      margin-top: 40px;
+    }
+    &:focus{
+      background: rgba(white, .95);
+      box-shadow: inset 2px -2px 2px rgba(black, .3);
+    }
+    &::placeholder{
+      color: rgba(black, .1);
+    }
+  }
+  &__accept-icon{
+    margin-top: 15px;
+  font-size: 8rem;
+  cursor: pointer;
+  transition: transform .1s, color .1s;
+  color: rgba(white, .9);
+  &:hover{
+    transform: scale(1.1);
+    color: rgba(white, 1);
+  }
+  &:active{
+    transform: scale(1);
+    color:rgba(white, .6);
+  }
+  }
+}
