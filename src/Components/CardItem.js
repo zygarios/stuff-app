@@ -6,18 +6,27 @@ import SettingsPanel from "./SettingsPanel";
 import BookmarkPanel from "./BookmarkPanel";
 import { Link, Route, Redirect } from "react-router-dom";
 
-function Card({ id: category_id, name, image, statusChanger, activeStatus }) {
+function Card({
+  id: category_id,
+  name,
+  image,
+  statusChanger,
+  activeStatus,
+  getCardsData
+}) {
   let activeBookmark = false;
   let activeSettings = false;
   if (activeStatus !== undefined) {
     activeBookmark = activeStatus.activeBookmark;
     activeSettings = activeStatus.activeSettings;
   }
+
+  const serverURL = "https://jimmyspage.pl";
   return (
     <li
       className={`card ${activeSettings &&
         "active-settings"} ${activeBookmark && "active-bookmark"}`}
-      style={{ backgroundImage: image }}>
+      style={{ backgroundImage: image && `url(${serverURL + image})` }}>
       <div className="card__card-container" />
       <h2
         style={
@@ -59,22 +68,22 @@ function Card({ id: category_id, name, image, statusChanger, activeStatus }) {
         }}>
         <FontAwesomeIcon icon={faShare} />
       </div>
-
-      {activeBookmark && <Redirect to={`/bookmark/${name}`} />}
-      {activeSettings && <Redirect to={`/settings/${name}`} />}
-
-      <Route path={`/settings/${name}`} component={() => <SettingsPanel />} />
-      <Route
-        path={`/bookmark/${name}`}
-        component={() => (
-          <BookmarkPanel
-            category_id={category_id}
-            activeBookmark={activeBookmark}
-            statusChanger={statusChanger}
-            name={name}
-          />
-        )}
-      />
+      {activeBookmark && (
+        <BookmarkPanel
+          category_id={category_id}
+          activeBookmark={activeBookmark}
+          statusChanger={statusChanger}
+          name={name}
+        />
+      )}
+      {activeSettings && (
+        <SettingsPanel
+          category_id={category_id}
+          name={name}
+          statusChanger={statusChanger}
+          getCardsData={getCardsData}
+        />
+      )}
     </li>
   );
 }

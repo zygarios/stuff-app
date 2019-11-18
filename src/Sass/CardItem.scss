@@ -27,8 +27,10 @@
   background-size: cover;
   text-align: center;
   opacity: .85;
-  background: $BGColor;
-  background: url("https://cdn.pixabay.com/photo/2016/12/27/21/03/lone-tree-1934897_960_720.jpg") 0/cover no-repeat;
+  background-color: $BGColor;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   box-shadow:  inset 2px -2px 2px rgba(white, .9), 0px 0px 2px 2px rgba(0, 0, 0, .15);
   
   &:hover {

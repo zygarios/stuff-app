@@ -50,8 +50,6 @@ function Navbar() {
           </span>
         </div>
         {!isLogged && handleLogout()}
-        {/* <div className="navbar__search" />
-        <div className="navbar__settings" /> */}
       </div>
     </nav>
   );
