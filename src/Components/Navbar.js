@@ -20,7 +20,7 @@ function HomePanel() {
   return (
     <nav className="navbar">
       <div className="navbar__container">
-        <h1 class="navbar__title-logo">
+        <h1 className="navbar__title-logo">
           Zakładka
           <FontAwesomeIcon className="navbar__title-icon" icon={faBookmark} />
         </h1>
@@ -45,8 +45,6 @@ function HomePanel() {
           </span>
         </div>
         {!isLogged && handleLogout()}
-        {/* <div className="navbar__search" />
-        <div className="navbar__settings" /> */}
       </div>
     </nav>
   );

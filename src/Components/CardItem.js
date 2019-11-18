@@ -5,18 +5,27 @@ import "../Sass/CardItem.scss";
 import SettingsPanel from "./SettingsPanel";
 import BookmarkPanel from "./BookmarkPanel";
 
-function Card({ id: category_id, name, image, statusChanger, activeStatus }) {
+function Card({
+  id: category_id,
+  name,
+  image,
+  statusChanger,
+  activeStatus,
+  getCardsData
+}) {
   let activeBookmark = false;
   let activeSettings = false;
   if (activeStatus !== undefined) {
     activeBookmark = activeStatus.activeBookmark;
     activeSettings = activeStatus.activeSettings;
   }
+
+  const serverURL = "https://jimmyspage.pl";
   return (
     <li
       className={`card ${activeSettings &&
         "active-settings"} ${activeBookmark && "active-bookmark"}`}
-      style={{ backgroundImage: image }}>
+      style={{ backgroundImage: image && `url(${serverURL + image})` }}>
       <div className="card__card-container" />
       <h2
         style={
@@ -64,7 +73,14 @@ function Card({ id: category_id, name, image, statusChanger, activeStatus }) {
           name={name}
         />
       )}
-      {activeSettings && <SettingsPanel />}
+      {activeSettings && (
+        <SettingsPanel
+          category_id={category_id}
+          name={name}
+          statusChanger={statusChanger}
+          getCardsData={getCardsData}
+        />
+      )}
     </li>
   );
 }
