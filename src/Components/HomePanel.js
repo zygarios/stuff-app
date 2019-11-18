@@ -10,7 +10,7 @@ function HomePanel(props) {
   const [cardsData, setCardsData] = useState([]);
   const [activeStatus, setActiveStatus] = useState([]);
 
-  useEffect(() => {
+  const getCardsData = () => {
     const token = localStorage.getItem("access_token");
 
     if (token === null) {
@@ -39,6 +39,10 @@ function HomePanel(props) {
         setActiveStatus(cardsList);
       })
       .catch(err => console.log(err));
+  };
+
+  useEffect(() => {
+    getCardsData();
   }, []);
 
   const handleBodyClick = e => {
@@ -80,17 +84,17 @@ function HomePanel(props) {
   const cards = cardsData.map(card => {
     const { id, name, image, created_at, updated_at } = card;
     const index = activeStatus.findIndex(item => item.activeId === id);
-
     return (
       <CardItem
         key={id}
         id={id}
         name={name}
-        statusChanger={statusChanger}
         activeStatus={activeStatus[index]}
         image={image}
         created_at={created_at}
         updated_at={updated_at}
+        statusChanger={statusChanger}
+        getCardsData={getCardsData}
       />
     );
   });
@@ -99,8 +103,9 @@ function HomePanel(props) {
       <Navbar />
       <ul className="home-panel__cards-container">
         <EmptyCard
-          statusChanger={statusChanger}
           activeStatus={activeStatus[0]}
+          statusChanger={statusChanger}
+          getCardsData={getCardsData}
         />
         {cards}
       </ul>

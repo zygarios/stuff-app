@@ -9,7 +9,8 @@ function App() {
     <div className="stuff-app">
       <Switch>
         <Route path="/login" exact component={LoginPanel} />
-        <Route path="/" component={HomePanel} />
+        <Route path="/home" exact component={HomePanel} />
+        <Redirect to="/home" />
       </Switch>
     </div>
   );

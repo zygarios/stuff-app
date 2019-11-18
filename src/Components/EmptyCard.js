@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faShare } from "@fortawesome/free-solid-svg-icons";
 import SettingsPanel from "./SettingsPanel";
 
-function EmptyCard({ statusChanger, activeStatus }) {
+function EmptyCard({ statusChanger, activeStatus, getCardsData }) {
   let activeSettings = false;
   if (activeStatus !== undefined) {
     activeSettings = activeStatus.activeSettings;
@@ -25,7 +25,13 @@ function EmptyCard({ statusChanger, activeStatus }) {
         <FontAwesomeIcon icon={faShare} />
       </div>
 
-      {activeSettings && <SettingsPanel />}
+      {activeSettings && (
+        <SettingsPanel
+          empty={true}
+          getCardsData={getCardsData}
+          statusChanger={statusChanger}
+        />
+      )}
     </li>
   );
 }

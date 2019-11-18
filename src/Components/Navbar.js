@@ -8,13 +8,10 @@ import {
   faBookmark
 } from "@fortawesome/free-solid-svg-icons";
 import { Redirect } from "react-router";
-import axios from "axios";
-const serverLogoutURL = "http://jimmyspage.pl/api/logout";
 
-function Navbar() {
+function HomePanel() {
   const [isLogged, setIsLogged] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isUserSettingsOpen, setIsUserSettingsOpen] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem("access_token");
@@ -30,9 +27,7 @@ function Navbar() {
         <div className="navbar__menu">
           {isMenuOpen && (
             <>
-              <span
-                className="navbar__user-settings-btn"
-                onClick={() => setIsUserSettingsOpen(state => !state)}>
+              <span className="navbar__user-settings-btn">
                 <FontAwesomeIcon icon={faUserTag} />
               </span>
               <span className="navbar__logout-btn">
@@ -45,16 +40,14 @@ function Navbar() {
           )}
           <span
             className={`navbar__hamburger-btn ${isMenuOpen && "active-select"}`}
-            onClick={() => setIsMenuOpen(state => !state)}>
+            onClick={() => setIsMenuOpen(prev => !prev)}>
             <FontAwesomeIcon icon={faBars} />
           </span>
         </div>
         {!isLogged && handleLogout()}
-        {/* <div className="navbar__search" />
-        <div className="navbar__settings" /> */}
       </div>
     </nav>
   );
 }
 
-export default Navbar;
+export default HomePanel;
