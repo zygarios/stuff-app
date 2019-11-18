@@ -84,6 +84,7 @@ function HomePanel(props) {
   const cards = cardsData.map(card => {
     const { id, name, image, created_at, updated_at } = card;
     const index = activeStatus.findIndex(item => item.activeId === id);
+
     return (
       <CardItem
         key={id}

@@ -4,6 +4,7 @@ import { faEllipsisV, faShare } from "@fortawesome/free-solid-svg-icons";
 import "../Sass/CardItem.scss";
 import SettingsPanel from "./SettingsPanel";
 import BookmarkPanel from "./BookmarkPanel";
+import { Link, Route, Redirect } from "react-router-dom";
 
 function Card({
   id: category_id,
@@ -34,17 +35,19 @@ function Card({
         className="card__category-title">
         {name}
       </h2>
-      <div
-        className="bookmark-icon-click"
-        style={
-          activeSettings !== false || activeBookmark !== false
-            ? { display: "none" }
-            : null
-        }
-        onClick={() => {
-          statusChanger(category_id, "bookmark");
-        }}
-      />
+      <Link to={`/bookmark/${name}`}>
+        <div
+          className="bookmark-icon-click"
+          style={
+            activeSettings !== false || activeBookmark !== false
+              ? { display: "none" }
+              : null
+          }
+          onClick={() => {
+            statusChanger(category_id, "bookmark");
+          }}
+        />
+      </Link>
       <div
         className="settings-icon-click"
         style={
