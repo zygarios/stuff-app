@@ -79,6 +79,7 @@ function Card({
           name={name}
           statusChanger={statusChanger}
           getCardsData={getCardsData}
+          image={image}
         />
       )}
     </li>

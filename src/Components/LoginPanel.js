@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const serverLoginURL = "https://jimmyspage.pl/api/login";
 
 function LoginPanel(props) {
-  const [emailValue, setEmailValue] = useState("von.talia@example.com");
+  const [emailValue, setEmailValue] = useState("carlotta44@example.net");
   const [passwordValue, setPasswordValue] = useState("password");
 
   const handleLoginRequest = () => {
@@ -40,6 +40,7 @@ function LoginPanel(props) {
             className="login-panel__email-input"
             value={emailValue}
             onChange={e => setEmailValue(e.target.value)}
+            placeholder="Adres email"
           />
         </label>
         <label htmlFor="password" className="login-panel__password-title">
@@ -50,6 +51,7 @@ function LoginPanel(props) {
             className="login-panel__password-input"
             value={passwordValue}
             onChange={e => setPasswordValue(e.target.value)}
+            placeholder="Hasło"
           />
         </label>
         <button className="login-panel__login-button">Zaloguj</button>

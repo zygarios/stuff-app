@@ -82,18 +82,34 @@
       text-align: center;
     }
   }
-
+  &__image-wrapper{
+    position: relative;
+    margin-top: 15px;
+  }
+  &__switch-img-icon{
+    cursor: pointer;
+    transition: transform .1s, color .1s;
+    color: rgba(255, 255, 255, 0.5);
+    &:hover{
+      transform: scale(1.1);
+      color: rgba(255,255,255,1);
+    }
+  }
   &__upload-wrapper {
     cursor: pointer;
     overflow: hidden;
-    position: relative;
+    position: absolute;
+    right: 45px;
+    top: -15px;
     padding-top: 5px;
     width: 50px;
     height: 40px;
     border-radius: $borderRadius/4;
     transform: translateX(0);
     margin: 10px 0;
-
+    transform: scale(.5);
+    opacity: 0;
+    transition: transform .1s, opacity .1s;
     &:hover .settings-panel__upload-img-icon{
       transform: translateX(-50%) scale(1.1);
       color: rgba(255,255,255,1);
@@ -116,10 +132,25 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    transition: transform .1s, color .1s;
     color: rgba(255, 255, 255, 0.5);
-    transition: transform .15s ease, color .15s;
     cursor: pointer;
   }
   &__remove-img-icon{
+    position: absolute;
+    top: 0;
+    left: 50px;
+    color: rgba(255, 255, 255, 0.5);
+    transition: transform .1s, opacity .1s, color .1s;
+    transform: scale(.5);
+    opacity: 0;
+    cursor: pointer;
+    svg{
+      transition: transform .1s, color .1s;
+    }
+    &:hover svg{
+      transform: scale(1.1);
+      color: rgba(255,255,255,1);
+    }
   }
 }

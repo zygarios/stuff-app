@@ -25,9 +25,8 @@
     justify-content: flex-end;
   }
   &__form {
-    background: $BGColorOpVeryLow;
+    background: $BGColorOpLow;
     text-align: center;
-
     height: 100%;
     width: 100%;
     display: flex;
@@ -78,6 +77,9 @@
     transition: box-shadow .2s;
     &:focus {
       box-shadow: $shadowInsetActiveSelect
+    }
+    &::placeholder{
+      color: rgba(black, .2);
     }
   }
 
