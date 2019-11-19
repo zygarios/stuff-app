@@ -120,6 +120,9 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
   const handleOpenPopPanel = popUpActiveType => {
     return (
       <PopUpPanel
+        getGroupsData={getGroupsData}
+        getSitesData={getSitesData}
+        category_id={category_id}
         setPopUpActiveType={setPopUpActiveType}
         popUpActiveType={popUpActiveType}
       />
@@ -141,6 +144,7 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
       <h2 className="bookmark-panel__category-title">{name}</h2>
       {groupsData && (
         <GroupsPanel
+          category_id={category_id}
           groupsData={groupsData}
           handleChangeActiveGroup={handleChangeActiveGroup}
           setPopUpActiveType={setPopUpActiveType}

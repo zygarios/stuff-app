@@ -55,7 +55,7 @@ function SettingsPanel({
     } else if (titleCategory.length > 15) {
       alertPopUp("Za długa nazwa");
       return;
-    } else if (fileInput.size > 2100000) {
+    } else if (fileInput.size > 5000000) {
       alertPopUp("Za duże zdjęcie");
       return;
     }
@@ -75,7 +75,6 @@ function SettingsPanel({
         }
       })
       .then(res => {
-        statusChanger(null, "home");
         getCardsData();
       })
       .catch(err => console.log(err));
@@ -121,7 +120,6 @@ function SettingsPanel({
         }
       })
       .then(res => {
-        statusChanger(null, "home");
         getCardsData();
       })
       .catch(err => console.log(err));
@@ -137,7 +135,6 @@ function SettingsPanel({
         }
       })
       .then(res => {
-        statusChanger(null, "home");
         getCardsData();
       })
       .catch(err => console.log(err));

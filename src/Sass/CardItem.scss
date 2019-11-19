@@ -71,7 +71,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     transition: color .1s, opacity .1s,letter-spacing .1s, transform .1s;
-    background: linear-gradient(90deg, transparent, rgba(0,0,0,.5) 30%, rgba(0,0,0,.5) 70%, transparent);
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,.7) 30%, rgba(0,0,0,.7) 70%, transparent);
   }
   &__card-container{
     border-radius: $borderRadius;

@@ -7,14 +7,37 @@ import GroupPopUp from "./GroupPopUp";
 import SitePopUp from "./SitePopUp";
 import NotePopUp from "./NotePopUp";
 
-function PopUpPanel({ setPopUpActiveType, popUpActiveType }) {
+function PopUpPanel({
+  getGroupsData,
+  getSitesData,
+  setPopUpActiveType,
+  popUpActiveType,
+  category_id
+}) {
   let popUpPanelComponent = null;
   switch (popUpActiveType.type) {
     case "empty-group":
-      popUpPanelComponent = <GroupPopUp />;
+      popUpPanelComponent = (
+        <GroupPopUp
+          popUpActiveType={popUpActiveType}
+          getGroupsData={getGroupsData}
+          getSitesData={getSitesData}
+          setPopUpActiveType={setPopUpActiveType}
+          category_id={category_id}
+        />
+      );
       break;
     case "edit-group":
-      popUpPanelComponent = <GroupPopUp data={popUpActiveType.data} />;
+      popUpPanelComponent = (
+        <GroupPopUp
+          popUpActiveType={popUpActiveType}
+          getGroupsData={getGroupsData}
+          getSitesData={getSitesData}
+          category_id={category_id}
+          data={popUpActiveType.data}
+          setPopUpActiveType={setPopUpActiveType}
+        />
+      );
       break;
     case "empty-site":
       popUpPanelComponent = <SitePopUp />;
@@ -32,7 +55,8 @@ function PopUpPanel({ setPopUpActiveType, popUpActiveType }) {
     <div className="pop-up-panel">
       <span
         className="pop-up-panel__back-icon"
-        onClick={() => setPopUpActiveType(false)}>
+        onClick={() => setPopUpActiveType(false)}
+      >
         <FontAwesomeIcon icon={faShare} />
       </span>
       <div className="pop-up-panel__container">{popUpPanelComponent}</div>

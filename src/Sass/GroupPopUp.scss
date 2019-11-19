@@ -42,6 +42,12 @@
       color: rgba(black, .1);
     }
   }
+  &__alert{
+    color: rgba(255, 0, 0, .5);
+    font-weight: 700;
+    padding: 15px;
+    font-size: 2.5rem;
+  }
   &__accept-icon{
     margin-top: 15px;
   font-size: 8rem;

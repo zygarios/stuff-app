@@ -11,13 +11,19 @@ function GroupItem({ groupData, handleChangeActiveGroup, setPopUpActiveType }) {
         handleChangeActiveGroup(id);
       }}
       className={`group-item ${active && "active-select"} ${id === 0 &&
-        "all-groups"}`}>
+        "all-groups"}`}
+    >
       <p className="group-item__title">{name}</p>
       <span
         className="group-item__edit-icon"
         onClick={() =>
-          setPopUpActiveType({ type: "edit-group", data: groupData })
-        }>
+          setPopUpActiveType({
+            type: "edit-group",
+            data: groupData,
+            group_id: id
+          })
+        }
+      >
         <FontAwesomeIcon icon={faEdit} />
       </span>
     </li>
