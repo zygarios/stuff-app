@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import "../Sass/LoginPanel.scss";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 const serverLoginURL = "https://jimmyspage.pl/api/login";
 
 function LoginPanel(props) {
-  const [emailValue, setEmailValue] = useState("carlotta44@example.net");
+  const [emailValue, setEmailValue] = useState("hrosenbaum@example.net");
   const [passwordValue, setPasswordValue] = useState("password");
 
   const handleLoginRequest = () => {

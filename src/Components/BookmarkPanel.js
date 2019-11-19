@@ -134,7 +134,8 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
         style={!activeBookmark || popUpActiveType ? { display: "none" } : null}
         onClick={() => {
           statusChanger(category_id, "home");
-        }}>
+        }}
+      >
         <FontAwesomeIcon icon={faShare} />
       </div>
       <h2 className="bookmark-panel__category-title">{name}</h2>

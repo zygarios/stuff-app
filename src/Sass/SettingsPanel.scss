@@ -21,21 +21,96 @@
   box-shadow: inset 0 0 4px 4px rgba(black, .15);
   animation: opacityAnim .2 1;
   font-size:3rem;
-
-&__edit-accept-icon{
-  color: rgba(255, 255, 255, 0.5);
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  cursor: pointer;
-  z-index: 1;
-  font-size: 2.6rem;
-  transition: transform .15s ease, color .15s;
-  &:hover{
+  &__alert{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: $mainUserColor;
+    z-index: 5;
+    padding: 15px;
+    font-size: 1.75rem;
+  }
+  &__alert-back-icon{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 2.5rem;
+    color: rgba(255,255,255,.5);
+    svg{
+      transition: transform .15s ease, color .15s;
+    }
+    &:hover svg{
+      transform: scale(1.2);
+      color: rgba(255,255,255,1);
+      cursor: pointer;
+    }
+  }
+  &__alert-confirm-wrapper{
+    display: flex;
+    justify-content: center;  
+  }
+  &__alert-accept{
+    margin:20px;
+    font-size: 4rem;
+    cursor: pointer;  
+    color: rgba(255,255,255,.5);
+    transition: transform .15s ease, color .15s;
+    &:hover{
     transform: scale(1.2);
-   color: rgba(255,255,255,1);
-   }
-}
+    color: rgba(255,255,255,1);
+    }
+  }
+  &__alert-cancel{
+    margin:20px;
+    font-size: 3.5rem;
+    cursor: pointer;  
+    color: rgba(255,255,255,.5);
+    transition: transform .15s ease, color .15s;
+    &:hover{
+    transform: scale(1.2);
+    color: rgba(255,255,255,1);
+    }
+  }
+  // &__alert-message{
+
+  // }
+  &__delete-category{
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    color: rgba(255,255,255,.5);
+    z-index: 2;
+    font-size: 2.5rem;
+    svg{
+      transition: transform .15s ease, color .15s;
+    }
+    &:hover svg{
+      transform: scale(1.2);
+      color: rgba(255,255,255,1);
+      cursor: pointer;
+    }
+  }
+  &__edit-accept-icon{
+    color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    cursor: pointer;
+    z-index: 1;
+    font-size: 2.6rem;
+    transition: transform .15s ease, color .15s;
+    &:hover{
+      transform: scale(1.2);
+    color: rgba(255,255,255,1);
+    }
+  }
   &__settings-wrapper{
     position: absolute;
     top: 0;
@@ -47,7 +122,6 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-
   }
   &__edit-text-icon{
     margin: 10px 0;
@@ -56,10 +130,10 @@
     cursor: pointer;
     font-size: 3.25rem;
     transform: scale(1);
-      &:hover{
-        transform: scale(1.1);
-       color: rgba(255,255,255,1);
-       }
+    &:hover{
+      transform: scale(1.1);
+      color: rgba(255,255,255,1);
+    }
   }
   &__text-input{
     font-size: 1.5rem;

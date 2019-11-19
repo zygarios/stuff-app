@@ -6,7 +6,9 @@ import {
   faImage,
   faCheck,
   faBan,
-  faCloudUploadAlt
+  faCloudUploadAlt,
+  faShare,
+  faTrashAlt
 } from "@fortawesome/free-solid-svg-icons";
 import "../Sass/SettingsPanel.scss";
 import axios from "axios";
@@ -21,12 +23,13 @@ function SettingsPanel({
 }) {
   const [categoryTitleStatus, setCategoryTitleStatus] = useState(false);
   const [isImageWrapperOpen, setIsImageWrapperOpen] = useState(false);
-  const [isRemoveImageOn, setIsRemoveImageOn] = useState(false);
+  const [isRemoveImage, setIsRemoveImage] = useState(false);
   const [titleCategory, setTitleCategory] = useState("");
-  const [inputPlaceholder, setInputPlaceholder] = useState(name);
   const [fileInput, setFileInput] = useState("");
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertConfirm, setAlertConfirm] = useState(false);
   const serverCategoriesURL = "https://jimmyspage.pl/api/categories";
-
   const handleEditTextButton = () => {
     setCategoryTitleStatus(state => !state);
   };
@@ -38,29 +41,29 @@ function SettingsPanel({
     }
   };
 
+  const alertPopUp = message => {
+    setAlertMessage(message);
+    setIsAlertOpen(true);
+  };
+
   const newCategory = () => {
     if (titleCategory.length === 0) {
-      setCategoryTitleStatus(true);
-      setInputPlaceholder("Musisz podać nazwę");
+      alertPopUp("Musisz podać nazwę");
     } else if (titleCategory.length < 3) {
-      setInputPlaceholder("Za krótka nazwa");
-      setTitleCategory("");
+      alertPopUp("Za krótka nazwa");
       return;
-    } else if (titleCategory.length > 10) {
-      setInputPlaceholder("Za długa nazwa");
-      setTitleCategory("");
+    } else if (titleCategory.length > 15) {
+      alertPopUp("Za długa nazwa");
       return;
     } else if (fileInput.size > 2100000) {
-      setCategoryTitleStatus(true);
-      setInputPlaceholder("Za duże zdjęcie");
-      setTitleCategory("");
+      alertPopUp("Za duże zdjęcie");
       return;
     }
 
     const formDataCategory = new FormData();
 
     formDataCategory.set("name", titleCategory);
-    formDataCategory.set("image", fileInput);
+    if (fileInput) formDataCategory.set("image", fileInput);
 
     const serverGroupsURL = `${serverCategoriesURL}`;
     const token = localStorage.getItem("access_token");
@@ -78,21 +81,18 @@ function SettingsPanel({
       .catch(err => console.log(err));
   };
   const updateCategory = () => {
-    if (!titleCategory && !fileInput) {
+    if (!titleCategory && !fileInput && !isRemoveImage) {
+      alertPopUp("Nie wprowadzono zmian");
       return;
     }
     if (titleCategory.length > 0 && titleCategory.length < 3) {
-      setInputPlaceholder("Za krótka nazwa");
-      setTitleCategory("");
+      alertPopUp("Za krótka nazwa");
       return;
-    } else if (titleCategory.length > 10) {
-      setInputPlaceholder("Za długa nazwa");
-      setTitleCategory("");
+    } else if (titleCategory.length > 15) {
+      alertPopUp("Za długa nazwa");
       return;
-    } else if (fileInput.size > 2100000) {
-      setCategoryTitleStatus(true);
-      setInputPlaceholder("Za duże zdjęcie");
-      setTitleCategory("");
+    } else if (fileInput.size > 5000000) {
+      alertPopUp("Za duże zdjęcie");
       return;
     }
 
@@ -102,7 +102,12 @@ function SettingsPanel({
       ? formDataCategory.set("name", titleCategory)
       : formDataCategory.set("name", name);
 
-    fileInput && formDataCategory.set("image", fileInput);
+    if (isRemoveImage) {
+      formDataCategory.set("image", "delete");
+    } else if (fileInput) {
+      formDataCategory.set("image", fileInput);
+    }
+
     formDataCategory.set("_method", "put");
 
     const serverGroupsURL = `${serverCategoriesURL}/${category_id}`;
@@ -122,14 +127,76 @@ function SettingsPanel({
       .catch(err => console.log(err));
   };
 
+  const deleteCategory = () => {
+    const serverGroupsURL = `${serverCategoriesURL}/${category_id}`;
+    const token = localStorage.getItem("access_token");
+    axios
+      .delete(serverGroupsURL, {
+        headers: {
+          Authorization: "Bearer " + token
+        }
+      })
+      .then(res => {
+        statusChanger(null, "home");
+        getCardsData();
+      })
+      .catch(err => console.log(err));
+  };
+
   return (
     <div className="settings-panel">
+      {isAlertOpen && (
+        <div className="settings-panel__alert">
+          <p className="settings-panel__alert-message">{alertMessage}</p>
+          {alertConfirm && (
+            <span className="settings-panel__alert-confirm-wrapper">
+              <FontAwesomeIcon
+                className="settings-panel__alert-accept"
+                icon={faCheck}
+                onClick={deleteCategory}
+              />
+              <FontAwesomeIcon
+                className="settings-panel__alert-cancel"
+                icon={faShare}
+                onClick={() => {
+                  setIsAlertOpen(false);
+                }}
+              />
+            </span>
+          )}
+          <span
+            className="settings-panel__alert-back-icon"
+            onClick={() => {
+              setIsAlertOpen(false);
+            }}
+          >
+            {!alertConfirm && <FontAwesomeIcon icon={faShare} />}
+          </span>
+        </div>
+      )}
+      {!empty && (
+        <span
+          className="settings-panel__delete-category"
+          onClick={() => {
+            setAlertConfirm(true);
+            alertPopUp("Usunąć kategorię?");
+          }}
+        >
+          <FontAwesomeIcon icon={faTrashAlt} />
+        </span>
+      )}
       <FontAwesomeIcon
         className="settings-panel__edit-accept-icon"
         icon={faCheck}
         onClick={handleAcceptSettings}
       />
-      <form action="" className="settings-panel__settings-wrapper">
+      <form
+        className="settings-panel__settings-wrapper"
+        onSubmit={e => {
+          e.preventDefault();
+          handleAcceptSettings();
+        }}
+      >
         <FontAwesomeIcon
           className="settings-panel__edit-text-icon"
           icon={faAlignLeft}
@@ -145,7 +212,7 @@ function SettingsPanel({
           className="settings-panel__text-input"
           onChange={e => setTitleCategory(e.target.value)}
           value={titleCategory}
-          placeholder={inputPlaceholder ? inputPlaceholder : "Nazwa kategorii"}
+          placeholder={name ? name : "Nazwa kategorii"}
         />
         <div className="settings-panel__image-wrapper">
           <FontAwesomeIcon
@@ -164,27 +231,36 @@ function SettingsPanel({
             style={{
               opacity: isImageWrapperOpen && 1,
               transform: isImageWrapperOpen && "scale(1)"
-            }}>
+            }}
+          >
             <input
               type="file"
               className="settings-panel__file-input"
               accept="image/*"
-              onChange={e => setFileInput(e.target.files[0])}
+              onChange={e => {
+                setFileInput(e.target.files[0]);
+              }}
             />
             <FontAwesomeIcon
               className="settings-panel__upload-img-icon"
               icon={faCloudUploadAlt}
+              style={{
+                color:
+                  fileInput !== "" && !isRemoveImage && "rgba(0, 255, 0, .5)"
+              }}
             />
           </div>
           <span
             className="settings-panel__remove-img-icon"
             onClick={() => {
-              setFileInput("delete");
+              setIsRemoveImage(state => !state);
             }}
             style={{
               opacity: isImageWrapperOpen && 1,
-              transform: isImageWrapperOpen && "scale(1)"
-            }}>
+              transform: isImageWrapperOpen && "scale(1)",
+              color: isRemoveImage && "rgba(255, 0, 0, .5)"
+            }}
+          >
             <FontAwesomeIcon
               icon={faBan}
               style={{ display: !image && "none" }}
