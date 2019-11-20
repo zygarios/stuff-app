@@ -18,7 +18,7 @@ function GroupItem({ groupData, handleChangeActiveGroup, setPopUpActiveType }) {
         className="group-item__edit-icon"
         onClick={() =>
           setPopUpActiveType({
-            type: "edit-group",
+            type: "group",
             data: groupData,
             group_id: id
           })

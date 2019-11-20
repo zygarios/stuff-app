@@ -16,7 +16,7 @@ function PopUpPanel({
 }) {
   let popUpPanelComponent = null;
   switch (popUpActiveType.type) {
-    case "empty-group":
+    case "group":
       popUpPanelComponent = (
         <GroupPopUp
           popUpActiveType={popUpActiveType}
@@ -27,23 +27,16 @@ function PopUpPanel({
         />
       );
       break;
-    case "edit-group":
+    case "site":
       popUpPanelComponent = (
-        <GroupPopUp
+        <SitePopUp
+          category_id={category_id}
           popUpActiveType={popUpActiveType}
           getGroupsData={getGroupsData}
           getSitesData={getSitesData}
-          category_id={category_id}
-          data={popUpActiveType.data}
           setPopUpActiveType={setPopUpActiveType}
         />
       );
-      break;
-    case "empty-site":
-      popUpPanelComponent = <SitePopUp />;
-      break;
-    case "edit-site":
-      popUpPanelComponent = <SitePopUp data={popUpActiveType.data} />;
       break;
     case "note-site":
       popUpPanelComponent = <NotePopUp data={popUpActiveType.data} />;

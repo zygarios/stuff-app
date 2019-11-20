@@ -10,7 +10,8 @@ function SiteItem({ siteData, setPopUpActiveType }) {
       className="site"
       onClick={() => {
         setPopUpActiveType({ type: "note-site", data: notes });
-      }}>
+      }}
+    >
       <img
         className="site__favicon"
         src={"https://www.google.com/s2/favicons?domain=" + url}
@@ -23,15 +24,17 @@ function SiteItem({ siteData, setPopUpActiveType }) {
         className="site__link"
         href={url}
         target="_blank"
-        rel="nofollow noreferrer noopener">
+        rel="nofollow noreferrer noopener"
+      >
         <FontAwesomeIcon icon={faAngleDoubleRight} />
       </a>
       <button
         className="site__edit"
         onClick={e => {
           e.stopPropagation();
-          setPopUpActiveType({ type: "edit-site", data: siteData });
-        }}>
+          setPopUpActiveType({ type: "site", data: siteData });
+        }}
+      >
         <FontAwesomeIcon icon={faEdit} />
       </button>
     </div>

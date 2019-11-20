@@ -13,14 +13,7 @@ import {
 import "../Sass/SettingsPanel.scss";
 import axios from "axios";
 
-function SettingsPanel({
-  empty,
-  image,
-  category_id,
-  statusChanger,
-  getCardsData,
-  name = ""
-}) {
+function SettingsPanel({ empty, image, category_id, getCardsData, name = "" }) {
   const [categoryTitleStatus, setCategoryTitleStatus] = useState(false);
   const [isImageWrapperOpen, setIsImageWrapperOpen] = useState(false);
   const [isRemoveImage, setIsRemoveImage] = useState(false);
@@ -48,7 +41,7 @@ function SettingsPanel({
 
   const newCategory = () => {
     if (titleCategory.length === 0) {
-      alertPopUp("Musisz podać nazwę");
+      alertPopUp("Podaj nazwę");
     } else if (titleCategory.length < 3) {
       alertPopUp("Za krótka nazwa");
       return;

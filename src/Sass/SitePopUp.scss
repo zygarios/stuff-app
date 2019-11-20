@@ -1,5 +1,6 @@
 @import './variables.scss';
 
+
 .site-pop-up {
   text-align: center;
   height: 100%;
@@ -10,17 +11,18 @@
     justify-content: center;
     height: 100%;
   }
-  &__name, &__url{
-    font-size: 2rem;
-    margin-bottom: 50px;
+  &__name, &__url, &__important{
+    font-size: 1.75rem;
+    margin-top: 35px;
+    padding: 0;
+    letter-spacing: 1.25px;
     @media (min-width: 576px) {
-      font-size: 2.75rem;
+      font-size: 2.25rem;
     }
   }
   &__name-input, &__url-input{
     align-items: center;
     margin: 0 auto;
-    margin-top: 20px;
     display: block;
     border-radius: $borderRadius;
     padding: 10px 20px;
@@ -31,9 +33,7 @@
     max-width: 500px;
     color: grey;
     box-shadow: inset 1.5px -1.5px 1.5px rgba(black, .4);
-    @media (min-width: 576px) {
-      margin-top: 40px;
-    }
+    margin-top: 20px;
     &:focus{
       background: rgba(white, .95);
       box-shadow: inset 2px -2px 2px rgba(black, .3);
@@ -42,19 +42,47 @@
       color: rgba(black, .1);
     }
   }
-  &__accept-icon{
-    margin-top: 15px;
-  font-size: 8rem;
-  cursor: pointer;
-  transition: transform .1s, color .1s;
-  color: rgba(white, .9);
-  &:hover{
-    transform: scale(1.1);
-    color: rgba(white, 1);
+  &__important-checkbox{
+    cursor: pointer;
+    margin-left: 20px;
+    transform: scale(1.5);
   }
-  &:active{
-    transform: scale(1);
-    color:rgba(white, .6);
+  &__alert{
+    color: rgba(255, 100, 100, .7);
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    transform: scaleY(.5);
+    opacity: 0;
+    transition: transform 1s, opacity 1s;
+    line-height: 2.5rem;
   }
+  &__icons-wrapper{
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    max-width: 90%;
+    margin: 40px auto;
+  }
+  &__accept-icon, &__delete-icon{
+    font-size: 4rem;
+    cursor: pointer;
+    transition: transform .1s, color .1s;
+    color: rgba(white, .9);
+    @media (min-width: 576px) {
+      font-size: 6rem;
+    }
+    &:hover{
+      transform: scale(1.1);
+      color: rgba(white, 1);
+    }
+    &:active{
+      transform: scale(1);
+      color:rgba(white, .6);
+    }
+  }
+  &__delete-icon{
+    margin-left: 50px;
   }
 }

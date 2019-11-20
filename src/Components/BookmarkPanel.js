@@ -11,6 +11,7 @@ import { faShare } from "@fortawesome/free-solid-svg-icons";
 function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
   const [groupsData, setGroupsData] = useState(null);
   const [sitesData, setSitesData] = useState(null);
+  const [groupActive, setGroupActive] = useState(null);
   // const [siteNote, setSiteNote] = useState(false);
   const [popUpActiveType, setPopUpActiveType] = useState(false);
   const serverCategoriesURL = "https://jimmyspage.pl/api/categories";
@@ -42,15 +43,15 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
       })
       .then(res => {
         const groups = res.data;
-        const groupsList = groups.map(
-          ({ id, name, created_at, updated_at }) => ({
+        const groupsList = groups
+          .reverse()
+          .map(({ id, name, created_at, updated_at }) => ({
             id,
             name,
             created_at,
             updated_at,
             active: false
-          })
-        );
+          }));
         groupsList.unshift({
           id: 0,
           name: "Wszystkie strony",
@@ -79,8 +80,9 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
       })
       .then(res => {
         const sites = res.data;
-        const sitesList = sites.map(
-          ({ id, name, created_at, updated_at, notes, url }) => ({
+        const sitesList = sites
+          .reverse()
+          .map(({ id, name, created_at, updated_at, notes, url }) => ({
             id,
             name,
             notes,
@@ -88,8 +90,7 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
             created_at,
             updated_at,
             active: false
-          })
-        );
+          }));
         setSitesData(sitesList);
       })
       .catch(err => console.log(err));
@@ -117,7 +118,7 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
     }
   };
 
-  const handleOpenPopPanel = popUpActiveType => {
+  const handleOpenPopPanel = () => {
     return (
       <PopUpPanel
         getGroupsData={getGroupsData}
@@ -131,14 +132,13 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
 
   return (
     <div className="bookmark-panel" onClick={() => moveScreenToActiveCard()}>
-      {popUpActiveType && handleOpenPopPanel(popUpActiveType)}
+      {popUpActiveType && handleOpenPopPanel()}
       <div
         className="home-icon-click"
         style={!activeBookmark || popUpActiveType ? { display: "none" } : null}
         onClick={() => {
           statusChanger(category_id, "home");
-        }}
-      >
+        }}>
         <FontAwesomeIcon icon={faShare} />
       </div>
       <h2 className="bookmark-panel__category-title">{name}</h2>

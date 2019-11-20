@@ -8,15 +8,29 @@ import {
   faBookmark
 } from "@fortawesome/free-solid-svg-icons";
 import { Redirect } from "react-router";
+import axios from "axios";
 
 function HomePanel() {
   const [isLogged, setIsLogged] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleLogout = () => {
-    localStorage.removeItem("access_token");
+    const token = localStorage.getItem("access_token");
+    axios({
+      method: "post",
+      url: "https://jimmyspage.pl/api/logout",
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + token
+      }
+    })
+      .then(res => {
+        localStorage.removeItem("access_token");
+      })
+      .catch(error => console.log(error));
     return <Redirect to="/login" />;
   };
+
   return (
     <nav className="navbar">
       <div className="navbar__container">
