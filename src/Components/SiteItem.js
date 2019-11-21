@@ -3,13 +3,21 @@ import "../Sass/SiteItem.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 
-function SiteItem({ siteData, setPopUpActiveType }) {
-  const { url, notes, name, updateTime } = siteData;
+function SiteItem({
+  siteData,
+  setPopUpActiveType,
+  setSiteIdActive,
+  setSiteNote
+}) {
+  const { url, notes, name, updateTime, id } = siteData;
+
   return (
     <div
       className="site"
       onClick={() => {
-        setPopUpActiveType({ type: "note-site", data: notes });
+        setSiteIdActive(id);
+        setPopUpActiveType("note");
+        setSiteNote(notes);
       }}
     >
       <img
@@ -32,7 +40,8 @@ function SiteItem({ siteData, setPopUpActiveType }) {
         className="site__edit"
         onClick={e => {
           e.stopPropagation();
-          setPopUpActiveType({ type: "site", data: siteData });
+          setSiteIdActive(id);
+          setPopUpActiveType("site");
         }}
       >
         <FontAwesomeIcon icon={faEdit} />

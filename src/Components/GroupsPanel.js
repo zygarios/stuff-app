@@ -5,9 +5,9 @@ import EmptyGroupItem from "./EmptyGroupItem";
 
 function GroupsPanel({
   groupsData,
-  category_id,
-  handleChangeActiveGroup,
-  setPopUpActiveType
+  setPopUpActiveType,
+  setGroupIdActive,
+  groupIdActive
 }) {
   const [isHoverOnGroupItem, setIsHoverOnGroupItem] = useState(false);
 
@@ -26,14 +26,17 @@ function GroupsPanel({
         <EmptyGroupItem
           key={groupData.id}
           setPopUpActiveType={setPopUpActiveType}
+          groupIdActive={groupIdActive}
+          setGroupIdActive={setGroupIdActive}
         />
       );
     } else {
       return (
         <GroupItem
+          groupIdActive={groupIdActive}
+          setGroupIdActive={setGroupIdActive}
           key={groupData.id}
           groupData={groupData}
-          handleChangeActiveGroup={handleChangeActiveGroup}
           setPopUpActiveType={setPopUpActiveType}
         />
       );

@@ -8,7 +8,7 @@ function EmptySiteItem({ setPopUpActiveType }) {
     <div
       className="site empty-site"
       onClick={() => {
-        setPopUpActiveType({ type: "site",  });
+        setPopUpActiveType("empty-site");
       }}
     >
       <FontAwesomeIcon className="empty-site__plus-icon" icon={faPlus} />

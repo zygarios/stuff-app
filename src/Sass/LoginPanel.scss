@@ -24,25 +24,31 @@
     max-width: 1200px;
     justify-content: flex-end;
   }
-  &__form {
+  &__container{
     background: $BGColorOpLow;
-    text-align: center;
+    transition: background .2s;
     height: 100%;
     width: 100%;
+    display: flex;
+    align-items: center;
+    @media (min-width: 768px) {
+      border-radius: $borderRadius 0 0 $borderRadius;
+      max-width: 350px;
+    }
+    &:hover{
+      background: $BGColor;
+    }
+  }
+  &__form {
+    height: 100%;
+    width: 100%;
+    max-height: 750px;
+    text-align: center;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    transition: background .2s;
-    @media (min-width: 768px) {
-      border-radius: $borderRadius 0 0 $borderRadius;
-      max-width: 350px;
-    }
-
-    &:hover{
-      background: $BGColor;
-    }
   }
   &__title {
     width:100%;
@@ -50,18 +56,29 @@
     font-weight: 900;
     text-align: center;
     font-size: 3.5rem;
+    position: relative;
     @media (min-width: 768px) {
       font-size: 4.5rem;
     }
+    &:after{
+      content: "";
+      position: absolute;
+      top: calc(100% + 20px);
+      left: 50%;
+      height: 1px;
+      width: 80%;
+      background: rgba(white, .2);
+      transform: translate(-50%,-50%);
+    }
   }
   &__email-title,
-  &__username-title,
+  &__name-title,
   &__password-title {
     display: block;
     font-size: 1.5rem;
   }
   &__email-input,
-  &__username-input,
+  &__name-input,
   &__password-input {
     color: $secondColor;
     width: 100%;
@@ -118,18 +135,34 @@
     
   }
 
-  &__sign-up-title {
+  &__sign-title {
     font-size: 1.5rem;
     padding: 0 20px;
     color: rgba(white,.85);
+    position: relative;
+      &:after{
+      content: "";
+      position: absolute;
+      bottom: calc(100% + 25px);
+      left: 50%;
+      height: 1px;
+      width: 80%;
+      background: rgba(white, .15);
+      transform: translate(-50%,-50%);
+    }
   }
 
-  &__sign-up-link {
+  &__sign-link {
     text-decoration: none;
     font-weight: 700;
     cursor: pointer;
     &:hover {
       text-decoration: underline;
     }
+  }
+  &__alert{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: rgba(255, 100, 100, .7);
   }
 } 

@@ -3,26 +3,28 @@ import "../Sass/GroupItem.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
-function GroupItem({ groupData, handleChangeActiveGroup, setPopUpActiveType }) {
-  const { id, active, name } = groupData;
+function GroupItem({
+  groupData,
+  setPopUpActiveType,
+  setGroupIdActive,
+  groupIdActive
+}) {
+  const { id, name } = groupData;
   return (
     <li
       onClick={() => {
-        handleChangeActiveGroup(id);
+        setGroupIdActive(id);
       }}
-      className={`group-item ${active && "active-select"} ${id === 0 &&
-        "all-groups"}`}
+      className={`group-item ${id === groupIdActive && "active-select"} ${id ===
+        0 && "all-groups"}`}
     >
       <p className="group-item__title">{name}</p>
       <span
         className="group-item__edit-icon"
-        onClick={() =>
-          setPopUpActiveType({
-            type: "group",
-            data: groupData,
-            group_id: id
-          })
-        }
+        onClick={() => {
+          setGroupIdActive(id);
+          setPopUpActiveType("group");
+        }}
       >
         <FontAwesomeIcon icon={faEdit} />
       </span>

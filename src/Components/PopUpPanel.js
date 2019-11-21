@@ -12,34 +12,41 @@ function PopUpPanel({
   getSitesData,
   setPopUpActiveType,
   popUpActiveType,
-  category_id
+  category_id,
+  groupIdActive,
+  siteIdActive
 }) {
   let popUpPanelComponent = null;
-  switch (popUpActiveType.type) {
+  switch (popUpActiveType) {
     case "group":
+    case "empty-group":
       popUpPanelComponent = (
         <GroupPopUp
           popUpActiveType={popUpActiveType}
           getGroupsData={getGroupsData}
           getSitesData={getSitesData}
-          setPopUpActiveType={setPopUpActiveType}
           category_id={category_id}
+          groupIdActive={groupIdActive}
+          setPopUpActiveType={setPopUpActiveType}
         />
       );
       break;
     case "site":
+    case "empty-site":
       popUpPanelComponent = (
         <SitePopUp
           category_id={category_id}
           popUpActiveType={popUpActiveType}
           getGroupsData={getGroupsData}
           getSitesData={getSitesData}
+          groupIdActive={groupIdActive}
+          siteIdActive={siteIdActive}
           setPopUpActiveType={setPopUpActiveType}
         />
       );
       break;
     case "note-site":
-      popUpPanelComponent = <NotePopUp data={popUpActiveType.data} />;
+      popUpPanelComponent = <NotePopUp popUpActiveType={popUpActiveType} />;
       break;
     default:
       break;

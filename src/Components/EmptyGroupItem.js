@@ -3,12 +3,13 @@ import "../Sass/EmptyGroupItem.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-function EmptyGroupItem({ setPopUpActiveType }) {
+function EmptyGroupItem({ setPopUpActiveType, setGroupIdActive }) {
   return (
     <li
       className={`group-item empty-group`}
       onClick={() => {
-        setPopUpActiveType({ type: "group" });
+        setGroupIdActive(-1);
+        setPopUpActiveType("empty-group");
       }}
     >
       <FontAwesomeIcon className="empty-group__plus-icon" icon={faPlus} />

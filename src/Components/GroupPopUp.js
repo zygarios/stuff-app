@@ -9,7 +9,8 @@ function GroupPopUp({
   category_id,
   getGroupsData,
   getSitesData,
-  popUpActiveType
+  popUpActiveType,
+  groupIdActive
 }) {
   const [groupName, setGroupName] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
@@ -43,9 +44,7 @@ function GroupPopUp({
     formDataGroup.set("name", groupName);
     formDataGroup.set("_method", "put");
 
-    const serverGroupsURL = `${serverCategoriesURL}/${category_id}/groups/${
-      popUpActiveType.group_id
-    }`;
+    const serverGroupsURL = `${serverCategoriesURL}/${category_id}/groups/${groupIdActive}`;
     const token = localStorage.getItem("access_token");
 
     axios
@@ -66,9 +65,7 @@ function GroupPopUp({
   const deleteGroup = () => {
     if (!deleteAlertStatus) return;
 
-    const serverGroupsURL = `${serverCategoriesURL}/${category_id}/groups/${
-      popUpActiveType.group_id
-    }`;
+    const serverGroupsURL = `${serverCategoriesURL}/${category_id}/groups/${groupIdActive}`;
     const token = localStorage.getItem("access_token");
 
     axios
@@ -89,20 +86,19 @@ function GroupPopUp({
     if (deleteAlertStatus) {
       deleteGroup();
       setDeleteAlertStatus(false);
+      return;
     }
+
     if (groupName.length === 0) {
-      setAlertMessage("Podaj nazwę grupy");
-      return;
+      return setAlertMessage("Podaj nazwę grupy");
     } else if (groupName.length < 3) {
-      setAlertMessage("Za krótka nazwa");
-      return;
-    } else if (groupName.length > 3) {
-      setAlertMessage("Za długa nazwa");
-      return;
+      return setAlertMessage("Za krótka nazwa");
+    } else if (groupName.length > 20) {
+      return setAlertMessage("Za długa nazwa");
     }
-    if (!popUpActiveType.data) {
+    if (popUpActiveType === "empty-group") {
       newGroup();
-    } else if (popUpActiveType.type) {
+    } else if (popUpActiveType === "group") {
       updateGroup();
     }
   };
@@ -139,7 +135,7 @@ function GroupPopUp({
           <span className="group-pop-up__accept-icon" onClick={editTypeChanger}>
             <FontAwesomeIcon icon={faCheck} />
           </span>
-          {popUpActiveType.group_id && (
+          {groupIdActive !== -1 && (
             <span
               style={{
                 color: deleteAlertStatus && "rgba(255, 0, 0, .5)"
