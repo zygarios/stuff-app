@@ -47,8 +47,7 @@ function GroupsPanel({
       className="groups-panel"
       onMouseEnter={handleGroupListEnter}
       onMouseLeave={handleGroupListLeave}
-      style={{ width: isHoverOnGroupItem && "50%" }}
-    >
+      style={{ width: isHoverOnGroupItem && "50%" }}>
       <ul className="groups-panel__list">{groupsItems}</ul>
     </div>
   );

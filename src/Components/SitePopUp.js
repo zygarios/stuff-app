@@ -25,16 +25,15 @@ function SitePopUp({
 
     formDataSite.set("name", siteName);
     formDataSite.set("url", URLValue);
-    formDataSite.set("notes", "");
     formDataSite.set("important", importantStatus);
-
     const serverSiteURL = `${serverCategoriesURL}/${category_id}/groups/${groupIdActive}/sites`;
+    console.log(serverSiteURL);
     const token = localStorage.getItem("access_token");
     axios
       .post(serverSiteURL, formDataSite, {
         headers: {
-          Accept: "multipart/form-data",
-          Authorization: "Bearer" + token
+          // Accept: "multipart/form-data",
+          Authorization: "Bearer " + token
         }
       })
       .then(res => {
@@ -46,11 +45,7 @@ function SitePopUp({
       .catch(err => console.log(err));
   };
 
-  const updateSite = () => {
-    const formDataSite = new FormData();
-    formDataSite.set("name", siteName);
-    formDataSite.set("_method", "put");
-
+  const updateSite = formDataSite => {
     const serverSiteURL = `${serverCategoriesURL}/${category_id}/groups/${groupIdActive}/sites/${siteIdActive}`;
     const token = localStorage.getItem("access_token");
 
@@ -90,7 +85,6 @@ function SitePopUp({
   //     })
   //     .catch(err => console.log(err));
   // };
-  console.log(popUpActiveType, groupIdActive);
   const editTypeChanger = () => {
     // if (deleteAlertStatus) {
     //   deleteSite();
@@ -111,17 +105,21 @@ function SitePopUp({
       } else if (!URLValue.includes(".")) {
         return setAlertMessage("Podaj prawidłowy adres URL");
       }
+
       newSite();
     } else if (popUpActiveType === "site") {
       if (!siteName && !URLValue && !importantStatus) {
         return setAlertMessage("Brak zmian");
       } else {
+        const formDataSite = new FormData();
+        formDataSite.set("_method", "put");
         if (siteName.length) {
           if (siteName.length < 3) {
             return setAlertMessage("Za krótka nazwa strony");
           } else if (siteName.length > 30) {
             return setAlertMessage("Za długa nazwa");
           }
+          formDataSite.set("name", siteName);
         }
         if (URLValue.length) {
           if (URLValue.length <= 3) {
@@ -129,8 +127,10 @@ function SitePopUp({
           } else if (!URLValue.includes(".")) {
             return setAlertMessage("Podaj prawidłowy adres URL");
           }
+          formDataSite.append("url", URLValue);
+          console.log("w");
         }
-        updateSite();
+        updateSite(formDataSite);
       }
     }
   };
@@ -152,8 +152,7 @@ function SitePopUp({
         className="site-pop-up__form"
         onSubmit={e => {
           e.preventDefault();
-        }}
-      >
+        }}>
         <label htmlFor="site-name" className="site-pop-up__name">
           Nazwa strony:
           <input
@@ -191,8 +190,7 @@ function SitePopUp({
         {alertMessage && (
           <span
             className="site-pop-up__alert"
-            style={{ opacity: 1, transform: "scaleY(1)" }}
-          >
+            style={{ opacity: 1, transform: "scaleY(1)" }}>
             {alertMessage}
           </span>
         )}
@@ -209,8 +207,7 @@ function SitePopUp({
               onClick={() => {
                 setDeleteAlertStatus(state => !state);
                 setAlertMessage("Na pewno chcesz usunąć stronę?");
-              }}
-            >
+              }}>
               <FontAwesomeIcon icon={faTrashAlt} />
             </span>
           )}

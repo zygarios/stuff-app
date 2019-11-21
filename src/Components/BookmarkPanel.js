@@ -16,12 +16,13 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
   const [siteNote, setSiteNote] = useState(false);
   const [popUpActiveType, setPopUpActiveType] = useState(false);
   const serverCategoriesURL = "https://jimmyspage.pl/api/categories";
+  // console.log(groupIdActive, siteIdActive);
 
   useEffect(() => {
     getGroupsData(category_id);
-    getSitesData();
+    getSitesData(groupIdActive);
     moveScreenToActiveCard();
-  }, []);
+  }, [groupIdActive, siteIdActive, category_id]);
 
   const moveScreenToActiveCard = () => {
     const bookmarkPosTop = document
@@ -61,7 +62,6 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
       })
       .catch(err => console.log(err));
   };
-
   const getSitesData = (group_id = 0) => {
     const token = localStorage.getItem("access_token");
     let serverSitesURL = "";
@@ -80,7 +80,7 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
       .then(res => {
         const sites = res.data;
         const sitesList = sites.map(
-          ({ id, name, created_at, updated_at, notes, url }) => ({
+          ({ id, name, created_at, updated_at, notes, url, group_id }) => ({
             id,
             name,
             notes,
@@ -116,8 +116,7 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
         style={!activeBookmark || popUpActiveType ? { display: "none" } : null}
         onClick={() => {
           statusChanger(category_id, "home");
-        }}
-      >
+        }}>
         <FontAwesomeIcon icon={faShare} />
       </div>
       <h2 className="bookmark-panel__category-title">{name}</h2>

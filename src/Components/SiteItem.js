@@ -7,7 +7,9 @@ function SiteItem({
   siteData,
   setPopUpActiveType,
   setSiteIdActive,
-  setSiteNote
+  setSiteNote,
+  setGroupIdActive,
+  group_id
 }) {
   const { url, notes, name, updateTime, id } = siteData;
 
@@ -17,9 +19,9 @@ function SiteItem({
       onClick={() => {
         setSiteIdActive(id);
         setPopUpActiveType("note");
+        setGroupIdActive(group_id);
         setSiteNote(notes);
-      }}
-    >
+      }}>
       <img
         className="site__favicon"
         src={"https://www.google.com/s2/favicons?domain=" + url}
@@ -32,8 +34,7 @@ function SiteItem({
         className="site__link"
         href={url}
         target="_blank"
-        rel="nofollow noreferrer noopener"
-      >
+        rel="nofollow noreferrer noopener">
         <FontAwesomeIcon icon={faAngleDoubleRight} />
       </a>
       <button
@@ -41,9 +42,9 @@ function SiteItem({
         onClick={e => {
           e.stopPropagation();
           setSiteIdActive(id);
+          setGroupIdActive(group_id);
           setPopUpActiveType("site");
-        }}
-      >
+        }}>
         <FontAwesomeIcon icon={faEdit} />
       </button>
     </div>

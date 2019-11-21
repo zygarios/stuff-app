@@ -15,17 +15,15 @@ function GroupItem({
       onClick={() => {
         setGroupIdActive(id);
       }}
-      className={`group-item ${id === groupIdActive && "active-select"} ${id ===
-        0 && "all-groups"}`}
-    >
+      className={`group-item ${id === groupIdActive * 1 &&
+        "active-select"} ${id === 0 && "all-groups"}`}>
       <p className="group-item__title">{name}</p>
       <span
         className="group-item__edit-icon"
         onClick={() => {
           setGroupIdActive(id);
           setPopUpActiveType("group");
-        }}
-      >
+        }}>
         <FontAwesomeIcon icon={faEdit} />
       </span>
     </li>

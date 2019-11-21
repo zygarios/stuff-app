@@ -55,8 +55,7 @@ function PopUpPanel({
     <div className="pop-up-panel">
       <span
         className="pop-up-panel__back-icon"
-        onClick={() => setPopUpActiveType(false)}
-      >
+        onClick={() => setPopUpActiveType(false)}>
         <FontAwesomeIcon icon={faShare} />
       </span>
       <div className="pop-up-panel__container">{popUpPanelComponent}</div>
