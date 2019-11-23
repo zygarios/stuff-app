@@ -8,7 +8,8 @@ function SitesPanel({
   groupIdActive,
   setPopUpActiveType,
   setSiteIdActive,
-  setGroupIdActive
+  setGroupIdActive,
+  groupsData
 }) {
   const sites = sitesData.map(siteData => {
     return (
@@ -22,9 +23,15 @@ function SitesPanel({
       />
     );
   });
+  let group = null;
+  if (group) group = groupsData.find(group => group.id === groupIdActive);
+
   return (
     <div className="sites-panel">
       <ul className="sites-panel__list">
+        <div className="sites-panel__group-name site">
+          {group ? group.name : "Brak zapisanych stron"}
+        </div>
         {!(groupIdActive === 0) && (
           <EmptySiteItem
             setPopUpActiveType={setPopUpActiveType}

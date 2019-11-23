@@ -8,10 +8,8 @@ function EmptyGroupItem({ setPopUpActiveType, setGroupIdActive }) {
     <li
       className={`group-item empty-group`}
       onClick={() => {
-        setGroupIdActive(-1);
         setPopUpActiveType("empty-group");
-      }}
-    >
+      }}>
       <FontAwesomeIcon className="empty-group__plus-icon" icon={faPlus} />
     </li>
   );

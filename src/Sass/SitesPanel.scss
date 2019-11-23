@@ -24,4 +24,22 @@
    overflow-y: scroll;
    border-radius: $borderRadius;
  }
+ &__group-name{
+   box-shadow: $shadowInsetActivePush;
+   display: flex;
+   justify-content: center;
+   font-weight: 700;
+   font-size: 1.25rem;
+  height: auto;
+  letter-spacing: .75px;
+  padding: 8px;
+  color: lightgray;
+  cursor: default;
+  background: rgba(lightgrey, .5);
+  &:hover{
+    box-shadow: $shadowInsetActivePush;
+    background: rgba(lightgrey, .5);
+
+  }
+ }
 }

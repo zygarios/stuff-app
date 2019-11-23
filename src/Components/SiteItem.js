@@ -22,7 +22,6 @@ function SiteItem({
       onClick={() => {
         setSiteIdActive(id);
         setPopUpActiveType("note");
-        setGroupIdActive(group_id);
       }}>
       <div className="site__favicon">
         <img
@@ -51,7 +50,6 @@ function SiteItem({
         onClick={e => {
           e.stopPropagation();
           setSiteIdActive(id);
-          setGroupIdActive(group_id);
           setPopUpActiveType("site");
         }}>
         <FontAwesomeIcon icon={faEdit} />

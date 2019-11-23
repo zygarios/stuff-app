@@ -146,6 +146,7 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
       )}
       {sitesData && (
         <SitesPanel
+          groupsData={groupsData}
           getSitesData={getSitesData}
           getGroupsData={getGroupsData}
           sitesData={sitesData}

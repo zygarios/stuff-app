@@ -15,7 +15,7 @@ function GroupItem({
       onClick={() => {
         setGroupIdActive(id);
       }}
-      className={`group-item ${id === groupIdActive * 1 &&
+      className={`group-item ${id === Number(groupIdActive) &&
         "active-select"} ${id === 0 && "all-groups"}`}>
       <p className="group-item__title">{name}</p>
       <span

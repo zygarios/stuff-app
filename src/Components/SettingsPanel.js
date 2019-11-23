@@ -158,8 +158,7 @@ function SettingsPanel({ empty, image, category_id, getCardsData, name = "" }) {
             className="settings-panel__alert-back-icon"
             onClick={() => {
               setIsAlertOpen(false);
-            }}
-          >
+            }}>
             {!alertConfirm && <FontAwesomeIcon icon={faShare} />}
           </span>
         </div>
@@ -170,8 +169,7 @@ function SettingsPanel({ empty, image, category_id, getCardsData, name = "" }) {
           onClick={() => {
             setAlertConfirm(true);
             alertPopUp("Usunąć kategorię?");
-          }}
-        >
+          }}>
           <FontAwesomeIcon icon={faTrashAlt} />
         </span>
       )}
@@ -185,8 +183,7 @@ function SettingsPanel({ empty, image, category_id, getCardsData, name = "" }) {
         onSubmit={e => {
           e.preventDefault();
           handleAcceptSettings();
-        }}
-      >
+        }}>
         <FontAwesomeIcon
           className="settings-panel__edit-text-icon"
           icon={faAlignLeft}
@@ -221,8 +218,7 @@ function SettingsPanel({ empty, image, category_id, getCardsData, name = "" }) {
             style={{
               opacity: isImageWrapperOpen && 1,
               transform: isImageWrapperOpen && "scale(1)"
-            }}
-          >
+            }}>
             <input
               type="file"
               className="settings-panel__file-input"
@@ -249,8 +245,7 @@ function SettingsPanel({ empty, image, category_id, getCardsData, name = "" }) {
               opacity: isImageWrapperOpen && 1,
               transform: isImageWrapperOpen && "scale(1)",
               color: isRemoveImage && "rgba(255, 0, 0, .5)"
-            }}
-          >
+            }}>
             <FontAwesomeIcon
               icon={faBan}
               style={{ display: !image && "none" }}

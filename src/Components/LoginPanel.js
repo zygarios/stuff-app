@@ -6,8 +6,8 @@ const serverLoginURL = "https://jimmyspage.pl/api/login";
 const serverRegisterURL = "https://jimmyspage.pl/api/register";
 
 function LoginPanel(props) {
-  const [emailValue, setEmailValue] = useState("white.cary@example.net");
-  const [passwordValue, setPasswordValue] = useState("password");
+  const [emailValue, setEmailValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
   const [nameValue, setNameValue] = useState("");
   const [isRegisterStatus, setIsRegisterStatus] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
@@ -39,7 +39,8 @@ function LoginPanel(props) {
         props.history.push("/home");
       })
       .catch(err => {
-        setAlertMessage("coś nie działa");
+        err.response.status === 401 &&
+          setAlertMessage("Nieprawidłowy login lub haslo");
       });
   };
 
