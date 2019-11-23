@@ -11,17 +11,27 @@
   right: 0;border-radius: $borderRadius;
   overflow-y: scroll;
   padding-right: 50px;
-  &__edit-switch{
+  &__edit-switch,&__accept-edit-switch{
     position: absolute;
-    right: 10px;
-    top: 50px;
-    font-size: 23px;
     color: rgba(white, .6);
-    transition: color .1s, transform .1s;
+    transition: color .1s;
     cursor: pointer;
     &:hover{
       color: rgba(white, .8);
     }
+  }
+  &__edit-switch{
+    top: 60px;
+    right:9px;
+    font-size: 23px;
+  }
+  &__accept-edit-switch{
+    top: 110px;
+    right: 10px;
+    font-size: 25px;
+    
+
+
   }
   &__text-area{
     width: 100%;

@@ -14,7 +14,8 @@ function PopUpPanel({
   popUpActiveType,
   category_id,
   groupIdActive,
-  siteIdActive
+  siteIdActive,
+  site
 }) {
   let popUpPanelComponent = null;
   switch (popUpActiveType) {
@@ -42,11 +43,21 @@ function PopUpPanel({
           groupIdActive={groupIdActive}
           siteIdActive={siteIdActive}
           setPopUpActiveType={setPopUpActiveType}
+          site={site}
         />
       );
       break;
-    case "note-site":
-      popUpPanelComponent = <NotePopUp popUpActiveType={popUpActiveType} />;
+    case "note":
+      popUpPanelComponent = (
+        <NotePopUp
+          site={site}
+          category_id={category_id}
+          groupIdActive={groupIdActive}
+          siteIdActive={siteIdActive}
+          getGroupsData={getGroupsData}
+          getSitesData={getSitesData}
+        />
+      );
       break;
     default:
       break;

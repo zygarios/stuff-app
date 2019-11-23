@@ -8,7 +8,6 @@ function SitesPanel({
   groupIdActive,
   setPopUpActiveType,
   setSiteIdActive,
-  setSiteNote,
   setGroupIdActive
 }) {
   const sites = sitesData.map(siteData => {
@@ -18,7 +17,6 @@ function SitesPanel({
         siteData={siteData}
         setPopUpActiveType={setPopUpActiveType}
         setSiteIdActive={setSiteIdActive}
-        setSiteNote={setSiteNote}
         setGroupIdActive={setGroupIdActive}
         group_id={siteData.group_id}
       />

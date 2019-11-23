@@ -6,7 +6,7 @@ const serverLoginURL = "https://jimmyspage.pl/api/login";
 const serverRegisterURL = "https://jimmyspage.pl/api/register";
 
 function LoginPanel(props) {
-  const [emailValue, setEmailValue] = useState("nicolas.anika@example.net");
+  const [emailValue, setEmailValue] = useState("white.cary@example.net");
   const [passwordValue, setPasswordValue] = useState("password");
   const [nameValue, setNameValue] = useState("");
   const [isRegisterStatus, setIsRegisterStatus] = useState(false);
@@ -103,8 +103,7 @@ function LoginPanel(props) {
               onClick={() => {
                 setIsRegisterStatus(state => !state);
                 setAlertMessage("");
-              }}
-            >
+              }}>
               {isRegisterStatus ? "zaloguj się!" : "zarejestruj się!"}
             </span>
           </p>

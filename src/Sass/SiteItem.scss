@@ -1,5 +1,23 @@
 @import './variables.scss';
 
+@keyframes importantAlert{
+0%{
+color: $mainUserColor;
+}
+25%{
+color: $mainUserColor;
+}
+50%{
+color: lighten($mainUserColor, 15%);
+}
+75%{
+color: $mainUserColor;
+}
+100%{
+color: $mainUserColor;
+}
+}
+
 .site{
 position: relative;
 border-radius: $borderRadius;
@@ -15,6 +33,32 @@ animation: bookmarkAnimTitle .5s 1 both;
 box-shadow: inset 2px -2px 2px rgba(white, 1);
 background: rgba(white, .7);
 overflow: hidden;
+  &__important-alert{
+    top: 5px;
+    padding: 0;
+    left: 10px;
+    position: absolute;
+    font-weight: 700;
+    font-size: 5rem;
+    color: $mainUserColor;
+    cursor: pointer;
+    z-index: -1;
+    animation: importantAlert 4s infinite linear both alternate;
+    &::after{
+      font-size: 1.5rem;
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      content: "Pilne!";
+      opacity: 0;
+      transition: transform .2s, opacity .2s;
+      transform: translate(-35px, -75%);
+    }
+    &:hover::after{
+      transform: translate(10px, -75%);
+      opacity: 1;
+    }
+  }
   &:hover{
     box-shadow: $shadowInsetActiveHover;
     background: rgba(white, .75);
@@ -22,9 +66,17 @@ overflow: hidden;
   &:active {
     box-shadow: $shadowInsetActivePush;
   }
-  &__favicon{
-    width: 20px;
-    height: 20px;;
+  &__favicon {
+    width: 18px;
+    height: 18px;
+    img{
+      width: 100%;
+      &:hover + span::after {
+        opacity: 1;
+        transform: translate(10px, -75%);
+        content: "Pilne!";
+      }
+    }
   }
   &__name{
     font-size: 1.5rem;
@@ -72,4 +124,5 @@ overflow: hidden;
     bottom: 0;   
     margin-top: 1px;
   }
+
 }

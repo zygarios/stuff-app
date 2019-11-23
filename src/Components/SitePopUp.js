@@ -11,33 +11,35 @@ function SitePopUp({
   getSitesData,
   setPopUpActiveType,
   siteIdActive,
-  groupIdActive
+  groupIdActive,
+  site
 }) {
-  const [siteName, setSiteName] = useState("");
-  const [URLValue, setURLValue] = useState("");
-  const [importantStatus, setImportantStatus] = useState(false);
+  let siteNameState = "";
+  let URLValueState = "";
+  let important = false;
+  if (popUpActiveType === "site") {
+    siteNameState = site.name;
+    URLValueState = site.url;
+    important = Boolean(Number(site.important));
+  }
+
+  const [siteName, setSiteName] = useState(siteNameState);
+  const [URLValue, setURLValue] = useState(URLValueState);
+  const [importantStatus, setImportantStatus] = useState(important);
   const [alertMessage, setAlertMessage] = useState("");
   const [deleteAlertStatus, setDeleteAlertStatus] = useState(false);
   const serverCategoriesURL = "https://jimmyspage.pl/api/categories";
-
-  const newSite = () => {
-    const formDataSite = new FormData();
-
-    formDataSite.set("name", siteName);
-    formDataSite.set("url", URLValue);
-    formDataSite.set("important", importantStatus);
+  const newSite = formDataSite => {
     const serverSiteURL = `${serverCategoriesURL}/${category_id}/groups/${groupIdActive}/sites`;
-    console.log(serverSiteURL);
     const token = localStorage.getItem("access_token");
     axios
       .post(serverSiteURL, formDataSite, {
         headers: {
-          // Accept: "multipart/form-data",
+          "Content-Type": "multipart/form-data",
           Authorization: "Bearer " + token
         }
       })
       .then(res => {
-        console.log(res.data);
         setPopUpActiveType(false);
         getGroupsData(category_id);
         getSitesData();
@@ -48,11 +50,10 @@ function SitePopUp({
   const updateSite = formDataSite => {
     const serverSiteURL = `${serverCategoriesURL}/${category_id}/groups/${groupIdActive}/sites/${siteIdActive}`;
     const token = localStorage.getItem("access_token");
-
     axios
       .post(serverSiteURL, formDataSite, {
         headers: {
-          Accept: "multipart/form-data",
+          "Content-Type": "multipart/form-data",
           Authorization: "Bearer " + token
         }
       })
@@ -64,74 +65,57 @@ function SitePopUp({
       .catch(err => console.log(err));
   };
 
-  // const deleteSite = () => {
-  //   if (!deleteAlertStatus) return;
+  const deleteSite = () => {
+    if (!deleteAlertStatus) return;
 
-  //   const serverSiteURL = `${serverCategoriesURL}/${category_id}/groups/${
-  //     popUpActiveType.group_id
-  //   }`;
-  //   const token = localStorage.getItem("access_token");
+    const serverSiteURL = `${serverCategoriesURL}/${category_id}/groups/${groupIdActive}/sites/${siteIdActive}`;
+    const token = localStorage.getItem("access_token");
 
-  //   axios
-  //     .delete(serverSiteURL, {
-  //       headers: {
-  //         Authorization: "Bearer " + token
-  //       }
-  //     })
-  //     .then(res => {
-  //       setPopUpActiveType(false);
-  //       getGroupsData(category_id);
-  //       getSitesData();
-  //     })
-  //     .catch(err => console.log(err));
-  // };
+    axios
+      .delete(serverSiteURL, {
+        headers: {
+          Authorization: "Bearer " + token
+        }
+      })
+      .then(res => {
+        setPopUpActiveType(false);
+        getGroupsData(category_id);
+        getSitesData();
+      })
+      .catch(err => console.log(err));
+  };
   const editTypeChanger = () => {
-    // if (deleteAlertStatus) {
-    //   deleteSite();
-    //   setDeleteAlertStatus(false);
-    // }
+    if (deleteAlertStatus) {
+      deleteSite();
+      setDeleteAlertStatus(false);
+      return;
+    }
+
+    if (siteName.length === 0) {
+      return setAlertMessage("Podaj nazwę strony");
+    } else if (URLValue.length === 0) {
+      return setAlertMessage("Podaj adres URL");
+    } else if (siteName.length < 3) {
+      return setAlertMessage("Za krótka nazwa strony");
+    } else if (URLValue.length <= 3) {
+      return setAlertMessage("Za krótki adres URL");
+    } else if (siteName.length > 30) {
+      return setAlertMessage("Za długa nazwa");
+    } else if (!URLValue.includes(".")) {
+      return setAlertMessage("Podaj prawidłowy adres URL");
+    }
+
+    const formDataSite = new FormData();
+
+    formDataSite.set("name", siteName);
+    formDataSite.append("url", URLValue);
+    formDataSite.append("important", Number(importantStatus));
 
     if (popUpActiveType === "empty-site") {
-      if (siteName.length === 0) {
-        return setAlertMessage("Podaj nazwę strony");
-      } else if (URLValue.length === 0) {
-        return setAlertMessage("Podaj adres URL");
-      } else if (siteName.length < 3) {
-        return setAlertMessage("Za krótka nazwa strony");
-      } else if (URLValue.length <= 3) {
-        return setAlertMessage("Za krótki adres URL");
-      } else if (siteName.length > 30) {
-        return setAlertMessage("Za długa nazwa");
-      } else if (!URLValue.includes(".")) {
-        return setAlertMessage("Podaj prawidłowy adres URL");
-      }
-
-      newSite();
+      newSite(formDataSite);
     } else if (popUpActiveType === "site") {
-      if (!siteName && !URLValue && !importantStatus) {
-        return setAlertMessage("Brak zmian");
-      } else {
-        const formDataSite = new FormData();
-        formDataSite.set("_method", "put");
-        if (siteName.length) {
-          if (siteName.length < 3) {
-            return setAlertMessage("Za krótka nazwa strony");
-          } else if (siteName.length > 30) {
-            return setAlertMessage("Za długa nazwa");
-          }
-          formDataSite.set("name", siteName);
-        }
-        if (URLValue.length) {
-          if (URLValue.length <= 3) {
-            return setAlertMessage("Za krótki adres URL");
-          } else if (!URLValue.includes(".")) {
-            return setAlertMessage("Podaj prawidłowy adres URL");
-          }
-          formDataSite.append("url", URLValue);
-          console.log("w");
-        }
-        updateSite(formDataSite);
-      }
+      formDataSite.append("_method", "put");
+      updateSite(formDataSite);
     }
   };
 
@@ -145,7 +129,6 @@ function SitePopUp({
     window.addEventListener("keydown", keyDownSubmitForm);
     return () => window.removeEventListener("keydown", keyDownSubmitForm);
   });
-
   return (
     <div className="site-pop-up">
       <form
@@ -153,7 +136,11 @@ function SitePopUp({
         onSubmit={e => {
           e.preventDefault();
         }}>
-        <label htmlFor="site-name" className="site-pop-up__name">
+        <label
+          htmlFor="site-name"
+          className="site-pop-up__name"
+          disabled={deleteAlertStatus && true}
+          style={{ opacity: deleteAlertStatus && 0.5 }}>
           Nazwa strony:
           <input
             autoFocus
@@ -163,9 +150,15 @@ function SitePopUp({
             onChange={e => setSiteName(e.target.value)}
             className="site-pop-up__name-input"
             placeholder="Wprowadź nazwę"
+            disabled={deleteAlertStatus && true}
+            style={{ opacity: deleteAlertStatus && 0.5 }}
           />
         </label>
-        <label htmlFor="url-name" className="site-pop-up__url">
+        <label
+          htmlFor="url-name"
+          className="site-pop-up__url"
+          disabled={deleteAlertStatus && true}
+          style={{ opacity: deleteAlertStatus && 0.5 }}>
           Adres URL:
           <input
             id="url-name"
@@ -174,17 +167,25 @@ function SitePopUp({
             onChange={e => setURLValue(e.target.value)}
             className="site-pop-up__url-input"
             placeholder="Wprowadź adres url"
+            disabled={deleteAlertStatus && true}
+            style={{ opacity: deleteAlertStatus && 0.5 }}
           />
         </label>
-        <label htmlFor="important" className="site-pop-up__important">
+        <label
+          htmlFor="important"
+          className="site-pop-up__important"
+          disabled={deleteAlertStatus && true}
+          style={{ opacity: deleteAlertStatus && 0.5 }}>
           Ważne
           <input
             id="important"
             type="checkbox"
             checked={importantStatus}
-            onChange={e => setImportantStatus(e.target.checked)}
+            onChange={e => setImportantStatus(state => !state)}
             className="site-pop-up__important-checkbox"
             placeholder="Wprowadź adres url"
+            disabled={deleteAlertStatus && true}
+            style={{ opacity: deleteAlertStatus && 0.5 }}
           />
         </label>
         {alertMessage && (
@@ -198,15 +199,17 @@ function SitePopUp({
           <span className="site-pop-up__accept-icon" onClick={editTypeChanger}>
             <FontAwesomeIcon icon={faCheck} />
           </span>
-          {popUpActiveType.group_id && (
+          {popUpActiveType === "site" && (
             <span
               style={{
                 color: deleteAlertStatus && "rgba(255, 0, 0, .5)"
               }}
               className="site-pop-up__delete-icon"
               onClick={() => {
+                deleteAlertStatus
+                  ? setAlertMessage("")
+                  : setAlertMessage("Na pewno chcesz usunąć stronę?");
                 setDeleteAlertStatus(state => !state);
-                setAlertMessage("Na pewno chcesz usunąć stronę?");
               }}>
               <FontAwesomeIcon icon={faTrashAlt} />
             </span>

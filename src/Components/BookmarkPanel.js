@@ -13,10 +13,8 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
   const [sitesData, setSitesData] = useState(null);
   const [groupIdActive, setGroupIdActive] = useState(0);
   const [siteIdActive, setSiteIdActive] = useState(0);
-  const [siteNote, setSiteNote] = useState(false);
   const [popUpActiveType, setPopUpActiveType] = useState(false);
   const serverCategoriesURL = "https://jimmyspage.pl/api/categories";
-  // console.log(groupIdActive, siteIdActive);
 
   useEffect(() => {
     getGroupsData(category_id);
@@ -80,22 +78,36 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
       .then(res => {
         const sites = res.data;
         const sitesList = sites.map(
-          ({ id, name, created_at, updated_at, notes, url, group_id }) => ({
+          ({
+            id,
+            name,
+            created_at,
+            updated_at,
+            notes,
+            url,
+            group_id,
+            important
+          }) => ({
             id,
             name,
             notes,
             url,
             group_id,
             created_at,
-            updated_at
+            updated_at,
+            important
           })
         );
+
         setSitesData(sitesList);
       })
       .catch(err => console.log(err));
   };
-
   const handleOpenPopPanel = () => {
+    let site = null;
+    if (popUpActiveType === "site" || popUpActiveType === "note") {
+      site = sitesData.find(site => site.id === siteIdActive);
+    }
     return (
       <PopUpPanel
         getGroupsData={getGroupsData}
@@ -105,6 +117,7 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
         popUpActiveType={popUpActiveType}
         groupIdActive={groupIdActive}
         siteIdActive={siteIdActive}
+        site={site}
       />
     );
   };
@@ -139,7 +152,6 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
           groupIdActive={groupIdActive}
           setPopUpActiveType={setPopUpActiveType}
           setSiteIdActive={setSiteIdActive}
-          setSiteNote={setSiteNote}
           setGroupIdActive={setGroupIdActive}
         />
       )}

@@ -1,6 +1,5 @@
 @import './variables.scss';
 
-
 .group-pop-up {
   text-align: center;
   height: 100%;
@@ -14,6 +13,7 @@
   &__name{
     font-size: 1.75rem;
     letter-spacing: 1.25px;
+    transition: color .1s;
     @media (min-width: 576px) {
       font-size: 2.25rem;
     }
@@ -48,8 +48,6 @@
     margin-top: 40px;
     margin-bottom: 20px;
     font-size: 2rem;
-    transform: scaleY(.5);
-    opacity: 0;
     transition: transform 1s, opacity 1s;
     line-height: 2.5rem;
   }

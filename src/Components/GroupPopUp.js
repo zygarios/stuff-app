@@ -109,9 +109,11 @@ function GroupPopUp({
         onSubmit={e => {
           e.preventDefault();
           editTypeChanger();
-        }}
-      >
-        <label htmlFor="group-name" className="group-pop-up__name">
+        }}>
+        <label
+          htmlFor="group-name"
+          className="group-pop-up__name"
+          style={{ opacity: deleteAlertStatus && 0.5 }}>
           Nazwa grupy:
           <input
             autoFocus
@@ -121,15 +123,12 @@ function GroupPopUp({
             onChange={e => setGroupName(e.target.value)}
             className="group-pop-up__name-input"
             placeholder="Wprowadź nazwę"
+            disabled={deleteAlertStatus && true}
+            style={{ opacity: deleteAlertStatus && 0.5 }}
           />
         </label>
         {alertMessage && (
-          <span
-            className="group-pop-up__alert"
-            style={{ opacity: 1, transform: "scaleY(1)" }}
-          >
-            {alertMessage}
-          </span>
+          <span className="group-pop-up__alert">{alertMessage}</span>
         )}
         <span className="group-pop-up__icons-wrapper">
           <span className="group-pop-up__accept-icon" onClick={editTypeChanger}>
@@ -144,8 +143,7 @@ function GroupPopUp({
               onClick={() => {
                 setDeleteAlertStatus(state => !state);
                 setAlertMessage("Na pewno chcesz usunąć grupę?");
-              }}
-            >
+              }}>
               <FontAwesomeIcon icon={faTrashAlt} />
             </span>
           )}
