@@ -106,8 +106,7 @@ function LoginPanel() {
               onClick={() => {
                 setIsRegisterStatus(state => !state);
                 setAlertMessage("");
-              }}
-            >
+              }}>
               {isRegisterStatus ? "zaloguj się!" : "zarejestruj się!"}
             </span>
           </p>

@@ -4,8 +4,8 @@
 .card{
   &__empty{
     opacity: .75;
-    transition: opacity .1s, transform .1s, box-shadow .1s, background .1s;
-    background: rgba(white, .05);
+    transition: opacity .15s, transform .15s, box-shadow .15s, background .15s;
+    background: rgba($mainUserColor, .1);
     border-radius: $borderRadius;
     border-left: 2px solid rgba(white, .75);
     border-right: 2px solid rgba(white, .75);

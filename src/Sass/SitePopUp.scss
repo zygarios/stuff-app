@@ -12,13 +12,17 @@
     height: 100%;
   }
   &__name, &__url, &__important{
-    font-size: 1.75rem;
+    font-size: 1.25rem;
     margin-top: 35px;
     padding: 0;
     letter-spacing: 1.25px;
     @media (min-width: 576px) {
-      font-size: 2.25rem;
+      font-size: 1.75rem;
     }
+    @media (min-width: 768px) {
+      font-size: 2.25rem;
+    } 
+
   }
   &__name-input, &__url-input{
     align-items: center;
@@ -33,11 +37,21 @@
     max-width: 500px;
     color: grey;
     box-shadow: inset 1.5px -1.5px 1.5px rgba(black, .4);
-    margin-top: 20px;
+    margin-top: 15px;
+    font-size: 1.25rem;
+    @media (min-width: 576px) {
+
+      font-size:  1.5rem;
+  } 
+    @media (min-width: 768px) {
+      margin-top: 20px;
+        font-size: 2.25rem;
+    } 
     &:focus{
       background: rgba(white, .95);
       box-shadow: inset 2px -2px 2px rgba(black, .3);
     }
+    
     &::placeholder{
       color: rgba(black, .1);
     }
@@ -45,7 +59,11 @@
   &__important-checkbox{
     cursor: pointer;
     margin-left: 20px;
-    transform: scale(1.5);
+    transform: scale(1);
+    @media (min-width: 768px) {
+      font-size: 4rem;
+      transform: scale(1.5);
+    }
   }
   &__alert{
     color: rgba(255, 100, 100, .7);
@@ -66,11 +84,11 @@
     margin: 40px auto;
   }
   &__accept-icon, &__delete-icon{
-    font-size: 4rem;
+    font-size: 3rem;
     cursor: pointer;
     transition: transform .1s, color .1s;
     color: rgba(white, .9);
-    @media (min-width: 576px) {
+    @media (min-width: 768px) {
       font-size: 6rem;
     }
     &:hover{

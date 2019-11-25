@@ -3,14 +3,17 @@
 
 .empty-group {
   box-shadow: none;
-  background: rgba(white, .025);
+  background: rgba($mainUserColor, .2);
   border-radius: $borderRadius;
   border-left: 2px solid rgba(white, .75);
   border-right: 2px solid rgba(white, .75);
   color: rgba(white, .75);
-  text-align: center;
-  height: auto;
-  transition: background .2s;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  transition: background .2s;
+  margin: 10px;
   &:hover{
     background: rgba(white, .1);
     box-shadow: none;

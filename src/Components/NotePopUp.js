@@ -13,7 +13,7 @@ function NotePopUp({
   getGroupsData
 }) {
   let note = "";
-  if (site) {
+  if (site.notes) {
     note = site.notes;
   }
   const [isEditOpen, setIsEditOpen] = useState(false);
