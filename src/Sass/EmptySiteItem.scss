@@ -1,5 +1,16 @@
+@import './variables.scss';
+
 .empty-site{
 position: relative;
+width: 35%;
+box-shadow: none;
+background: rgba(white, .025);
+border-radius: $borderRadius;
+border-left: 2px solid rgba(white, .75);
+border-right: 2px solid rgba(white, .75);
+color: rgba(white, .75);
+transition: background .2s;  
+padding: 22px;
   &.site{
     height: 35px;
   }
@@ -9,5 +20,9 @@ position: relative;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 2rem;
+  }
+  &:hover{
+    background: rgba(white, .1);
+    box-shadow: none;
   }
 }

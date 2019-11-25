@@ -7,12 +7,14 @@ import {
   faUserTag,
   faBookmark
 } from "@fortawesome/free-solid-svg-icons";
-import { Redirect } from "react-router";
+import { useHistory } from "react-router";
 import axios from "axios";
 
 function HomePanel() {
   const [isLogged, setIsLogged] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const history = useHistory();
 
   const handleLogout = () => {
     const token = localStorage.getItem("access_token");
@@ -28,22 +30,22 @@ function HomePanel() {
         localStorage.removeItem("access_token");
       })
       .catch(error => console.log(error));
-    return <Redirect to="/login" />;
+    history.push("/login");
   };
 
   return (
     <nav className="navbar">
       <div className="navbar__container">
-        <h1 className="navbar__title-logo">
+        <h1 className="navbar__title-logo" onClick={() => history.push("/")}>
           Zakładka
           <FontAwesomeIcon className="navbar__title-icon" icon={faBookmark} />
         </h1>
         <div className="navbar__menu">
           {isMenuOpen && (
             <>
-              <span className="navbar__user-settings-btn">
+              {/* <span className="navbar__user-settings-btn">
                 <FontAwesomeIcon icon={faUserTag} />
-              </span>
+              </span> */}
               <span className="navbar__logout-btn">
                 <FontAwesomeIcon
                   icon={faPowerOff}
@@ -54,7 +56,8 @@ function HomePanel() {
           )}
           <span
             className={`navbar__hamburger-btn ${isMenuOpen && "active-select"}`}
-            onClick={() => setIsMenuOpen(prev => !prev)}>
+            onClick={() => setIsMenuOpen(prev => !prev)}
+          >
             <FontAwesomeIcon icon={faBars} />
           </span>
         </div>

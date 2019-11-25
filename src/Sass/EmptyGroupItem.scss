@@ -2,10 +2,22 @@
 
 
 .empty-group {
+  box-shadow: none;
+  background: rgba(white, .025);
+  border-radius: $borderRadius;
+  border-left: 2px solid rgba(white, .75);
+  border-right: 2px solid rgba(white, .75);
+  color: rgba(white, .75);
+  text-align: center;
+  height: auto;
+  transition: background .2s;  
+  &:hover{
+    background: rgba(white, .1);
+    box-shadow: none;
+  }
   &::after{
     display: none;
   }
-  text-align: center;
   &__plus-icon{
     transform: scale(1.15);
     @media (min-width: 768px) {

@@ -71,7 +71,8 @@
   &.active-select {
     background: light;
     transition: box-shadow .05s;
-    font-weight: 700;
+    font-weight: 600;
+    letter-spacing: .75px;
     box-shadow: $shadowInsetActiveSelect;
     background: rgba(lightgrey, .5);
     color: white;

@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import "../Sass/LoginPanel.scss";
 import axios from "axios";
-
+import { useHistory } from "react-router-dom";
 const serverLoginURL = "https://jimmyspage.pl/api/login";
 const serverRegisterURL = "https://jimmyspage.pl/api/register";
 
-function LoginPanel(props) {
+function LoginPanel() {
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [nameValue, setNameValue] = useState("");
   const [isRegisterStatus, setIsRegisterStatus] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+
+  const history = useHistory();
 
   const handleRegisterRequest = () => {
     const loginForm = new FormData();
@@ -36,7 +38,7 @@ function LoginPanel(props) {
       .then(res => {
         const token = res.data.access_token;
         localStorage.setItem("access_token", token);
-        props.history.push("/home");
+        history.push("/home");
       })
       .catch(err => {
         err.response.status === 401 &&
@@ -104,7 +106,8 @@ function LoginPanel(props) {
               onClick={() => {
                 setIsRegisterStatus(state => !state);
                 setAlertMessage("");
-              }}>
+              }}
+            >
               {isRegisterStatus ? "zaloguj się!" : "zarejestruj się!"}
             </span>
           </p>

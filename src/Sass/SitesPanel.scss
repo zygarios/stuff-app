@@ -24,22 +24,30 @@
    overflow-y: scroll;
    border-radius: $borderRadius;
  }
+ &__header-wrapper{
+  display: flex;
+ }
  &__group-name{
-   box-shadow: $shadowInsetActivePush;
+   flex: 1;
    display: flex;
    justify-content: center;
+   align-items: center;
    font-weight: 700;
    font-size: 1.25rem;
   height: auto;
   letter-spacing: .75px;
-  padding: 8px;
-  color: lightgray;
+  padding: 15px;
+  border-radius: $borderRadius;
+  border-left: 2px solid rgba(white, .75);
+  border-right: 2px solid rgba(white, .75);
+  color: rgb(230, 230, 230);
   cursor: default;
-  background: rgba(lightgrey, .5);
+  box-shadow: none;
+  background: rgba(white, .025);
   &:hover{
-    box-shadow: $shadowInsetActivePush;
-    background: rgba(lightgrey, .5);
-
+    background: transparent;
+    box-shadow: none;
   }
  }
+
 }

@@ -7,13 +7,7 @@ import {
   faBookmark
 } from "@fortawesome/free-solid-svg-icons";
 
-function SiteItem({
-  siteData,
-  setPopUpActiveType,
-  setSiteIdActive,
-  setGroupIdActive,
-  group_id
-}) {
+function SiteItem({ siteData, setPopUpActiveType, setSiteIdActive }) {
   const { url, name, updateTime, id, important } = siteData;
 
   return (
@@ -22,7 +16,8 @@ function SiteItem({
       onClick={() => {
         setSiteIdActive(id);
         setPopUpActiveType("note");
-      }}>
+      }}
+    >
       <div className="site__favicon">
         <img
           src={"https://www.google.com/s2/favicons?domain=" + url}
@@ -34,7 +29,7 @@ function SiteItem({
           </span>
         )}
       </div>
-
+      <p>{updateTime}</p>
       <h3 className="site__name">{name}</h3>
       <p className="site__update-time">{updateTime}</p>
       <a
@@ -42,7 +37,8 @@ function SiteItem({
         className="site__link"
         href={url}
         target="_blank"
-        rel="nofollow noreferrer noopener">
+        rel="nofollow noreferrer noopener"
+      >
         <FontAwesomeIcon icon={faAngleDoubleRight} />
       </a>
       <button
@@ -51,7 +47,8 @@ function SiteItem({
           e.stopPropagation();
           setSiteIdActive(id);
           setPopUpActiveType("site");
-        }}>
+        }}
+      >
         <FontAwesomeIcon icon={faEdit} />
       </button>
     </div>

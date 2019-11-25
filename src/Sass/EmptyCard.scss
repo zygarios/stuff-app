@@ -1,9 +1,19 @@
+@import './variables.scss';
+
+
 .card{
   &__empty{
     opacity: .75;
-    transition: opacity .2s, transform .1s, box-shadow .1s;
+    transition: opacity .1s, transform .1s, box-shadow .1s, background .1s;
+    background: rgba(white, .05);
+    border-radius: $borderRadius;
+    border-left: 2px solid rgba(white, .75);
+    border-right: 2px solid rgba(white, .75);
+    box-shadow: none;
     &:hover{
       opacity: .85;
+      box-shadow: none;
+      background: rgba(white, .1);
       svg{
         opacity: 1;
       }
@@ -19,7 +29,6 @@
     justify-content: center;
     align-items: center;
     &>svg{
-      color: white;
       font-size: 8rem;
       opacity: .85;
       transition: opacity .1s;

@@ -53,7 +53,7 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
         );
         groupsList.unshift({
           id: 0,
-          name: "Wszystkie strony"
+          name: "Wszystkie zapisane strony"
         });
         groupsList.unshift({ id: -1 });
         setGroupsData(groupsList);

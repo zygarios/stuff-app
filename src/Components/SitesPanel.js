@@ -24,20 +24,24 @@ function SitesPanel({
     );
   });
   let group = null;
-  if (group) group = groupsData.find(group => group.id === groupIdActive);
+  if (groupsData) {
+    group = groupsData.find(group => group.id === groupIdActive);
+  }
 
   return (
     <div className="sites-panel">
       <ul className="sites-panel__list">
-        <div className="sites-panel__group-name site">
-          {group ? group.name : "Brak zapisanych stron"}
+        <div className="sites-panel__header-wrapper">
+          <div className="sites-panel__group-name site">
+            {group ? group.name : "Brak zapisanych stron"}
+          </div>
+          {!(groupIdActive === 0) && (
+            <EmptySiteItem
+              setPopUpActiveType={setPopUpActiveType}
+              setSiteIdActive={setSiteIdActive}
+            />
+          )}
         </div>
-        {!(groupIdActive === 0) && (
-          <EmptySiteItem
-            setPopUpActiveType={setPopUpActiveType}
-            setSiteIdActive={setSiteIdActive}
-          />
-        )}
         {sites}
       </ul>
     </div>

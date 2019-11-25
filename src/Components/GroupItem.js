@@ -17,7 +17,9 @@ function GroupItem({
       }}
       className={`group-item ${id === Number(groupIdActive) &&
         "active-select"} ${id === 0 && "all-groups"}`}>
-      <p className="group-item__title">{name}</p>
+      <p className="group-item__title">
+        {name === "Wszystkie zapisane strony" ? "Pokaż wszystkie" : name}
+      </p>
       <span
         className="group-item__edit-icon"
         onClick={() => {
