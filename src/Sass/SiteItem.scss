@@ -1,23 +1,5 @@
 @import './variables.scss';
 
-@keyframes importantAlert{
-0%{
-color: $mainUserColor;
-}
-25%{
-color: $mainUserColor;
-}
-50%{
-color: lighten($mainUserColor, 15%);
-}
-75%{
-color: $mainUserColor;
-}
-100%{
-color: $mainUserColor;
-}
-}
-
 .site{
 position: relative;
 border-radius: $borderRadius;
@@ -43,8 +25,12 @@ overflow: hidden;
     font-size: 5rem;
     color: $mainUserColor;
     cursor: pointer;
-    z-index: -1;
-    animation: importantAlert 4s infinite linear both alternate;
+    z-index: 1;
+    transition: opacity .2s;
+    opacity: .1;
+    &:hover{
+      opacity: .5;
+    }
     &::after{
       font-size: 1.5rem;
       position: absolute;
@@ -57,7 +43,7 @@ overflow: hidden;
     }
     &:hover::after{
       transform: translate(10px, -75%);
-      opacity: 1;
+      opacity: .75;
     }
   }
   &:hover{
@@ -70,12 +56,18 @@ overflow: hidden;
   &__favicon {
     width: 18px;
     height: 18px;
+   
     img{
       width: 100%;
+      position: relative;
+      z-index: 5;
       &:hover + span::after {
-        opacity: 1;
+        opacity: .75;
         transform: translate(10px, -75%);
         content: "Pilne!";
+      }
+      &:hover + span {
+        opacity: .5;
       }
     }
   }

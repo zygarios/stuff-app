@@ -2,20 +2,16 @@ import React, { useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faAlignLeft,
-  faImage,
   faCheck,
   faBan,
-  faCloudUploadAlt,
   faShare,
-  faTrashAlt
+  faTrashAlt,
+  faFileUpload
 } from "@fortawesome/free-solid-svg-icons";
 import "../Sass/SettingsPanel.scss";
 import axios from "axios";
 
 function SettingsPanel({ empty, image, category_id, getCardsData, name = "" }) {
-  const [categoryTitleStatus, setCategoryTitleStatus] = useState(false);
-  const [isImageWrapperOpen, setIsImageWrapperOpen] = useState(false);
   const [isRemoveImage, setIsRemoveImage] = useState(false);
   const [titleCategory, setTitleCategory] = useState("");
   const [fileInput, setFileInput] = useState("");
@@ -23,9 +19,7 @@ function SettingsPanel({ empty, image, category_id, getCardsData, name = "" }) {
   const [alertMessage, setAlertMessage] = useState("");
   const [alertConfirm, setAlertConfirm] = useState(false);
   const serverCategoriesURL = "https://jimmyspage.pl/api/categories";
-  const handleEditTextButton = () => {
-    setCategoryTitleStatus(state => !state);
-  };
+
   const handleAcceptSettings = () => {
     if (empty) {
       newCategory();
@@ -33,7 +27,6 @@ function SettingsPanel({ empty, image, category_id, getCardsData, name = "" }) {
       updateCategory();
     }
   };
-
   const alertPopUp = message => {
     setAlertMessage(message);
     setIsAlertOpen(true);
@@ -133,6 +126,26 @@ function SettingsPanel({ empty, image, category_id, getCardsData, name = "" }) {
       .catch(err => console.log(err));
   };
 
+  const handleSwitchIconHint = () => {
+    let text = "";
+    if (isRemoveImage) {
+      text = "Wybrano usuwanie karty";
+    } else if (fileInput) {
+      text = "Wybrano zdjęcie dla karty:";
+    }
+    return (
+      <p className="settings-panel__icon-hint">
+        {text}
+        {fileInput && !isRemoveImage && (
+          <>
+            <br />
+            {fileInput.name}
+          </>
+        )}
+      </p>
+    );
+  };
+
   return (
     <div className="settings-panel">
       {isAlertOpen && (
@@ -184,17 +197,7 @@ function SettingsPanel({ empty, image, category_id, getCardsData, name = "" }) {
           e.preventDefault();
           handleAcceptSettings();
         }}>
-        <FontAwesomeIcon
-          className="settings-panel__edit-text-icon"
-          icon={faAlignLeft}
-          onClick={handleEditTextButton}
-        />
         <input
-          style={
-            categoryTitleStatus
-              ? { opacity: 1, height: "30px", width: "85%" }
-              : {}
-          }
           type="text"
           className="settings-panel__text-input"
           onChange={e => setTitleCategory(e.target.value)}
@@ -202,55 +205,38 @@ function SettingsPanel({ empty, image, category_id, getCardsData, name = "" }) {
           placeholder={name ? name : "Nazwa kategorii"}
         />
         <div className="settings-panel__image-wrapper">
-          <FontAwesomeIcon
-            className="settings-panel__switch-img-icon"
-            icon={faImage}
-            style={
-              isImageWrapperOpen && {
-                transform: "scale(.95)",
-                color: "rgba(50, 50, 50, 0.15)"
-              }
-            }
-            onClick={() => setIsImageWrapperOpen(state => !state)}
-          />
-          <div
-            className="settings-panel__upload-wrapper"
-            style={{
-              opacity: isImageWrapperOpen && 1,
-              transform: isImageWrapperOpen && "scale(1)"
-            }}>
+          {handleSwitchIconHint()}
+          <div className="settings-panel__upload-wrapper">
             <input
               type="file"
               className="settings-panel__file-input"
               accept="image/*"
               onChange={e => {
+                setIsRemoveImage(false);
                 setFileInput(e.target.files[0]);
               }}
             />
             <FontAwesomeIcon
               className="settings-panel__upload-img-icon"
-              icon={faCloudUploadAlt}
+              icon={faFileUpload}
               style={{
-                color:
-                  fileInput !== "" && !isRemoveImage && "rgba(0, 255, 0, .5)"
+                color: fileInput !== "" && !isRemoveImage && "white"
               }}
             />
           </div>
-          <span
-            className="settings-panel__remove-img-icon"
-            onClick={() => {
-              setIsRemoveImage(state => !state);
-            }}
-            style={{
-              opacity: isImageWrapperOpen && 1,
-              transform: isImageWrapperOpen && "scale(1)",
-              color: isRemoveImage && "rgba(255, 0, 0, .5)"
-            }}>
-            <FontAwesomeIcon
-              icon={faBan}
-              style={{ display: !image && "none" }}
-            />
-          </span>
+          {!empty && (
+            <span
+              className="settings-panel__remove-img-icon"
+              onClick={() => {
+                setIsRemoveImage(state => !state);
+              }}
+              style={{
+                color: isRemoveImage && "white",
+                transform: isRemoveImage && "scale(1.05)"
+              }}>
+              <FontAwesomeIcon icon={faBan} />
+            </span>
+          )}
         </div>
       </form>
     </div>

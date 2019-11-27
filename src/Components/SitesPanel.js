@@ -9,17 +9,23 @@ function SitesPanel({
   setPopUpActiveType,
   setSiteIdActive,
   setGroupIdActive,
-  groupsData
+  getSitesData,
+  groupsData,
+  category_id
 }) {
   const sites = sitesData.map(siteData => {
     return (
       <SiteItem
         key={siteData.id}
+        site_id={siteData.id}
         siteData={siteData}
         setPopUpActiveType={setPopUpActiveType}
         setSiteIdActive={setSiteIdActive}
         setGroupIdActive={setGroupIdActive}
+        getSitesData={getSitesData}
         group_id={siteData.group_id}
+        category_id={category_id}
+        groupIdActive={groupIdActive}
       />
     );
   });

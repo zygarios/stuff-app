@@ -154,6 +154,7 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
           setPopUpActiveType={setPopUpActiveType}
           setSiteIdActive={setSiteIdActive}
           setGroupIdActive={setGroupIdActive}
+          category_id={category_id}
         />
       )}
     </div>

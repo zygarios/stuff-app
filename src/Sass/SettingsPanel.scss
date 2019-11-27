@@ -120,30 +120,18 @@
     align-items: center;
     flex-wrap: wrap;
   }
-  &__edit-text-icon{
-    margin: 10px 0;
-    color: rgba(255, 255, 255, 0.5); 
-    transition: transform .15s ease, color .15s;
-    cursor: pointer;
-    font-size: 3.25rem;
-    transform: scale(1);
-    &:hover{
-      transform: scale(1.1);
-      color: rgba(255,255,255,1);
-    }
-  }
   &__text-input{
-    font-size: 1.5rem;
-    width: 0;
-    padding: 5px 10px;
+    font-size: 1.25rem;
+    width: 85%;
+    padding: 4px 8px;
     background: rgba(255, 255, 255, 0.8);
     border-radius: $borderRadius/2;
-    height: 0px;
+    height: 30px;
+    margin-top: 40px;
     border: none;
     transition: box-shadow .2s, height .2s, opacity .2s, width .2s;
     box-shadow: $shadowInsetActivePush;
     color: $BGColor;
-    opacity: 0;
     text-align: center;
     &:focus {
       box-shadow: $shadowInsetActiveSelect;
@@ -156,30 +144,21 @@
   &__image-wrapper{
     position: relative;
     margin-top: 15px;
-  }
-  &__switch-img-icon{
-    cursor: pointer;
-    transition: transform .1s, color .1s;
-    color: rgba(255, 255, 255, 0.5);
-    &:hover{
-      transform: scale(1.1);
-      color: rgba(255,255,255,1);
-    }
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   &__upload-wrapper {
+    margin: 5px;
     cursor: pointer;
     overflow: hidden;
-    position: absolute;
-    right: 45px;
-    top: -15px;
-    padding-top: 5px;
-    width: 50px;
+    padding-top: 3px;
+    width: 35px;
     height: 40px;
     border-radius: $borderRadius/4;
     transform: translateX(0);
-    margin: 10px 0;
-    transform: scale(.5);
-    opacity: 0;
+    transform: scale(1);
     transition: transform .1s, opacity .1s;
     &:hover .settings-panel__upload-img-icon{
       transform: translateX(-50%) scale(1.1);
@@ -197,7 +176,7 @@
     top: 0;
 
   }
-  
+
   &__upload-img-icon{
     z-index: -1;
     position: absolute;
@@ -206,22 +185,37 @@
     transition: transform .1s, color .1s;
     color: rgba(255, 255, 255, 0.5);
     cursor: pointer;
+    svg{
+      transition: transform .1s, color .1s;
+    }
+    &:hover svg{
+      transform: scale(1.1);
+    }
+    &:active svg{
+      transform: scale(1.05);
+      color: rgba(255,255,255,1);
+    }
   }
   &__remove-img-icon{
-    position: absolute;
-    top: 0;
-    left: 50px;
+    margin: 8px 5px 5px 25px;
     color: rgba(255, 255, 255, 0.5);
-    transition: transform .1s, opacity .1s, color .1s;
-    transform: scale(.5);
-    opacity: 0;
+    transition: transform .1s, color .1s;
     cursor: pointer;
     svg{
       transition: transform .1s, color .1s;
     }
     &:hover svg{
       transform: scale(1.1);
+    }
+    &:active svg{
+      transform: scale(1.05);
       color: rgba(255,255,255,1);
     }
+  }
+  &__icon-hint{
+    line-height: 1.25rem;
+    margin-bottom: 8px;
+    font-size: .85rem;
+    width: 100%;
   }
 }
