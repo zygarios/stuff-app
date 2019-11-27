@@ -25,13 +25,18 @@ function Card({
     <li
       className={`card ${activeSettings &&
         "active-settings"} ${activeBookmark && "active-bookmark"}`}
-      style={{ backgroundImage: image && `url(${serverURL + image})` }}>
+      style={{ backgroundImage: image && `url(${serverURL + image})` }}
+    >
       <div className="card__card-container" />
       <h2
-        style={
-          activeBookmark || activeSettings ? { opacity: 0 } : { opacity: 1 }
-        }
-        className="card__category-title">
+        style={{
+          opacity: activeBookmark || activeSettings ? 0 : 1,
+          background:
+            !image &&
+            "linear-gradient(90deg, transparent, rgba(0,0,0,.3) 15%, rgba(0,0,0,.3) 85%, transparent)"
+        }}
+        className="card__category-title"
+      >
         {name}
       </h2>
       <div
@@ -54,7 +59,8 @@ function Card({
         }
         onClick={() => {
           statusChanger(category_id, "settings");
-        }}>
+        }}
+      >
         <FontAwesomeIcon icon={faEllipsisV} />
       </div>
       <div
@@ -62,7 +68,8 @@ function Card({
         style={activeSettings === false ? { display: "none" } : null}
         onClick={() => {
           statusChanger(category_id, "home");
-        }}>
+        }}
+      >
         <FontAwesomeIcon icon={faShare} />
       </div>
       {activeBookmark && (

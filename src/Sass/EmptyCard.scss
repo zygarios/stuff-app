@@ -2,18 +2,17 @@
 
 
 .card{
+  
   &__empty{
     opacity: .75;
     transition: opacity .15s, transform .15s, box-shadow .15s, background .15s;
     background: rgba($mainUserColor, .1);
     border-radius: $borderRadius;
-    border-left: 2px solid rgba(white, .75);
-    border-right: 2px solid rgba(white, .75);
-    box-shadow: none;
+    box-shadow: inset -3px 0 0 -1px white, inset 3px 0 0 -1px white;
     &:hover{
       opacity: .85;
-      box-shadow: none;
-      background: rgba(white, .1);
+      box-shadow: inset -4px 0 0 -1px white, inset 4px 0 0 -1px white;
+      background: transparent;
       svg{
         opacity: 1;
       }
