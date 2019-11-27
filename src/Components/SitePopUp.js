@@ -135,12 +135,14 @@ function SitePopUp({
         className="site-pop-up__form"
         onSubmit={e => {
           e.preventDefault();
-        }}>
+        }}
+      >
         <label
           htmlFor="site-name"
           className="site-pop-up__name"
           disabled={deleteAlertStatus && true}
-          style={{ opacity: deleteAlertStatus && 0.5 }}>
+          style={{ opacity: deleteAlertStatus && 0.5 }}
+        >
           Nazwa strony:
           <input
             autoFocus
@@ -158,7 +160,8 @@ function SitePopUp({
           htmlFor="url-name"
           className="site-pop-up__url"
           disabled={deleteAlertStatus && true}
-          style={{ opacity: deleteAlertStatus && 0.5 }}>
+          style={{ opacity: deleteAlertStatus && 0.5 }}
+        >
           Adres URL:
           <input
             id="url-name"
@@ -175,7 +178,8 @@ function SitePopUp({
           htmlFor="important"
           className="site-pop-up__important"
           disabled={deleteAlertStatus && true}
-          style={{ opacity: deleteAlertStatus && 0.5 }}>
+          style={{ opacity: deleteAlertStatus && 0.5 }}
+        >
           Ważne
           <input
             id="important"
@@ -191,7 +195,8 @@ function SitePopUp({
         {alertMessage && (
           <span
             className="site-pop-up__alert"
-            style={{ opacity: 1, transform: "scaleY(1)" }}>
+            style={{ opacity: 1, transform: "scaleY(1)" }}
+          >
             {alertMessage}
           </span>
         )}
@@ -210,7 +215,8 @@ function SitePopUp({
                   ? setAlertMessage("")
                   : setAlertMessage("Na pewno chcesz usunąć stronę?");
                 setDeleteAlertStatus(state => !state);
-              }}>
+              }}
+            >
               <FontAwesomeIcon icon={faTrashAlt} />
             </span>
           )}

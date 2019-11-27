@@ -19,9 +19,12 @@ function SettingsPanel({ empty, image, category_id, getCardsData, name = "" }) {
   const [alertMessage, setAlertMessage] = useState("");
   const [alertConfirm, setAlertConfirm] = useState(false);
   const serverCategoriesURL = "https://jimmyspage.pl/api/categories";
+  const [requestFlag, setRequestFlag] = useState(false);
 
   const handleAcceptSettings = () => {
     if (empty) {
+      setRequestFlag(true);
+      if (requestFlag) return;
       newCategory();
     } else {
       updateCategory();
@@ -62,9 +65,11 @@ function SettingsPanel({ empty, image, category_id, getCardsData, name = "" }) {
       })
       .then(res => {
         getCardsData();
+        setRequestFlag(false);
       })
       .catch(err => console.log(err));
   };
+
   const updateCategory = () => {
     if (!titleCategory && !fileInput && !isRemoveImage) {
       alertPopUp("Nie wprowadzono zmian");

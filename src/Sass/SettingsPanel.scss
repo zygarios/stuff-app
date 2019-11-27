@@ -197,7 +197,7 @@
     }
   }
   &__remove-img-icon{
-    margin: 8px 5px 5px 25px;
+    margin: 6px 5px 5px 15px;
     color: rgba(255, 255, 255, 0.5);
     transition: transform .1s, color .1s;
     cursor: pointer;
@@ -206,6 +206,7 @@
     }
     &:hover svg{
       transform: scale(1.1);
+      color: rgba(255,255,255,1);
     }
     &:active svg{
       transform: scale(1.05);
@@ -215,7 +216,7 @@
   &__icon-hint{
     line-height: 1.25rem;
     margin-bottom: 8px;
-    font-size: .85rem;
+    font-size: 1rem;
     width: 100%;
   }
 }
