@@ -7,12 +7,11 @@ html {
   scroll-behavior: smooth;
 }
 body{
-  background: rgba($mainUserColor, .4);
+  background: rgba($mainUserColor, .3);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
-  
 }
 
 * {
@@ -30,7 +29,6 @@ margin: 0;
 }
 
 ::-webkit-scrollbar {
-  // display: none;
   width: 2px;
 }
 ::-webkit-scrollbar-thumb {

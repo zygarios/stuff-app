@@ -86,7 +86,7 @@ function LoginPanel() {
             />
           </label>
           <label htmlFor="password" className="login-panel__password-title">
-            Password
+            Hasło
             <input
               type="password"
               id="password"
