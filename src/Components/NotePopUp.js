@@ -35,7 +35,7 @@ function NotePopUp({
       })
       .then(res => {
         getGroupsData(category_id);
-        getSitesData();
+        getSitesData(groupIdActive);
         setIsEditOpen(false);
       })
       .catch(err => console.log(err));

@@ -80,7 +80,7 @@ overflow: hidden;
       &:hover + span::after {
         opacity: .75;
         transform: translate(10px, -75%);
-        content: "Pilne!";
+        content: "Ważne!";
       }
       &:hover + span {
         opacity: .5;

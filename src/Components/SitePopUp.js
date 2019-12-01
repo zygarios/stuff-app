@@ -26,13 +26,13 @@ function SitePopUp({
     URLValueState = site.url;
     important = Boolean(Number(site.important));
   }
-
   const [siteName, setSiteName] = useState(siteNameState);
   const [URLValue, setURLValue] = useState(URLValueState);
   const [importantStatus, setImportantStatus] = useState(important);
   const [alertMessage, setAlertMessage] = useState("");
   const [deleteAlertStatus, setDeleteAlertStatus] = useState(false);
   const serverCategoriesURL = "https://jimmyspage.pl/api/categories";
+
   const newSite = formDataSite => {
     const serverSiteURL = `${serverCategoriesURL}/${category_id}/groups/${groupIdActive}/sites`;
     const token = localStorage.getItem("access_token");
@@ -46,7 +46,7 @@ function SitePopUp({
       .then(res => {
         setPopUpActiveType(false);
         getGroupsData(category_id);
-        getSitesData();
+        getSitesData(groupIdActive);
       })
       .catch(err => console.log(err));
   };
@@ -64,7 +64,7 @@ function SitePopUp({
       .then(res => {
         setPopUpActiveType(false);
         getGroupsData(category_id);
-        getSitesData();
+        getSitesData(groupIdActive);
       })
       .catch(err => console.log(err));
   };
@@ -84,7 +84,7 @@ function SitePopUp({
       .then(res => {
         setPopUpActiveType(false);
         getGroupsData(category_id);
-        getSitesData();
+        getSitesData(groupIdActive);
       })
       .catch(err => console.log(err));
   };

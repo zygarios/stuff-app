@@ -7,7 +7,7 @@ html {
   scroll-behavior: smooth;
 }
 body{
-  background: lightgrey;
+  background: rgba($mainUserColor, .4);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -30,9 +30,11 @@ margin: 0;
 }
 
 ::-webkit-scrollbar {
-  display: none;
+  // display: none;
+  width: 2px;
 }
 ::-webkit-scrollbar-thumb {
+  background: $mainUserColor;
   position: relative;
   z-index: -50;
   background: $BGColor; 
