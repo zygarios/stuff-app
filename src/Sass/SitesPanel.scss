@@ -33,10 +33,10 @@
    }
  }
  &__group-name{
-  height: 50px;
-  margin-bottom: 0;
+  height: 40px;
+  padding: 10px;
+  display:flex;
    flex: 1;
-   display: flex;
    justify-content: center;
    align-items: center;
    font-weight: 700;
@@ -45,12 +45,13 @@
   border-radius: $borderRadius;
   border-left: 2px solid rgba(white, .75);
   border-right: 2px solid rgba(white, .75);
+  margin-bottom:0;
   color: rgb(230, 230, 230);
   cursor: default;
   box-shadow: none;
   background: rgba($mainUserColor, .2);
   @media (min-width: 576px) {
-    height: 50px;
+    height: 45px;
   }
   &:hover{
     background: transparent;

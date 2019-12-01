@@ -6,11 +6,10 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 function EmptySiteItem({ setPopUpActiveType }) {
   return (
     <div
-      className="site empty-site"
+      className="empty-site"
       onClick={() => {
         setPopUpActiveType("empty-site");
-      }}
-    >
+      }}>
       <FontAwesomeIcon className="empty-site__plus-icon" icon={faPlus} />
     </div>
   );

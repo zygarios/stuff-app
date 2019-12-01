@@ -41,7 +41,7 @@ function SettingsPanel({ empty, image, category_id, getCardsData, name = "" }) {
     } else if (titleCategory.length < 3) {
       alertPopUp("Za krótka nazwa");
       return;
-    } else if (titleCategory.length > 15) {
+    } else if (titleCategory.length > 20) {
       alertPopUp("Za długa nazwa");
       return;
     } else if (fileInput.size > 5000000) {
@@ -78,7 +78,7 @@ function SettingsPanel({ empty, image, category_id, getCardsData, name = "" }) {
     if (titleCategory.length > 0 && titleCategory.length < 3) {
       alertPopUp("Za krótka nazwa");
       return;
-    } else if (titleCategory.length > 15) {
+    } else if (titleCategory.length > 20) {
       alertPopUp("Za długa nazwa");
       return;
     } else if (fileInput.size > 5000000) {
@@ -134,7 +134,7 @@ function SettingsPanel({ empty, image, category_id, getCardsData, name = "" }) {
   const handleSwitchIconHint = () => {
     let text = "";
     if (isRemoveImage) {
-      text = "Wybrano usuwanie karty";
+      text = "Wybrano usuwanie zdjęcia";
     } else if (fileInput) {
       text = "Wybrano zdjęcie dla karty:";
     }

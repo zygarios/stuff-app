@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "../Sass/SitePopUp.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCheck,
+  faTrashAlt,
+  faShare
+} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 function SitePopUp({
@@ -135,68 +139,67 @@ function SitePopUp({
         className="site-pop-up__form"
         onSubmit={e => {
           e.preventDefault();
-        }}
-      >
-        <label
-          htmlFor="site-name"
-          className="site-pop-up__name"
-          disabled={deleteAlertStatus && true}
-          style={{ opacity: deleteAlertStatus && 0.5 }}
-        >
-          Nazwa strony:
-          <input
-            autoFocus
-            id="site-name"
-            type="text"
-            value={siteName}
-            onChange={e => setSiteName(e.target.value)}
-            className="site-pop-up__name-input"
-            placeholder="Wprowadź nazwę"
-            disabled={deleteAlertStatus && true}
-            style={{ opacity: deleteAlertStatus && 0.5 }}
-          />
-        </label>
-        <label
-          htmlFor="url-name"
-          className="site-pop-up__url"
-          disabled={deleteAlertStatus && true}
-          style={{ opacity: deleteAlertStatus && 0.5 }}
-        >
-          Adres URL:
-          <input
-            id="url-name"
-            type="url"
-            value={URLValue}
-            onChange={e => setURLValue(e.target.value)}
-            className="site-pop-up__url-input"
-            placeholder="Wprowadź adres url"
-            disabled={deleteAlertStatus && true}
-            style={{ opacity: deleteAlertStatus && 0.5 }}
-          />
-        </label>
-        <label
-          htmlFor="important"
-          className="site-pop-up__important"
-          disabled={deleteAlertStatus && true}
-          style={{ opacity: deleteAlertStatus && 0.5 }}
-        >
-          Ważne
-          <input
-            id="important"
-            type="checkbox"
-            checked={importantStatus}
-            onChange={e => setImportantStatus(state => !state)}
-            className="site-pop-up__important-checkbox"
-            placeholder="Wprowadź adres url"
-            disabled={deleteAlertStatus && true}
-            style={{ opacity: deleteAlertStatus && 0.5 }}
-          />
-        </label>
+        }}>
+        {!deleteAlertStatus && (
+          <>
+            <label
+              htmlFor="site-name"
+              className="site-pop-up__name"
+              disabled={deleteAlertStatus && true}
+              style={{ opacity: deleteAlertStatus && 0.5 }}>
+              Nazwa strony:
+              <input
+                autoFocus
+                id="site-name"
+                type="text"
+                value={siteName}
+                onChange={e => setSiteName(e.target.value)}
+                className="site-pop-up__name-input"
+                placeholder="Wprowadź nazwę"
+                disabled={deleteAlertStatus && true}
+                style={{ opacity: deleteAlertStatus && 0.5 }}
+              />
+            </label>
+            <label
+              htmlFor="url-name"
+              className="site-pop-up__url"
+              disabled={deleteAlertStatus && true}
+              style={{ opacity: deleteAlertStatus && 0.5 }}>
+              Adres URL:
+              <input
+                id="url-name"
+                type="url"
+                value={URLValue}
+                onChange={e => setURLValue(e.target.value)}
+                className="site-pop-up__url-input"
+                placeholder="Wprowadź adres url"
+                disabled={deleteAlertStatus && true}
+                style={{ opacity: deleteAlertStatus && 0.5 }}
+              />
+            </label>
+            <label
+              htmlFor="important"
+              className="site-pop-up__important"
+              disabled={deleteAlertStatus && true}
+              style={{ opacity: deleteAlertStatus && 0.5 }}>
+              Ważne
+              <input
+                id="important"
+                type="checkbox"
+                checked={importantStatus}
+                onChange={e => setImportantStatus(state => !state)}
+                className="site-pop-up__important-checkbox"
+                placeholder="Wprowadź adres url"
+                disabled={deleteAlertStatus && true}
+                style={{ opacity: deleteAlertStatus && 0.5 }}
+              />
+            </label>
+          </>
+        )}
         {alertMessage && (
           <span
             className="site-pop-up__alert"
-            style={{ opacity: 1, transform: "scaleY(1)" }}
-          >
+            style={{ opacity: 1, transform: "scaleY(1)" }}>
             {alertMessage}
           </span>
         )}
@@ -206,18 +209,16 @@ function SitePopUp({
           </span>
           {popUpActiveType === "site" && (
             <span
-              style={{
-                color: deleteAlertStatus && "rgba(255, 0, 0, .5)"
-              }}
               className="site-pop-up__delete-icon"
               onClick={() => {
                 deleteAlertStatus
                   ? setAlertMessage("")
                   : setAlertMessage("Na pewno chcesz usunąć stronę?");
                 setDeleteAlertStatus(state => !state);
-              }}
-            >
-              <FontAwesomeIcon icon={faTrashAlt} />
+              }}>
+              <FontAwesomeIcon
+                icon={!deleteAlertStatus ? faTrashAlt : faShare}
+              />
             </span>
           )}
         </span>

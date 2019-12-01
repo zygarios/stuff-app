@@ -19,7 +19,7 @@ function SiteItem({
   getSitesData,
   groupIdActive
 }) {
-  const { url, name, updateTime, id, important } = siteData;
+  const { url, name, updated_at, id, important, notes } = siteData;
 
   const handleChangeImportantIcon = () => {
     const serverCategoriesURL = "https://jimmyspage.pl/api/categories";
@@ -64,9 +64,9 @@ function SiteItem({
           <FontAwesomeIcon icon={faBookmark} />
         </span>
       </div>
-      <p>{updateTime}</p>
       <h3 className="site__name">{name}</h3>
-      <p className="site__update-time">{updateTime}</p>
+      <p className="site__notes">{notes}</p>
+      <p className="site__updated-time">Last update: {updated_at}</p>
       <a
         onClick={e => e.stopPropagation()}
         className="site__link"

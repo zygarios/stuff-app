@@ -56,8 +56,7 @@ function HomePanel() {
           )}
           <span
             className={`navbar__hamburger-btn ${isMenuOpen && "active-select"}`}
-            onClick={() => setIsMenuOpen(prev => !prev)}
-          >
+            onClick={() => setIsMenuOpen(prev => !prev)}>
             <FontAwesomeIcon icon={faBars} />
           </span>
         </div>

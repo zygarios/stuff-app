@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import "../Sass/GroupPopUp.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCheck,
+  faTrashAlt,
+  faShare
+} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 function GroupPopUp({
@@ -10,7 +14,8 @@ function GroupPopUp({
   getGroupsData,
   getSitesData,
   popUpActiveType,
-  groupIdActive
+  groupIdActive,
+  empty
 }) {
   const [groupName, setGroupName] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
@@ -93,7 +98,7 @@ function GroupPopUp({
       return setAlertMessage("Podaj nazwę grupy");
     } else if (groupName.length < 3) {
       return setAlertMessage("Za krótka nazwa");
-    } else if (groupName.length > 20) {
+    } else if (groupName.length > 25) {
       return setAlertMessage("Za długa nazwa");
     }
     if (popUpActiveType === "empty-group") {
@@ -110,23 +115,25 @@ function GroupPopUp({
           e.preventDefault();
           editTypeChanger();
         }}>
-        <label
-          htmlFor="group-name"
-          className="group-pop-up__name"
-          style={{ opacity: deleteAlertStatus && 0.5 }}>
-          Nazwa grupy:
-          <input
-            autoFocus
-            id="group-name"
-            type="text"
-            value={groupName}
-            onChange={e => setGroupName(e.target.value)}
-            className="group-pop-up__name-input"
-            placeholder="Wprowadź nazwę"
-            disabled={deleteAlertStatus && true}
-            style={{ opacity: deleteAlertStatus && 0.5 }}
-          />
-        </label>
+        {!deleteAlertStatus && (
+          <label
+            htmlFor="group-name"
+            className="group-pop-up__name"
+            style={{ opacity: deleteAlertStatus && 0.5 }}>
+            Nazwa grupy:
+            <input
+              autoFocus
+              id="group-name"
+              type="text"
+              value={groupName}
+              onChange={e => setGroupName(e.target.value)}
+              className="group-pop-up__name-input"
+              placeholder="Wprowadź nazwę"
+              disabled={deleteAlertStatus && true}
+              style={{ opacity: deleteAlertStatus && 0.5 }}
+            />
+          </label>
+        )}
         {alertMessage && (
           <span className="group-pop-up__alert">{alertMessage}</span>
         )}
@@ -134,17 +141,20 @@ function GroupPopUp({
           <span className="group-pop-up__accept-icon" onClick={editTypeChanger}>
             <FontAwesomeIcon icon={faCheck} />
           </span>
-          {groupIdActive !== -1 && (
+          {!empty && (
             <span
-              style={{
-                color: deleteAlertStatus && "rgba(255, 0, 0, .5)"
-              }}
               className="group-pop-up__delete-icon"
               onClick={() => {
                 setDeleteAlertStatus(state => !state);
-                setAlertMessage("Na pewno chcesz usunąć grupę?");
+                if (deleteAlertStatus) {
+                  setAlertMessage("");
+                } else if (!deleteAlertStatus) {
+                  setAlertMessage("Na pewno chcesz usunąć grupę?");
+                }
               }}>
-              <FontAwesomeIcon icon={faTrashAlt} />
+              <FontAwesomeIcon
+                icon={deleteAlertStatus ? faShare : faTrashAlt}
+              />
             </span>
           )}
         </span>

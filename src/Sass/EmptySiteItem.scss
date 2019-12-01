@@ -2,28 +2,26 @@
 
 .empty-site{
 position: relative;
-width: 100%;
+max-width: 100%;
 box-shadow: none;
+margin: 10px 10px 0 10px;
 background: rgba($mainUserColor, .2);
 border-radius: $borderRadius;
 border-left: 2px solid rgba(white, .75);
 border-right: 2px solid rgba(white, .75);
 color: rgba(white, .75);
 transition: background .2s;  
-
-  &.site{
-    height: 50px;
+height: 40px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ font-weight: 700;
+ font-size: 2rem;
+ cursor: pointer;
     @media (min-width: 576px) {
       width: 35%;
+      height: 45px;
     }
-  }
-  &__plus-icon{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2rem;
-  }
   &:hover{
     background: rgba(white, .1);
     box-shadow: none;

@@ -11,7 +11,7 @@ function EmptyCard({ statusChanger, activeStatus, getCardsData }) {
   }
   return (
     <li className={`card card__empty ${activeSettings && "active-settings"}`}>
-      <div className="card__card-container"> </div>
+      <div className="card__card-container" />
       <div
         style={activeSettings ? { display: "none" } : { display: "flex" }}
         onClick={() => statusChanger(activeStatus.activeId, "settings")}

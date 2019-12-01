@@ -17,20 +17,25 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   color: $mainTextColor;
+  flex-direction: column;
   @media (min-width: 768px) {
     margin: 0 auto;
     max-width: 1200px;
-    justify-content: flex-end;
+    flex-direction: row;
+    justify-content: flex-start;
   }
   &__container{
+    
     background: $BGColorOpLow;
     transition: background .2s;
-    height: 100%;
+    height: 100vh;
     width: 100%;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    align-items: space-evenly;
     @media (min-width: 768px) {
       border-radius: $borderRadius 0 0 $borderRadius;
       max-width: 350px;
@@ -40,10 +45,9 @@
     }
   }
   &__form {
-    height: 100%;
+    height: 95%;
     width: 100%;
     max-height: 750px;
-    text-align: center;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -58,7 +62,7 @@
     font-size: 3.5rem;
     position: relative;
     @media (min-width: 768px) {
-      font-size: 4.5rem;
+      font-size: 4rem;
     }
     &:after{
       content: "";
@@ -164,5 +168,9 @@
     font-size: 1.5rem;
     font-weight: 700;
     color: rgba(255, 100, 100, .7);
+  }
+  &__credits{
+    width: 100%;
+    opacity: .5;
   }
 } 

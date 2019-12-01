@@ -10,12 +10,28 @@ cursor: pointer;
 text-align: center;
 transition: box-shadow .1s, background .1s;
 color: $darkTextColor;
-display: flex;
-flex-wrap: wrap;
 animation: bookmarkAnimTitle .5s 1 both;
 box-shadow: inset 2px -2px 2px rgba(white, 1);
 background: rgba(white, .7);
 overflow: hidden;
+&__updated-time{
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+  transform: translateY(-50%);
+  opacity: .6;
+  font-size: 1rem;
+}
+&__notes{ position: absolute;
+  text-align: left;
+  top: 45px;
+  bottom: 45px;
+  left: 80px;
+  right: 60px;
+  white-space: pre-wrap;
+  overflow: hidden;
+  font-size: 1.1rem;
+}
   &__important-alert{
     top: 5px;
     padding: 0;
@@ -36,7 +52,7 @@ overflow: hidden;
       position: absolute;
       left: 100%;
       top: 50%;
-      content: "Pilne!";
+      content: "Ważne!";
       opacity: 0;
       transition: transform .2s, opacity .2s;
       transform: translate(-35px, -75%);
@@ -73,11 +89,11 @@ overflow: hidden;
   }
   &__name{
     font-size: 1.5rem;
-    flex: 1;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
-  }
-  &__update-time{
-    width: 100%;
   }
   &__link, &__edit{
     right: 0;

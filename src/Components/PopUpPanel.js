@@ -29,6 +29,7 @@ function PopUpPanel({
           category_id={category_id}
           groupIdActive={groupIdActive}
           setPopUpActiveType={setPopUpActiveType}
+          empty={popUpActiveType === "empty-group" ? true : false}
         />
       );
       break;
