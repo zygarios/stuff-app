@@ -27,7 +27,16 @@ function LoginPanel() {
         }
       })
       .then(() => handleLoginRequest())
-      .catch(err => setAlertMessage("coś nie działa"));
+      .catch(({ response }) => {
+        const errors = response.data.errors;
+        if (errors.password) {
+          setAlertMessage(errors.password[0]);
+        } else if (errors.email) {
+          setAlertMessage(errors.email[0]);
+        } else {
+          setAlertMessage("Problemy z serwerem");
+        }
+      });
   };
 
   const handleLoginRequest = () => {
@@ -41,9 +50,15 @@ function LoginPanel() {
         localStorage.setItem("access_token", token);
         history.push("/home");
       })
-      .catch(err => {
-        err.response.status === 401 &&
-          setAlertMessage("Nieprawidłowy login lub haslo");
+      .catch(({ response }) => {
+        const errors = response.data.errors;
+        if (errors.password) {
+          setAlertMessage(errors.password[0]);
+        } else if (errors.email) {
+          setAlertMessage(errors.email[0]);
+        } else {
+          setAlertMessage("Problemy z serwerem");
+        }
       });
   };
 
@@ -60,6 +75,7 @@ function LoginPanel() {
       <div className="login-panel__container">
         <form className="login-panel__form" onSubmit={handleSubmitLoginForm}>
           <h1 className="login-panel__title">Zakładka</h1>
+          <span className="login-panel__line" />
           {isRegisterStatus && (
             <label htmlFor="name" className="login-panel__name-title">
               Imię
@@ -100,6 +116,7 @@ function LoginPanel() {
           <button className="login-panel__login-button">
             {isRegisterStatus ? "Zarejestruj" : "Zaloguj"}
           </button>
+          <span className="login-panel__line" />
           <p className="login-panel__sign-title">
             {isRegisterStatus ? "Jeśli masz konto, " : "Jeśli nie masz konta, "}
             <span

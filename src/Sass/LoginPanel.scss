@@ -52,6 +52,8 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
   }
   &__title {
     width:100%;
@@ -63,16 +65,7 @@
     @media (min-width: 768px) {
       font-size: 4rem;
     }
-    &:after{
-      content: "";
-      position: absolute;
-      top: calc(100% + 20px);
-      left: 50%;
-      height: 1px;
-      width: 80%;
-      background: rgba(white, .2);
-      transform: translate(-50%,-50%);
-    }
+
   }
   &__email-title,
   &__name-title,
@@ -92,11 +85,11 @@
     font-size: 1.5rem;
     border: 1px solid white;
     border-radius: $borderRadius/2;
-    background: lightgrey;
-    box-shadow: $shadowInsetActivePush;
+    background: lighten($mainUserColor, 40%);
+    box-shadow: inset 1px -1px 1px darkgray;
     transition: box-shadow .2s;
     &:focus {
-      box-shadow: $shadowInsetActiveSelect
+      box-shadow: inset 1.5px -1.5px 1.5px darkgray;
     }
     &::placeholder{
       color: rgba(black, .2);
@@ -143,18 +136,14 @@
     padding: 0 20px;
     color: rgba(white,.85);
     position: relative;
-      &:after{
-      content: "";
-      position: absolute;
-      bottom: calc(100% + 25px);
-      left: 50%;
-      height: 1px;
-      width: 80%;
-      background: rgba(white, .15);
-      transform: translate(-50%,-50%);
-    }
   }
+&__line{
+    width: 100%;
+    height: 1px;
+    width: 80%;
+    background: rgba(white, .2);
 
+}
   &__sign-link {
     text-decoration: none;
     font-weight: 700;
@@ -166,7 +155,7 @@
   &__alert{
     font-size: 1.5rem;
     font-weight: 700;
-    color: rgba(255, 100, 100, .7);
+    color: rgba(255, 100, 100, .85);
   }
   &__credits{
     width: 100%;
