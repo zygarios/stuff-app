@@ -20,7 +20,6 @@ function SiteItem({
   groupIdActive
 }) {
   const { url, name, updated_at, id, important, notes } = siteData;
-
   const handleChangeImportantIcon = () => {
     const serverCategoriesURL = "https://jimmyspage.pl/api/categories";
     const serverSiteURL = `${serverCategoriesURL}/${category_id}/groups/${group_id}/sites/${site_id}`;

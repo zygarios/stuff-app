@@ -108,11 +108,12 @@ function SitePopUp({
     } else if (!URLValue.includes(".")) {
       return setAlertMessage("Podaj prawidłowy adres URL");
     }
+    const urlWithPrefix = handlePrefixUrl();
 
     const formDataSite = new FormData();
 
     formDataSite.set("name", siteName);
-    formDataSite.append("url", URLValue);
+    formDataSite.append("url", urlWithPrefix);
     formDataSite.append("important", Number(importantStatus));
 
     if (popUpActiveType === "empty-site") {
@@ -129,10 +130,35 @@ function SitePopUp({
     }
   };
 
+  const handlePrefixUrl = () => {
+    let correctURL = "";
+    const wwwInc = URLValue.includes("www.");
+    const httpInc = URLValue.includes("http://");
+    const httpsInc = URLValue.includes("https://");
+    const allHttpInc = URLValue.includes("http://www.");
+    const allHttpsInc = URLValue.includes("https://www.");
+
+    if (wwwInc && !httpsInc && !httpInc) {
+      correctURL = "https://" + URLValue;
+    } else if ((httpsInc || httpInc) && !wwwInc) {
+      if (httpsInc) {
+        correctURL = URLValue.replace("https://", "https://www.");
+      } else if (httpInc) {
+        correctURL = URLValue.replace("http://", "http://www.");
+      }
+    } else if (!allHttpsInc && !allHttpInc) {
+      correctURL = "https://www." + URLValue;
+    } else {
+      correctURL = URLValue;
+    }
+    return correctURL;
+  };
+
   useEffect(() => {
     window.addEventListener("keydown", keyDownSubmitForm);
     return () => window.removeEventListener("keydown", keyDownSubmitForm);
   });
+
   return (
     <div className="site-pop-up">
       <form
