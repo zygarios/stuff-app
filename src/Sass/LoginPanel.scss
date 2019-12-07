@@ -15,12 +15,11 @@
 .login-panel {
   display: flex;
   justify-content: center;
-  align-items: center;
   width: 100%;
   min-height: 100vh;
   color: $mainTextColor;
   flex-direction: column;
-  @media (min-width: 768px) {
+  @media (min-width: 768px) and (min-height: 768px){
     margin: 0 auto;
     max-width: 1200px;
     height: 100vh;
@@ -32,20 +31,22 @@
     background: rgba($mainUserColor, .9);
     transition: background .2s;
     width: 100%;
+    padding-top: 40px;
     display: flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
-    @media (min-width: 768px) {
+    @media (min-width: 768px) and (min-height: 768px){
       border-radius: $borderRadius 0 0 $borderRadius;
       max-width: 350px;
     }
   }
+  
   &__form {
     height: 95%;
     width: 100%;
-    margin-top: 30px;
-    margin-bottom: 10%;
+    padding-top: 20px;
+    padding-bottom: 40px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -72,8 +73,8 @@
   &__password-title {
     display: block;
     font-size: 1.5rem;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
   &__email-input,
   &__name-input,
@@ -112,8 +113,8 @@
     position: relative;
     overflow: hidden;
     mix-blend-mode: lighten;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 50px;
     &::before {
       content: '';
       width: 100%;
@@ -170,8 +171,8 @@
   }
   &__credits{
     width: 100%;
-    opacity: .75;
+    opacity: .5;
     font-size: 1.2rem;
-    margin-bottom: 25px;
+    padding-bottom: 20px;
   }
 } 

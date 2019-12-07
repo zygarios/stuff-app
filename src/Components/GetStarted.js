@@ -10,20 +10,20 @@ function GetStarted() {
         Organizer ulubionych stron internetowych
       </h1>
       <div className="get-started__step">
-        <h3 className="get-started__title get-started__title--first">
-          1. Zakładaj karty z kategoriami
-        </h3>
         <div className="get-started__gif get-started__gif--first">
           <img src={gif1} alt="Step 1" />
         </div>
+        <h3 className="get-started__title get-started__title--first">
+          1. Zakładaj karty z kategoriami
+        </h3>
       </div>
       <div className="get-started__step">
-        <h3 className="get-started__title get-started__title--second">
-          2. Personalizuj grupy, strony i notatki
-        </h3>
         <div className="get-started__gif get-started__gif--second">
           <img src={gif2} alt="Step 2" />
         </div>
+        <h3 className="get-started__title get-started__title--second">
+          2. Personalizuj grupy, strony i notatki
+        </h3>
       </div>
     </div>
   );
