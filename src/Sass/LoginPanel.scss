@@ -31,7 +31,6 @@
   &__container{
     background: rgba($mainUserColor, .9);
     transition: background .2s;
-    height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -46,7 +45,7 @@
     height: 95%;
     width: 100%;
     margin-top: 30px;
-    margin-bottom: 20vh;
+    margin-bottom: 10%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -62,6 +61,7 @@
     text-align: center;
     font-size: 5rem;
     position: relative;
+    margin-bottom: 10px;
     @media (min-width: 768px) {
       font-size: 4rem;
     }
@@ -72,6 +72,8 @@
   &__password-title {
     display: block;
     font-size: 1.5rem;
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
   &__email-input,
   &__name-input,
@@ -97,6 +99,7 @@
   }
 
   &__login-button {
+    
     background: none;
     max-width: 500px;
     font-size: 2.0rem;
@@ -109,6 +112,8 @@
     position: relative;
     overflow: hidden;
     mix-blend-mode: lighten;
+    margin-top: 10px;
+    margin-bottom: 10px;
     &::before {
       content: '';
       width: 100%;
@@ -136,8 +141,12 @@
     padding: 0 20px;
     color: rgba(white,.85);
     position: relative;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 &__line{
+  margin-top: 10px;
+  margin-bottom: 10px;
     width: 100%;
     height: 1px;
     width: 80%;
@@ -145,6 +154,8 @@
 
 }
   &__sign-link {
+    margin-top: 10px;
+    margin-bottom: 10px;
     text-decoration: none;
     font-weight: 700;
     cursor: pointer;
