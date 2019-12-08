@@ -51,13 +51,10 @@ function LoginPanel() {
         history.push("/home");
       })
       .catch(({ response }) => {
-        const errors = response.data.errors;
-        if (errors.password) {
-          setAlertMessage(errors.password[0]);
-        } else if (errors.email) {
-          setAlertMessage(errors.email[0]);
+        if (response.status === 401) {
+          setAlertMessage("Nieprawidłowy login lub hasło");
         } else {
-          setAlertMessage("Problemy z serwerem");
+          setAlertMessage("Problem z serwerem");
         }
       });
   };
