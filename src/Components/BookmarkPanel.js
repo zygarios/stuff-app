@@ -20,7 +20,7 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
     getGroupsData(category_id);
     getSitesData(groupIdActive);
     moveScreenToActiveCard();
-  }, [groupIdActive, siteIdActive, category_id]);
+  }, [groupIdActive, category_id]);
 
   const moveScreenToActiveCard = () => {
     const bookmarkPosTop = document
@@ -53,7 +53,7 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
         );
         groupsList.unshift({
           id: 0,
-          name: "Wszystkie zapisane strony"
+          name: "Wszystkie grupy"
         });
         groupsList.unshift({ id: -1 });
         setGroupsData(groupsList);
@@ -146,7 +146,6 @@ function BookmarkPanel({ category_id, statusChanger, activeBookmark, name }) {
       )}
       {sitesData && (
         <SitesPanel
-          groupsData={groupsData}
           getSitesData={getSitesData}
           getGroupsData={getGroupsData}
           sitesData={sitesData}

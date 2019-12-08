@@ -10,7 +10,6 @@ function GroupsPanel({
   groupIdActive
 }) {
   const [isHoverOnGroupItem, setIsHoverOnGroupItem] = useState(false);
-
   const handleGroupListEnter = () => {
     if (window.innerWidth < 576) return;
     setIsHoverOnGroupItem(true);
@@ -38,6 +37,7 @@ function GroupsPanel({
           key={groupData.id}
           groupData={groupData}
           setPopUpActiveType={setPopUpActiveType}
+          groupsDataLength={groupsData.length}
         />
       );
     }

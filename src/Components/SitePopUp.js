@@ -132,22 +132,11 @@ function SitePopUp({
 
   const handlePrefixUrl = () => {
     let correctURL = "";
-    const wwwInc = URLValue.includes("www.");
     const httpInc = URLValue.includes("http://");
     const httpsInc = URLValue.includes("https://");
-    const allHttpInc = URLValue.includes("http://www.");
-    const allHttpsInc = URLValue.includes("https://www.");
 
-    if (wwwInc && !httpsInc && !httpInc) {
-      correctURL = "https://" + URLValue;
-    } else if ((httpsInc || httpInc) && !wwwInc) {
-      if (httpsInc) {
-        correctURL = URLValue.replace("https://", "https://www.");
-      } else if (httpInc) {
-        correctURL = URLValue.replace("http://", "http://www.");
-      }
-    } else if (!allHttpsInc && !allHttpInc) {
-      correctURL = "https://www." + URLValue;
+    if (!httpsInc && !httpInc) {
+      correctURL = "http://" + URLValue;
     } else {
       correctURL = URLValue;
     }

@@ -10,7 +10,6 @@ function SitesPanel({
   setSiteIdActive,
   setGroupIdActive,
   getSitesData,
-  groupsData,
   category_id
 }) {
   const sites = sitesData.map(siteData => {
@@ -29,17 +28,15 @@ function SitesPanel({
       />
     );
   });
-  let group = null;
-  if (groupsData) {
-    group = groupsData.find(group => group.id === groupIdActive);
-  }
 
   return (
     <div className="sites-panel">
       <ul className="sites-panel__list">
         <div className="sites-panel__header-wrapper">
           <div className="sites-panel__group-name site">
-            {group ? group.name : "Brak zapisanych stron"}
+            {sitesData.length
+              ? "Wszystkie zapisane strony"
+              : "Brak zapisanych stron"}
           </div>
           {!(groupIdActive === 0) && (
             <EmptySiteItem

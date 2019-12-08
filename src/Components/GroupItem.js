@@ -5,11 +5,16 @@ import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
 function GroupItem({
   groupData,
+  groupsDataLength,
   setPopUpActiveType,
   setGroupIdActive,
   groupIdActive
 }) {
   const { id, name } = groupData;
+  let groupName = name;
+  if (id === 0 && groupsDataLength <= 2) {
+    groupName = "Brak grup";
+  }
   return (
     <li
       onClick={() => {
@@ -17,9 +22,7 @@ function GroupItem({
       }}
       className={`group-item ${id === Number(groupIdActive) &&
         "active-select"} ${id === 0 && "all-groups"}`}>
-      <p className="group-item__title">
-        {name === "Wszystkie zapisane strony" ? "Pokaż wszystkie" : name}
-      </p>
+      <p className="group-item__title">{groupName}</p>
       <span
         className="group-item__edit-icon"
         onClick={() => {
