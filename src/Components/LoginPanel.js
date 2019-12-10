@@ -16,6 +16,13 @@ function LoginPanel() {
   const history = useHistory();
 
   const handleRegisterRequest = () => {
+    if (!nameValue) {
+      return setAlertMessage("Podaj nazwę użytkownika");
+    } else if (!emailValue) {
+      return setAlertMessage("Podaj email");
+    } else if (!passwordValue) {
+      return setAlertMessage("Podaj hasło");
+    }
     const loginForm = new FormData();
     loginForm.set("name", nameValue);
     loginForm.set("email", emailValue);
@@ -40,6 +47,11 @@ function LoginPanel() {
   };
 
   const handleLoginRequest = () => {
+    if (!emailValue) {
+      return setAlertMessage("Podaj email");
+    } else if (!passwordValue) {
+      return setAlertMessage("Podaj hasło");
+    }
     axios
       .post(serverLoginURL, {
         username: emailValue,

@@ -37,7 +37,7 @@
     text-align: center;
     align-items: center;
     @media (min-width: 768px) and (min-height: 768px){
-      border-radius: $borderRadius 0 0 $borderRadius;
+      border-radius: 0 $borderRadius $borderRadius 0;
       max-width: 350px;
     }
   }
